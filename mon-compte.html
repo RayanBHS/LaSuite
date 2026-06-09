@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Compte - RACYWAMA</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Gérez votre profil RACYWAMA, activez vos extensions et configurez vos préférences pour MyEfrei ULTRA et MyMoodle ULTRA.">
+  <meta name="author" content="Racywama">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="mon-compte.css">
+</head>
+<body class="account-page-body is-unconnected">
+
+  <!-- MOBILE HEADER (Visible on <= 992px) -->
+  <header class="mobile-header">
+    <a href="index.html" class="mobile-logo-wrapper">
+      <img src="img/logo.png" alt="RACYWAMA Comet Logo" class="mobile-logo-img">
+    </a>
+    <button class="mye-hamburger-btn" id="mye-hamburger-btn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- MOBILE DRAWER (Visible on <= 992px) -->
+  <div id="mye-mobile-drawer" class="mye-mobile-drawer">
+    <div class="mye-drawer-header">
+      <button class="mye-drawer-close" id="mye-drawer-close" aria-label="Fermer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <!-- Drawer Profile Info -->
+    <div class="mye-drawer-profile-container">
+      <div class="avatar-gradient drawer-avatar" id="drawer-profile-avatar">--</div>
+      <div class="mye-drawer-profile-details">
+        <h3 class="mye-drawer-name" id="drawer-profile-name">Non connecté</h3>
+        <span class="mye-drawer-badge" id="drawer-profile-class">Aucune extension</span>
+      </div>
+    </div>
+    
+    <!-- Drawer Navigation Menu -->
+    <nav class="mye-drawer-nav">
+      <a href="index.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">Accueil du portail</span>
+      </a>
+      <a href="myefrei-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyEfrei ULTRA</span>
+      </a>
+      <a href="index.html#card-mymoodle-ultra" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyMoodle ULTRA</span>
+      </a>
+      <a href="mon-compte.html" class="mye-drawer-item active">
+        <span class="mye-drawer-item-text">Mon Compte</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- DRAWER OVERLAY -->
+  <div id="mye-drawer-overlay" class="mye-drawer-overlay"></div>
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <a href="index.html" class="sidebar-logo-wrapper" id="sidebar-logo">
+        <img src="img/logo.png" alt="RACYWAMA Comet Logo" class="sidebar-logo-img">
+      </a>
+      <div class="sidebar-search-container">
+        <svg class="sidebar-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" placeholder="Rechercher..." id="sidebar-search" class="sidebar-search-input">
+      </div>
+    </div>
+    
+    <!-- Software List inside Sidebar -->
+    <nav class="sidebar-nav">
+      <p class="sidebar-nav-title">Logiciels de la Suite</p>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="index.html" class="sidebar-menu-link">
+            Accueil du portail
+          </a>
+        </li>
+        <li>
+          <a href="myefrei-ultra.html" class="sidebar-menu-link">
+            MyEfrei ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="index.html#card-mymoodle-ultra" class="sidebar-menu-link">
+            MyMoodle ULTRA
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Sidebar Bottom (Account Button) -->
+    <div class="sidebar-bottom">
+      <a href="mon-compte.html" class="sidebar-account-btn active" id="sidebar-account-btn">
+        <svg class="sidebar-account-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Mon Compte</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="main-content">
+    
+    <!-- Top Header -->
+    <div class="top-header">
+      <h1 class="main-title">Mon Espace</h1>
+    </div>
+
+    <!-- STATE 1: UNCONNECTED VIEW (Default) -->
+    <div id="state-unconnected" class="unconnected-container">
+      <!-- Unconnected Message Card -->
+      <div class="card-unconnected-msg" style="text-align: center;">
+        <h2 style="margin-bottom: 2rem;">Veuillez lancer myEfrei ULTRA pour avoir vos informations</h2>
+        <a href="https://auth.myefrei.fr/uaa/interaction/dcYDgSKBVvpcvzDMq9liF" target="_blank" class="btn-mye-connect" style="display: inline-block; padding: 0.85rem 2.5rem; background-color: var(--btn-blue, #423ee2); color: #ffffff; text-decoration: none; border-radius: 100px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(66, 62, 226, 0.15); transition: all 0.2s ease;">Se connecter à myEfrei</a>
+      </div>
+
+      <!-- Extensions Status Card -->
+      <div class="card-extensions-status">
+        <h3>Extensions activées</h3>
+        <div class="extensions-pills-list">
+          
+          <!-- Extension 1: myEfrei ULTRA -->
+          <div class="extension-pill-item">
+            <div class="extension-pill-left">
+              <img src="img/logomyEfreiUltra.png" alt="myEfrei ULTRA Logo" class="extension-logo-img">
+              <span class="extension-name">myEfrei ULTRA</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="extension-toggle-unconnected">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Extension 2: myMoodle ULTRA -->
+          <div class="extension-pill-item">
+            <div class="extension-pill-left">
+              <div class="mym-moodle-icon-wrapper">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="dome-svg"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path><path d="M12 10v6" stroke-width="2"></path></svg>
+              </div>
+              <span class="extension-name">myMoodle ULTRA</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="moodle-toggle-unconnected">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- STATE 2: CONNECTED VIEW (Hidden by default) -->
+    <div id="state-connected" class="account-grid">
+      
+      <!-- LEFT: Profile & License Info -->
+      <div class="account-left-col">
+        <div class="profile-card">
+          <div class="avatar-gradient" id="profile-avatar">--</div>
+          <h2 class="profile-name" id="profile-name">Non connecté</h2>
+          <span class="profile-badge" id="profile-class">Aucune extension</span>
+          
+          <div class="profile-details">
+            <div class="detail-row">
+              <span class="detail-label">E-mail</span>
+              <span class="detail-value" id="profile-email">--</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Moyenne</span>
+              <span class="detail-value" id="profile-average">--</span>
+            </div>
+            <div class="detail-row">
+              <span class="detail-label">Absences / Retards</span>
+              <span class="detail-value" id="profile-attendance">--</span>
+            </div>
+          </div>
+          
+          <div class="profile-sync-warning" id="profile-sync-warning" style="margin-top: 1.5rem; font-size: 0.8rem; color: #b45309; background: #fffbeb; border: 1px solid #fef3c7; padding: 12px; border-radius: 14px; text-align: left; width: 100%; box-sizing: border-box; line-height: 1.4;">
+            ⚠️ <strong>Données non synchronisées</strong> : veuillez vous <a href="https://auth.myefrei.fr/uaa/interaction/dcYDgSKBVvpcvzDMq9liF" target="_blank" style="color: #78350f; font-weight: 700; text-decoration: underline;">connecter à l'ENT myEfrei</a> avec l'extension.
+          </div>
+
+          <!-- Extensions activées -->
+          <div class="pref-category" style="margin-top: 2rem; width: 100%;">
+            <h4 class="pref-cat-title" style="text-align: left;">Extensions activées</h4>
+            <div class="extensions-pills-list">
+              
+              <!-- Extension 1: myEfrei ULTRA -->
+              <div class="extension-pill-item">
+                <div class="extension-pill-left">
+                  <img src="img/logomyEfreiUltra.png" alt="myEfrei ULTRA Logo" class="extension-logo-img">
+                  <span class="extension-name">myEfrei ULTRA</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" checked id="extension-toggle-connected">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <!-- Extension 2: myMoodle ULTRA -->
+              <div class="extension-pill-item">
+                <div class="extension-pill-left">
+                  <div class="mym-moodle-icon-wrapper">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="dome-svg"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path><path d="M12 10v6" stroke-width="2"></path></svg>
+                  </div>
+                  <span class="extension-name">myMoodle ULTRA</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="moodle-toggle-connected">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- RIGHT: Preferences & Extension Control -->
+      <div class="account-right-col">
+        <div class="preferences-card">
+
+          <h3 class="card-section-title">Configuration MyEfrei ULTRA</h3>
+          <p class="card-section-subtitle">Personnalisez les données scolaires et de profil simulées par l'extension.</p>
+
+          <div class="mye-sync-notice" id="mye-sync-notice">
+            <div class="mye-sync-notice-icon">⚠️</div>
+            <div class="mye-sync-notice-text">
+              <strong>Veuillez vous <a href="https://auth.myefrei.fr/uaa/interaction/dcYDgSKBVvpcvzDMq9liF" target="_blank" style="color: #78350f; text-decoration: underline;">connecter à myEfrei</a> avec l'extension</strong><br>
+              Aucune donnée n'a été importée de l'ENT officiel. Ces informations de profil et de notes sont obligatoirement extraites depuis le site de l'école par l'application et ne peuvent pas être modifiées manuellement.
+            </div>
+          </div>
+          
+          <!-- Catégorie 1: Profil Étudiant -->
+          <div class="pref-category">
+            <h4 class="pref-cat-title">Profil de l'étudiant</h4>
+            <div class="apple-settings-card">
+              <div class="apple-settings-row">
+                <span class="apple-row-label">Nom complet</span>
+                <span class="apple-row-value" id="mye-val-name">Non connecté</span>
+              </div>
+              <div class="apple-settings-row">
+                <span class="apple-row-label">E-mail étudiant</span>
+                <span class="apple-row-value" id="mye-val-email">Non connecté</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Catégorie 2: Données Scolaires -->
+          <div class="pref-category">
+            <h4 class="pref-cat-title">Statistiques Scolaires (ENT)</h4>
+            <div class="apple-settings-card">
+              <div class="apple-settings-row">
+                <span class="apple-row-label">Moyenne Générale</span>
+                <span class="apple-row-value" id="mye-val-average">--</span>
+              </div>
+              <div class="apple-settings-row">
+                <span class="apple-row-label">Absences</span>
+                <span class="apple-row-value" id="mye-val-absences">--</span>
+              </div>
+              <div class="apple-settings-row">
+                <span class="apple-row-label">Retards</span>
+                <span class="apple-row-value" id="mye-val-retards">--</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Catégorie 3: Apparence & Personnalisation -->
+          <div class="pref-category">
+            <h4 class="pref-cat-title">Apparence de l'extension</h4>
+            <div class="apple-settings-card">
+              <div class="apple-settings-row">
+                <span class="apple-row-label">Thème de couleur</span>
+                <div class="apple-row-interactive">
+                  <select id="mye-input-theme" class="apple-select-dropdown">
+                    <option value="navy">Navy (Bleu Efrei)</option>
+                    <option value="emerald">Emerald (Vert)</option>
+                    <option value="purple">Purple (Violet)</option>
+                    <option value="ruby">Ruby (Rouge)</option>
+                    <option value="slate">Slate (Gris)</option>
+                    <option value="oled">OLED (Noir profond)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="apple-settings-row">
+                <div class="apple-row-label-desc" style="text-align: left;">
+                  <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Thème sombre par défaut</span>
+                  <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Activer l'affichage sombre au chargement.</span>
+                </div>
+                <label class="apple-switch">
+                  <input type="checkbox" id="mye-input-darkmode">
+                  <span class="apple-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Catégorie 4: Calendrier Planning -->
+          <div class="pref-category">
+            <h4 class="pref-cat-title">Calendrier Planning</h4>
+            <div class="apple-settings-card">
+               <!-- Amplitude horaire (Dual range slider) -->
+              <div class="apple-settings-row mye-slider-row" style="flex-direction: column; align-items: stretch; padding: 18px 16px;">
+                <div style="display: flex; justify-content: center; font-size: 14px; font-weight: 500; color: #1d1d1f; margin-bottom: 12px; gap: 4px;">
+                  <span>De</span>
+                  <span id="mye-planning-start-val" style="color: #007aff; font-weight: 600; font-variant-numeric: tabular-nums;">07h30</span>
+                  <span>À</span>
+                  <span id="mye-planning-end-val" style="color: #007aff; font-weight: 600; font-variant-numeric: tabular-nums;">20h00</span>
+                </div>
+                <div class="mye-dual-slider-container">
+                  <div class="mye-dual-slider-track"></div>
+                  <div id="mye-planning-slider-range" class="mye-dual-slider-range"></div>
+                  <input type="range" id="mye-planning-start" class="mye-dual-slider-input" min="0" max="23.5" step="0.5" value="7.5" style="z-index: 4;">
+                  <input type="range" id="mye-planning-end" class="mye-dual-slider-input" min="0.5" max="24" step="0.5" value="20" style="z-index: 5;">
+                </div>
+              </div>
+              <div class="apple-settings-row" style="background-color: #f5f5f7; padding: 10px 16px; pointer-events: none;">
+                <span class="apple-row-label" style="color: #1d1d1f; font-weight: 600;">Couleurs des cours</span>
+              </div>
+              <div class="apple-settings-colors-grid">
+                <div class="apple-color-row">
+                  <span class="apple-color-label">CM (Cours magistral)</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-planning-color-CM" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">TD (Travaux dirigés)</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-planning-color-TD" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">TP (Travaux pratiques)</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-planning-color-TP" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">CC</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-planning-color-CC" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">CE (Contrôle écrit)</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-planning-color-CE" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">DE (Devoir écrit)</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-planning-color-DE" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">TAI</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-planning-color-TAI" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">Projet</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-planning-color-Projet" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">Langues</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-planning-color-Langues" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">Cours</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-planning-color-Cours" class="apple-color-picker">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Catégorie 5: Calendrier Association & Campus -->
+          <div class="pref-category">
+            <h4 class="pref-cat-title">Calendrier Association & Campus</h4>
+            <div class="apple-settings-card">
+              <!-- Amplitude horaire (Dual range slider) -->
+              <div class="apple-settings-row mye-slider-row" style="flex-direction: column; align-items: stretch; padding: 18px 16px;">
+                <div style="display: flex; justify-content: center; font-size: 14px; font-weight: 500; color: #1d1d1f; margin-bottom: 12px; gap: 4px;">
+                  <span>De</span>
+                  <span id="mye-calendar-start-val" style="color: #007aff; font-weight: 600; font-variant-numeric: tabular-nums;">07h30</span>
+                  <span>À</span>
+                  <span id="mye-calendar-end-val" style="color: #007aff; font-weight: 600; font-variant-numeric: tabular-nums;">20h00</span>
+                </div>
+                <div class="mye-dual-slider-container">
+                  <div class="mye-dual-slider-track"></div>
+                  <div id="mye-calendar-slider-range" class="mye-dual-slider-range"></div>
+                  <input type="range" id="mye-calendar-start" class="mye-dual-slider-input" min="0" max="23.5" step="0.5" value="7.5" style="z-index: 4;">
+                  <input type="range" id="mye-calendar-end" class="mye-dual-slider-input" min="0.5" max="24" step="0.5" value="20" style="z-index: 5;">
+                </div>
+              </div>
+              <div class="apple-settings-row" style="background-color: #f5f5f7; padding: 10px 16px; pointer-events: none;">
+                <span class="apple-row-label" style="color: #1d1d1f; font-weight: 600;">Couleurs des catégories</span>
+              </div>
+              <div class="apple-settings-colors-grid">
+                <div class="apple-color-row">
+                  <span class="apple-color-label">FabLab</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-calendar-color-FabLab" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">Studio</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-calendar-color-Studio" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">Associations (Asso)</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-calendar-color-Asso" class="apple-color-picker">
+                  </div>
+                </div>
+                <div class="apple-color-row">
+                  <span class="apple-color-label">Événements</span>
+                  <div class="apple-color-picker-wrapper">
+                    <input type="color" id="mye-calendar-color-Events" class="apple-color-picker">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="mye-settings-actions" style="margin-top: 2rem;">
+            <button type="button" class="btn-mye-reset" id="btn-mye-reset">Vider / Réinitialiser</button>
+          </div>
+
+    </div>
+
+    <!-- Toast Notification for Toggles -->
+    <div id="toast" class="toast">Préférence mise à jour !</div>
+    
+  </main>
+
+  <!-- Javascript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sidebar Search Logic
+      const searchInput = document.getElementById('sidebar-search');
+      const sidebarLinks = document.querySelectorAll('.sidebar-menu li');
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          sidebarLinks.forEach(linkLi => {
+            const linkText = linkLi.querySelector('.sidebar-menu-link').textContent.toLowerCase();
+            if (linkText.includes(query)) {
+              linkLi.style.display = 'block';
+            } else {
+              linkLi.style.display = 'none';
+            }
+          });
+        });
+      }
+
+      // Mobile Drawer Toggle Logic
+      const hamburgerBtn = document.getElementById('mye-hamburger-btn');
+      const mobileDrawer = document.getElementById('mye-mobile-drawer');
+      const drawerClose = document.getElementById('mye-drawer-close');
+      const drawerOverlay = document.getElementById('mye-drawer-overlay');
+
+      if (hamburgerBtn && mobileDrawer && drawerOverlay) {
+        hamburgerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          mobileDrawer.classList.add('active');
+          drawerOverlay.classList.add('active');
+        });
+      }
+
+      const closeDrawer = () => {
+        if (mobileDrawer) mobileDrawer.classList.remove('active');
+        if (drawerOverlay) drawerOverlay.classList.remove('active');
+      };
+
+      if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+      if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+      // Toast Logic
+      const toast = document.getElementById('toast');
+      let toastTimeout;
+      const showToast = (message) => {
+        toast.textContent = message;
+        toast.classList.add('show');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+          toast.classList.remove('show');
+        }, 3000);
+      };
+
+      // localStorage sync keys
+      const keys = {
+        name: 'mye_user_name',
+        class: 'mye_user_class',
+        email: 'mye_user_email',
+        id: 'mye_user_id',
+        average: 'mye_user_average',
+        absences: 'mye_user_absences',
+        retards: 'mye_user_retards',
+        theme: 'mye_user_theme',
+        darkmode: 'mye_user_darkmode',
+        planning: 'mye-planning-settings',
+        calendar: 'mye-calendars-settings'
+      };
+
+      // Generate hour options dynamically for all start/end dropdowns to support 0h00-24h00 with 30-min steps
+      const startSelects = ['mye-planning-start', 'mye-calendar-start'];
+      startSelects.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.innerHTML = '';
+          for (let h = 0; h <= 23.5; h += 0.5) {
+            const option = document.createElement('option');
+            option.value = String(h);
+            const hours = Math.floor(h);
+            const mins = h % 1 === 0.5 ? '30' : '00';
+            option.textContent = `${hours}h${mins}`;
+            el.appendChild(option);
+          }
+        }
+      });
+
+      const endSelects = ['mye-planning-end', 'mye-calendar-end'];
+      endSelects.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.innerHTML = '';
+          for (let h = 0.5; h <= 24; h += 0.5) {
+            const option = document.createElement('option');
+            option.value = String(h);
+            const hours = Math.floor(h);
+            const mins = h % 1 === 0.5 ? '30' : '00';
+            option.textContent = `${hours}h${mins}`;
+            el.appendChild(option);
+          }
+        }
+      });
+
+      // DOM elements references
+      const profileValues = {
+        name: document.getElementById('mye-val-name'),
+        email: document.getElementById('mye-val-email'),
+        average: document.getElementById('mye-val-average'),
+        absences: document.getElementById('mye-val-absences'),
+        retards: document.getElementById('mye-val-retards')
+      };
+
+      const inputs = {
+        theme: document.getElementById('mye-input-theme'),
+        darkmode: document.getElementById('mye-input-darkmode')
+      };
+
+      // Profile Card DOM references
+      const profile = {
+        avatar: document.getElementById('profile-avatar'),
+        name: document.getElementById('profile-name'),
+        class: document.getElementById('profile-class'),
+        email: document.getElementById('profile-email'),
+        average: document.getElementById('profile-average'),
+        attendance: document.getElementById('profile-attendance'),
+        warning: document.getElementById('profile-sync-warning'),
+        notice: document.getElementById('mye-sync-notice')
+      };
+
+      // Dual Range Slider Helpers
+      const formatHour = (val) => {
+        const hours = Math.floor(val);
+        const mins = val % 1 === 0.5 ? '30' : '00';
+        return `${String(hours).padStart(2, '0')}h${mins}`;
+      };
+
+      const updateDualSlider = (prefix) => {
+        const startInput = document.getElementById(`mye-${prefix}-start`);
+        const endInput = document.getElementById(`mye-${prefix}-end`);
+        const rangeLine = document.getElementById(`mye-${prefix}-slider-range`);
+        const startValDisplay = document.getElementById(`mye-${prefix}-start-val`);
+        const endValDisplay = document.getElementById(`mye-${prefix}-end-val`);
+        
+        if (!startInput || !endInput || !rangeLine) return;
+        
+        let startVal = parseFloat(startInput.value);
+        let endVal = parseFloat(endInput.value);
+        
+        // Handle crossing
+        if (startVal >= endVal) {
+          if (document.activeElement === startInput) {
+            endVal = Math.min(24, startVal + 0.5);
+            endInput.value = String(endVal);
+          } else {
+            startVal = Math.max(0, endVal - 0.5);
+            startInput.value = String(startVal);
+          }
+        }
+        
+        const startPercent = (startVal / 24) * 100;
+        const endPercent = (endVal / 24) * 100;
+        
+        rangeLine.style.left = startPercent + '%';
+        rangeLine.style.width = (endPercent - startPercent) + '%';
+        
+        startValDisplay.textContent = formatHour(startVal);
+        endValDisplay.textContent = formatHour(endVal);
+      };
+
+      // Load parameters
+      const loadParams = () => {
+        const nameVal = localStorage.getItem(keys.name) || '';
+        const emailVal = localStorage.getItem(keys.email) || '';
+        const idVal = localStorage.getItem(keys.id) || '';
+        const classVal = localStorage.getItem(keys.class) || '';
+        const averageVal = localStorage.getItem(keys.average) || '';
+        const absencesVal = localStorage.getItem(keys.absences) || '';
+        const retardsVal = localStorage.getItem(keys.retards) || '';
+
+        profileValues.name.textContent = nameVal || 'Non connecté';
+        profileValues.email.textContent = emailVal || 'Non connecté';
+        
+        // Format average to 2 decimal places
+        const avgNum = parseFloat(averageVal);
+        profileValues.average.textContent = isNaN(avgNum) ? '--' : avgNum.toFixed(2).replace('.', ',');
+        
+        profileValues.absences.textContent = absencesVal !== '' ? absencesVal : '--';
+        profileValues.retards.textContent = retardsVal !== '' ? retardsVal : '--';
+        
+        inputs.theme.value = localStorage.getItem(keys.theme) || 'navy';
+        inputs.darkmode.checked = localStorage.getItem(keys.darkmode) === 'true';
+
+        // Load Planning Settings
+        let planningData = {
+          colors: {
+            'CC': '#ff3b30', 'CE': '#ff3b30', 'DE': '#ff3b30', 'TAI': '#ff3b30',
+            'CM': '#34c759', 'TD': '#007aff', 'TP': '#ff9500',
+            'Projet': '#af52de', 'Langues': '#ff9500', 'Cours': '#8e8e93'
+          },
+          displayStart: 7.5,
+          displayEnd: 20.0
+        };
+        try {
+          const savedPlanning = localStorage.getItem('mye-planning-settings');
+          if (savedPlanning) {
+            const parsed = JSON.parse(savedPlanning);
+            planningData = { ...planningData, ...parsed };
+            planningData.colors = { ...planningData.colors, ...(parsed.colors || {}) };
+          }
+        } catch(e){}
+
+        document.getElementById('mye-planning-start').value = String(planningData.displayStart);
+        document.getElementById('mye-planning-end').value = String(planningData.displayEnd);
+        document.getElementById('mye-planning-color-CM').value = planningData.colors.CM || '#34c759';
+        document.getElementById('mye-planning-color-TD').value = planningData.colors.TD || '#007aff';
+        document.getElementById('mye-planning-color-TP').value = planningData.colors.TP || '#ff9500';
+        document.getElementById('mye-planning-color-CC').value = planningData.colors.CC || '#ff3b30';
+        document.getElementById('mye-planning-color-CE').value = planningData.colors.CE || '#ff3b30';
+        document.getElementById('mye-planning-color-DE').value = planningData.colors.DE || '#ff3b30';
+        document.getElementById('mye-planning-color-TAI').value = planningData.colors.TAI || '#ff3b30';
+        document.getElementById('mye-planning-color-Projet').value = planningData.colors.Projet || '#af52de';
+        document.getElementById('mye-planning-color-Langues').value = planningData.colors.Langues || '#ff9500';
+        document.getElementById('mye-planning-color-Cours').value = planningData.colors.Cours || '#8e8e93';
+
+        // Load Calendar Settings
+        let calendarData = {
+          colors: {
+            'FabLab': '#007aff',
+            'Studio': '#af52de',
+            'Asso': '#ff9500',
+            'Evénements': '#ff3b30'
+          },
+          displayStart: 7.5,
+          displayEnd: 20.0
+        };
+        try {
+          const savedCalendar = localStorage.getItem('mye-calendars-settings');
+          if (savedCalendar) {
+            const parsed = JSON.parse(savedCalendar);
+            calendarData = { ...calendarData, ...parsed };
+            calendarData.colors = { ...calendarData.colors, ...(parsed.colors || {}) };
+          }
+        } catch(e){}
+
+        document.getElementById('mye-calendar-start').value = String(calendarData.displayStart);
+        document.getElementById('mye-calendar-end').value = String(calendarData.displayEnd);
+        document.getElementById('mye-calendar-color-FabLab').value = calendarData.colors.FabLab || '#007aff';
+        document.getElementById('mye-calendar-color-Studio').value = calendarData.colors.Studio || '#af52de';
+        document.getElementById('mye-calendar-color-Asso').value = calendarData.colors.Asso || '#ff9500';
+        document.getElementById('mye-calendar-color-Events').value = calendarData.colors['Evénements'] || '#ff3b30';
+
+        updateDualSlider('planning');
+        updateDualSlider('calendar');
+      };
+
+      // Update Profile Card
+      const updateProfileCard = () => {
+        const nameVal = localStorage.getItem(keys.name);
+        const classVal = localStorage.getItem(keys.class);
+        const emailVal = localStorage.getItem(keys.email);
+        const avgVal = localStorage.getItem(keys.average);
+        const absVal = localStorage.getItem(keys.absences);
+        const retVal = localStorage.getItem(keys.retards);
+
+        const isConnected = !!nameVal;
+
+        const dAvatar = document.getElementById('drawer-profile-avatar');
+        const dName = document.getElementById('drawer-profile-name');
+        const dClass = document.getElementById('drawer-profile-class');
+
+        if (isConnected) {
+          // Avatar initials
+          const parts = nameVal.trim().split(/\s+/);
+          const initials = parts.map(p => p[0]).join('').substring(0, 2).toUpperCase();
+          profile.avatar.textContent = initials || '??';
+          if (dAvatar) dAvatar.textContent = initials || '??';
+          
+          profile.name.textContent = nameVal;
+          if (dName) dName.textContent = nameVal;
+
+          profile.class.textContent = classVal || 'Étudiant';
+          if (dClass) dClass.textContent = classVal || 'Étudiant';
+
+          profile.email.textContent = emailVal || '--';
+          profile.average.textContent = avgVal ? parseFloat(avgVal).toFixed(2).replace('.', ',') : '--';
+          
+          if (absVal === null || retVal === null) {
+            profile.attendance.innerHTML = `<span class="mye-tiny-spinner"></span>`;
+          } else {
+            profile.attendance.textContent = `${absVal} abs / ${retVal} ret`;
+          }
+          
+          profile.warning.style.display = 'none';
+          profile.notice.style.display = 'none';
+        } else {
+          profile.avatar.textContent = '--';
+          if (dAvatar) dAvatar.textContent = '--';
+
+          profile.name.textContent = 'Non connecté';
+          if (dName) dName.textContent = 'Non connecté';
+
+          profile.class.textContent = 'Aucune extension';
+          if (dClass) dClass.textContent = 'Aucune extension';
+
+          profile.email.textContent = '--';
+          profile.average.textContent = '--';
+          profile.attendance.textContent = '--';
+          
+          profile.warning.style.display = 'block';
+          profile.notice.style.display = 'flex';
+        }
+      };
+
+      // Save a key value
+      const saveParam = (key, value) => {
+        localStorage.setItem(key, value);
+        updateProfileCard();
+        window.dispatchEvent(new CustomEvent('mye-portal-save', { detail: { key, value } }));
+      };
+
+      // Attach event listeners for theme/darkmode (only editable ones)
+      inputs.theme.addEventListener('change', (e) => {
+        saveParam(keys.theme, e.target.value);
+        showToast(`Thème mis à jour : ${e.target.value.toUpperCase()}`);
+      });
+      inputs.darkmode.addEventListener('change', (e) => {
+        saveParam(keys.darkmode, e.target.checked);
+        showToast(`Mode sombre par défaut : ${e.target.checked ? 'Activé' : 'Désactivé'}`);
+      });
+
+      // Save planning settings
+      const savePlanningSettings = () => {
+        const startVal = parseFloat(document.getElementById('mye-planning-start').value);
+        const endVal = parseFloat(document.getElementById('mye-planning-end').value);
+        
+        if (startVal >= endVal) {
+          showToast('Erreur : L\'heure de début doit être inférieure à l\'heure de fin.');
+          loadParams();
+          return;
+        }
+
+        const planningSettings = {
+          displayStart: startVal,
+          displayEnd: endVal,
+          colors: {
+            TD: document.getElementById('mye-planning-color-TD').value,
+            TP: document.getElementById('mye-planning-color-TP').value,
+            CM: document.getElementById('mye-planning-color-CM').value,
+            Projet: document.getElementById('mye-planning-color-Projet').value,
+            Langues: document.getElementById('mye-planning-color-Langues').value,
+            Cours: document.getElementById('mye-planning-color-Cours').value,
+            CC: document.getElementById('mye-planning-color-CC').value,
+            CE: document.getElementById('mye-planning-color-CE').value,
+            DE: document.getElementById('mye-planning-color-DE').value,
+            TAI: document.getElementById('mye-planning-color-TAI').value
+          }
+        };
+        const valueStr = JSON.stringify(planningSettings);
+        localStorage.setItem(keys.planning, valueStr);
+        window.dispatchEvent(new CustomEvent('mye-portal-save', { 
+          detail: { key: keys.planning, value: valueStr } 
+        }));
+        showToast('Planning mis à jour !');
+      };
+
+      // Save calendar settings
+      const saveCalendarSettings = () => {
+        const startVal = parseFloat(document.getElementById('mye-calendar-start').value);
+        const endVal = parseFloat(document.getElementById('mye-calendar-end').value);
+
+        if (startVal >= endVal) {
+          showToast('Erreur : L\'heure de début doit être inférieure à l\'heure de fin.');
+          loadParams();
+          return;
+        }
+
+        const calendarSettings = {
+          displayStart: startVal,
+          displayEnd: endVal,
+          colors: {
+            FabLab: document.getElementById('mye-calendar-color-FabLab').value,
+            Studio: document.getElementById('mye-calendar-color-Studio').value,
+            Asso: document.getElementById('mye-calendar-color-Asso').value,
+            'Evénements': document.getElementById('mye-calendar-color-Events').value
+          }
+        };
+        const valueStr = JSON.stringify(calendarSettings);
+        localStorage.setItem(keys.calendar, valueStr);
+        window.dispatchEvent(new CustomEvent('mye-portal-save', { 
+          detail: { key: keys.calendar, value: valueStr } 
+        }));
+        showToast('Calendrier association/campus mis à jour !');
+      };
+
+      // Attach input event listeners for real-time visual updates
+      const bindDualSliderRealTime = (prefix, saveFunc) => {
+        const startInput = document.getElementById(`mye-${prefix}-start`);
+        const endInput = document.getElementById(`mye-${prefix}-end`);
+        
+        const updateVisuals = () => updateDualSlider(prefix);
+        
+        if (startInput && endInput) {
+          startInput.addEventListener('input', updateVisuals);
+          endInput.addEventListener('input', updateVisuals);
+          
+          startInput.addEventListener('change', () => {
+            updateVisuals();
+            saveFunc();
+          });
+          endInput.addEventListener('change', () => {
+            updateVisuals();
+            saveFunc();
+          });
+        }
+      };
+
+      bindDualSliderRealTime('planning', savePlanningSettings);
+      bindDualSliderRealTime('calendar', saveCalendarSettings);
+
+      // Attach change event listeners to Planning color inputs
+      const planningColorInputIds = [
+        'mye-planning-color-CM', 'mye-planning-color-TD', 'mye-planning-color-TP',
+        'mye-planning-color-CC', 'mye-planning-color-CE', 'mye-planning-color-DE',
+        'mye-planning-color-TAI', 'mye-planning-color-Projet', 'mye-planning-color-Langues',
+        'mye-planning-color-Cours'
+      ];
+      planningColorInputIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('change', savePlanningSettings);
+      });
+
+      // Attach change event listeners to Calendar color inputs
+      const calendarColorInputIds = [
+        'mye-calendar-color-FabLab', 'mye-calendar-color-Studio',
+        'mye-calendar-color-Asso', 'mye-calendar-color-Events'
+      ];
+      calendarColorInputIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('change', saveCalendarSettings);
+      });
+
+      // Reset logic
+      const btnReset = document.getElementById('btn-mye-reset');
+      btnReset.addEventListener('click', () => {
+        // Clear school data
+        localStorage.removeItem(keys.name);
+        localStorage.removeItem(keys.class);
+        localStorage.removeItem(keys.email);
+        localStorage.removeItem(keys.id);
+        localStorage.removeItem(keys.average);
+        localStorage.removeItem(keys.absences);
+        localStorage.removeItem(keys.retards);
+        
+        // Clear calendar overrides
+        localStorage.removeItem(keys.planning);
+        localStorage.removeItem(keys.calendar);
+
+        // Keep default theme
+        localStorage.setItem(keys.theme, 'navy');
+        localStorage.setItem(keys.darkmode, 'false');
+        
+        loadParams();
+        updateProfileCard();
+        
+        // Emit save for defaults and reset event
+        window.dispatchEvent(new CustomEvent('mye-portal-save', { detail: { key: keys.theme, value: 'navy' } }));
+        window.dispatchEvent(new CustomEvent('mye-portal-save', { detail: { key: keys.darkmode, value: false } }));
+        window.dispatchEvent(new CustomEvent('mye-portal-reset'));
+        
+        showToast('Données réinitialisées et vidées !');
+      });
+
+      // Connection Toggles Sync
+      const toggleUnconnected = document.getElementById('extension-toggle-unconnected');
+      const toggleConnected = document.getElementById('extension-toggle-connected');
+      const body = document.body;
+
+      const setConnectionState = (isEnabled) => {
+        const wasEnabled = localStorage.getItem('mye_user_enabled') !== 'false';
+        localStorage.setItem('mye_user_enabled', isEnabled ? 'true' : 'false');
+        
+        // Emit save event to sync back to extension storage
+        window.dispatchEvent(new CustomEvent('mye-portal-save', { 
+          detail: { key: 'mye_user_enabled', value: isEnabled ? 'true' : 'false' } 
+        }));
+
+        if (toggleUnconnected) toggleUnconnected.checked = isEnabled;
+        if (toggleConnected) toggleConnected.checked = isEnabled;
+
+        if (isEnabled) {
+          const nameVal = localStorage.getItem(keys.name);
+          if (nameVal) {
+            body.classList.remove('is-unconnected');
+            body.classList.add('is-connected');
+            loadParams();
+            updateProfileCard();
+            if (wasEnabled !== isEnabled) {
+              showToast('myEfrei ULTRA : Activé. Données synchronisées.');
+            }
+          } else {
+            body.classList.remove('is-connected');
+            body.classList.add('is-unconnected');
+            loadParams();
+            updateProfileCard();
+            if (wasEnabled !== isEnabled) {
+              showToast('myEfrei ULTRA : Activé. En attente de connexion sur l\'ENT.');
+            }
+          }
+        } else {
+          body.classList.remove('is-connected');
+          body.classList.add('is-unconnected');
+
+          // Clear school data when disabled
+          localStorage.removeItem(keys.name);
+          localStorage.removeItem(keys.class);
+          localStorage.removeItem(keys.email);
+          localStorage.removeItem(keys.id);
+          localStorage.removeItem(keys.average);
+          localStorage.removeItem(keys.absences);
+          localStorage.removeItem(keys.retards);
+
+          loadParams();
+          updateProfileCard();
+          
+          // Emit reset event to clear storage in the extension as well
+          window.dispatchEvent(new CustomEvent('mye-portal-reset'));
+          
+          if (wasEnabled !== isEnabled) {
+            showToast('myEfrei ULTRA : Désactivé.');
+          }
+        }
+      };
+
+      if (toggleUnconnected) {
+        toggleUnconnected.addEventListener('change', () => {
+          setConnectionState(toggleUnconnected.checked);
+        });
+      }
+
+      if (toggleConnected) {
+        toggleConnected.addEventListener('change', () => {
+          setConnectionState(toggleConnected.checked);
+        });
+      }
+
+      // Moodle Toggles Sync
+      const moodleToggleUnconnected = document.getElementById('moodle-toggle-unconnected');
+      const moodleToggleConnected = document.getElementById('moodle-toggle-connected');
+
+      if (moodleToggleUnconnected && moodleToggleConnected) {
+        moodleToggleUnconnected.addEventListener('change', () => {
+          moodleToggleConnected.checked = moodleToggleUnconnected.checked;
+          showToast(`myMoodle ULTRA : ${moodleToggleUnconnected.checked ? 'Activé' : 'Désactivé'}`);
+        });
+
+        moodleToggleConnected.addEventListener('change', () => {
+          moodleToggleUnconnected.checked = moodleToggleConnected.checked;
+          showToast(`myMoodle ULTRA : ${moodleToggleConnected.checked ? 'Activé' : 'Désactivé'}`);
+        });
+      }
+
+      // Initial load
+      loadParams();
+      updateProfileCard();
+      const initialEnabled = localStorage.getItem('mye_user_enabled') !== 'false';
+      setConnectionState(initialEnabled);
+
+      // Listen for data synchronization from the extension content script
+      window.addEventListener('mye-sync-data', () => {
+        loadParams();
+        updateProfileCard();
+        const currentEnabled = localStorage.getItem('mye_user_enabled') !== 'false';
+        setConnectionState(currentEnabled);
+      });
+    });
+  </script>
+</body>
+</html>

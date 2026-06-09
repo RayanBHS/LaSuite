@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyEfrei ULTRA - Présentation complète de l'extension RACYWAMA</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Découvrez MyEfrei ULTRA par RACYWAMA. L'extension ultime pour moderniser le portail de l'Efrei Paris : tableau de bord unifié, calcul de moyenne, planning de la semaine et thèmes personnalisés.">
+  <meta name="keywords" content="MyEfrei ULTRA, Efrei, RACYWAMA, Chrome extension, Moodle, thème sombre, planning, calculateur de moyenne, carte campus">
+  <meta name="author" content="Racywama">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MyEfrei ULTRA - Présentation complète">
+  <meta property="og:description" content="Libérez-vous des frictions de l'ENT officiel. Centralisez vos notes, simplifiez votre planning et personnalisez l'interface.">
+  <meta property="og:image" content="img/logomyEfreiUltra.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="myefrei-ultra.css">
+  
+  <!-- Leaflet Map Library -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+</head>
+<body class="myefrei-ultra-page">
+
+  <!-- LEFT SIDEBAR (Identique au portail d'accueil pour cohérence de navigation) -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <a href="index.html" class="sidebar-logo-wrapper" id="sidebar-logo">
+        <img src="img/logo.png" alt="RACYWAMA Comet Logo" class="sidebar-logo-img">
+      </a>
+      <div class="sidebar-search-container">
+        <svg class="sidebar-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" placeholder="Rechercher..." id="sidebar-search" class="sidebar-search-input">
+      </div>
+    </div>
+    
+    <!-- Software List inside Sidebar -->
+    <nav class="sidebar-nav">
+      <p class="sidebar-nav-title">Logiciels de la Suite</p>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="index.html" class="sidebar-menu-link">
+            Accueil du portail
+          </a>
+        </li>
+        <li>
+          <a href="myefrei-ultra.html" class="sidebar-menu-link active">
+            MyEfrei ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="index.html#card-mymoodle-ultra" class="sidebar-menu-link">
+            MyMoodle ULTRA
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Sidebar Bottom (Account Button) -->
+    <div class="sidebar-bottom">
+      <a href="mon-compte.html" class="sidebar-account-btn" id="sidebar-account-btn">
+        <svg class="sidebar-account-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Mon Compte</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="main-content">
+    
+    <!-- Connection Alert Banner -->
+    <div id="mye-ultra-connection-banner" style="display: none; background: #fffbeb; border: 1px solid #fef3c7; border-radius: 16px; padding: 16px 20px; margin-top: 1.5rem; display: flex; gap: 12px; align-items: flex-start;">
+      <span style="font-size: 1.5rem; line-height: 1;">⚠️</span>
+      <div style="font-size: 0.95rem; color: #b45309; line-height: 1.5;">
+        <strong>Extension inactive / Données non synchronisées</strong> : Veuillez configurer vos informations (nom, moyenne, absences) dans l'espace <a href="mon-compte.html" style="color: #78350f; font-weight: 700; text-decoration: underline;">Mon Compte</a> pour alimenter ce tableau de bord interactif.
+      </div>
+    </div>
+
+    <!-- Top Header -->
+    <header class="top-header ultra-header-container">
+      <span class="section-label" style="margin-bottom: 0.25rem;">RACYWAMA - Focus Logiciel</span>
+      <h1 class="main-title" style="font-size: 4.5rem; font-weight: 700; color: #00205C;">MyEfrei ULTRA</h1>
+      <p class="ultra-tagline">L'interface académique réinventée pour les étudiants de l'Efrei Paris.</p>
+    </header>
+
+    <!-- HERO PRESENTATION -->
+    <section class="ultra-hero" id="hero-ultra">
+      <div class="ultra-hero-content">
+        <h2>Libérez votre potentiel académique, <span>sans frictions</span>.</h2>
+        <p>
+          MyEfrei ULTRA est une extension de navigateur moderne qui se superpose de façon totalement transparente à votre espace MyEfrei. Elle rassemble vos informations clés (notes, absences, plannings, actualités) au sein d'un tableau de bord moderne et ergonomique, tout en supprimant les lenteurs d'affichage habituelles.
+        </p>
+        <div class="ultra-hero-actions">
+          <a href="#prise-en-main-ultra" class="btn-ultra-primary" id="btn-installez-maintenant">
+            <span>Télécharger l'extension</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </a>
+          <a href="#demo-live" class="btn-ultra-secondary" id="btn-tester-demo">Découvrir les thèmes</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE FEATURES SHOWCASE -->
+    <section class="section-block" style="background-color: #f8fafc; border: 1px solid rgba(0, 0, 0, 0.05);" id="features-list">
+      <span class="section-label">Fonctionnalités</span>
+      <h3 class="section-headline" style="color: #00205C;">Conçu pour votre productivité</h3>
+      
+      <div class="feature-showcase-grid">
+        <!-- Feature 1: Dashboard -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line><line x1="9" y1="9" x2="21" y2="9"></line><line x1="9" y1="15" x2="21" y2="15"></line></svg>
+          </div>
+          <h4>Tableau de bord unifié</h4>
+          <p>Dites adieu aux clics répétitifs. Toutes vos statistiques importantes (moyenne, absences, planning à venir) sont regroupées dès votre page de connexion.</p>
+        </article>
+
+        <!-- Feature 2: Grades -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(16, 185, 129, 0.08); color: #10b981;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          </div>
+          <h4>Calculateur de moyenne</h4>
+          <p>Visualisez instantanément votre moyenne générale. L'extension applique automatiquement les coefficients officiels de vos différentes Unités d'Enseignement (UE).</p>
+        </article>
+
+        <!-- Feature 3: Schedule -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(245, 158, 11, 0.08); color: #f59e0b;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+          <h4>Planning intelligent</h4>
+          <p>Le module extrait vos 3 prochains cours avec le code de la salle, l'intitulé exact et l'horaire précis. Fini le stress de chercher sa salle à la dernière minute.</p>
+        </article>
+
+        <!-- Feature 4: Map -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(239, 68, 68, 0.08); color: #ef4444;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line></svg>
+          </div>
+          <h4>Carte Leaflet intégrée</h4>
+          <p>Le plan complet des locaux et des différents bâtiments de l'école est directement intégré de manière interactive pour vous guider en temps réel.</p>
+        </article>
+
+        <!-- Feature 5: LXP Tracking -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(109, 40, 217, 0.08); color: #6d28d9;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+          </div>
+          <h4>Suivi de vos Learning XP</h4>
+          <p>Suivez l'évolution de vos points LXP accumulés au cours du semestre grâce à une barre de progression en temps réel pour atteindre vos objectifs.</p>
+        </article>
+
+        <!-- Feature 6: Performance -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(14, 165, 233, 0.08); color: #0ea5e9;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+          </div>
+          <h4>Performance & Sécurité</h4>
+          <p>L'extension est locale et n'envoie aucune note ou mot de passe sur des serveurs externes. Elle fonctionne sans aucun impact sur la rapidité de votre machine.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- DETAILED MODULE PREVIEWS -->
+    <section class="preview-section" id="visual-demo">
+      <div class="preview-grid">
+        <div class="preview-text">
+          <h3>Un espace de travail optimisé et lisible</h3>
+          <p>
+            L'interface a été entièrement épurée pour vous offrir les informations clés là où vous en avez besoin. L'extension modifie la structure CSS native de MyEfrei pour y injecter un thème moderne sans aucun scintillement d'affichage (zero flash effect).
+          </p>
+          <p>
+            Réglez vos préférences visuelles en un clic et observez vos absences injustifiées ou vos retards changer de couleur automatiquement selon les seuils d'alerte configurés.
+          </p>
+        </div>
+        
+        <!-- Live Mockup of the Dashboard widgets (Vrai design de l'extension) -->
+        <div class="mye-custom-dashboard-mock" data-mye-theme="navy" style="box-shadow: 0 15px 35px rgba(0,0,0,0.3);">
+          <div class="mye-dash-card" style="padding: 16px;">
+            <div class="mye-dash-header" style="margin-bottom: 15px; margin-top: 0;">
+              <h4 class="mye-dash-title js-mye-user-name" style="font-size: 20px;">Rayan BHS</h4>
+              <span class="mye-dash-period-badge js-mye-user-period" style="font-size: 10px; padding: 3px 8px;">S6 - 2026</span>
+            </div>
+            <div class="mye-dash-stats-grid" style="height: auto; gap: 8px; flex-direction: column;">
+              <!-- Stat 1 -->
+              <div class="mye-stat-box" style="padding: 10px; flex-direction: row; align-items: center; justify-content: space-between;">
+                <div>
+                  <div class="mye-stat-title" style="font-size: 11px;">Moyenne générale</div>
+                  <div class="mye-stat-value js-mye-user-average" style="font-size: 28px; margin-top: 2px;">14,85</div>
+                </div>
+                <div class="mye-stat-progress" style="height: 8px; width: 80px; margin-top: 0;">
+                  <div class="mye-stat-progress-bar js-mye-user-average-bar" style="width: 74%; background-color: #84cc16;"></div>
+                </div>
+              </div>
+              <!-- Stat 2 -->
+              <div class="mye-stat-box" style="padding: 10px; flex-direction: row; align-items: center; justify-content: space-between;">
+                <div>
+                  <div class="mye-stat-title" style="font-size: 11px;">Learning XP</div>
+                  <div class="mye-stat-value" style="font-size: 28px; margin-top: 2px;">16</div>
+                </div>
+                <div class="mye-stat-progress" style="height: 8px; width: 80px; margin-top: 0;">
+                  <div class="mye-stat-progress-bar" style="width: 80%; background-color: #6d28d9;"></div>
+                </div>
+              </div>
+              <!-- middle status row -->
+              <div class="mye-stat-middle-col" style="flex-direction: row; gap: 8px; width: 100%;">
+                <div class="mye-stat-middle-box" style="padding: 6px 10px; height: 45px; flex: 1; justify-content: space-between; align-items: center;">
+                  <span class="mye-middle-title" style="font-size: 11px;">Absences</span>
+                  <span class="mye-middle-value js-mye-user-absences" style="font-size: 20px; color: #10b981; margin-right: 0;">0</span>
+                </div>
+                <div class="mye-stat-middle-box" style="padding: 6px 10px; height: 45px; flex: 1; justify-content: space-between; align-items: center;">
+                  <span class="mye-middle-title" style="font-size: 11px;">Retards</span>
+                  <span class="mye-middle-value js-mye-user-retards" style="font-size: 20px; color: #f59e0b; margin-right: 0;">2</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Showcase Windows -->
+      <div style="margin-top: 5rem;">
+        <h4 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 0.5rem; text-align: center; color: #00205C;">Composants interactifs de la Suite</h4>
+        <p style="color: var(--text-muted-dark); font-size: 1.15rem; margin-bottom: 3rem; text-align: center; max-width: 700px; margin-left: auto; margin-right: auto;">
+          Découvrez la fluidité et la DA de l'extension sans installer quoi que ce soit. Interagissez avec les modules réels ci-dessous !
+        </p>
+
+        <div class="interactive-windows-grid">
+          
+          <!-- Window 1: Custom Dashboard with dark/light theme toggle -->
+          <article class="interactive-window" id="win-dashboard">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot minimize"></span>
+                <span class="window-dot maximize"></span>
+              </div>
+              <span class="window-title">MyEfrei ULTRA - Module Accueil</span>
+              <button class="dash-window-darktoggle" id="btn-dash-darktoggle" style="margin-left: auto; margin-right: 12px; border-radius: 6px; padding: 2px 8px; font-size: 10px; border: 1px solid #cbd5e1; background: #fff; cursor: pointer; font-weight: 600;">
+                <span>🌙 Mode Sombre</span>
+              </button>
+              <span class="window-action-lbl">Interactif</span>
+            </div>
+            <div class="window-body dash-window-body" id="dash-win-body" style="padding: 16px;">
+              <!-- Actual layout of the extension dashboard -->
+              <div class="mye-custom-dashboard-mock" data-mye-theme="navy">
+                <div class="mye-dash-top-row">
+                  
+                  <!-- Left Card (Profile & Stats) -->
+                  <div class="mye-dash-card mye-dash-left-card" style="padding: 16px; min-width: unset; flex: 1.7; display: flex; flex-direction: column; justify-content: space-between;">
+                    <div class="mye-dash-header" style="margin-top: 0; margin-bottom: 15px;">
+                      <h3 class="mye-dash-title js-mye-user-name" style="font-size: 22px;">Rayan BHS</h3>
+                      <div class="mye-dash-header-right-col">
+                        <span class="mye-dash-period-badge js-mye-user-period">S6 - 2026</span>
+                      </div>
+                    </div>
+                    
+                    <div class="mye-dash-stats-grid" style="height: 135px; gap: 8px;">
+                      <!-- Moyenne -->
+                      <div class="mye-stat-box mye-stat-blue" style="padding: 10px; border-radius: 10px;">
+                        <div class="mye-stat-title" style="font-size: 10px;">Moyenne générale</div>
+                        <div class="mye-stat-value js-mye-user-average" style="font-size: 30px; margin-top: 2px;">14,85</div>
+                        <div class="mye-stat-progress" style="height: 8px; margin-top: 4px; border-radius: 4px;">
+                          <div class="mye-stat-progress-bar js-mye-user-average-bar" style="width: 74%; background-color: #84cc16; border-radius: 4px;"></div>
+                        </div>
+                      </div>
+                      
+                      <!-- Absences & Retards -->
+                      <div class="mye-stat-middle-col" style="gap: 8px;">
+                        <div class="mye-stat-middle-box mye-stat-red" style="padding: 0 10px; height: auto; border-radius: 10px; justify-content: space-between;">
+                          <span class="mye-middle-title" style="font-size: 11px;">Absences</span>
+                          <span class="mye-middle-value js-mye-user-absences" style="font-size: 22px; color: #10b981; margin-right: 0;">0</span>
+                        </div>
+                        <div class="mye-stat-middle-box mye-stat-green" style="padding: 0 10px; height: auto; border-radius: 10px; justify-content: space-between;">
+                          <span class="mye-middle-title" style="font-size: 11px;">Retards</span>
+                          <span class="mye-middle-value js-mye-user-retards" style="font-size: 22px; color: #f59e0b; margin-right: 0;">2</span>
+                        </div>
+                      </div>
+                      
+                      <!-- Learning XP -->
+                      <div class="mye-stat-box mye-stat-blue" style="padding: 10px; border-radius: 10px;">
+                        <div class="mye-stat-title" style="font-size: 10px;">Learning XP</div>
+                        <div class="mye-stat-value" style="font-size: 30px; margin-top: 2px;">16</div>
+                        <div class="mye-stat-progress" style="height: 8px; margin-top: 4px; border-radius: 4px;">
+                          <div class="mye-stat-progress-bar" style="width: 80%; background-color: #6d28d9; border-radius: 4px;"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right Card (Planning) -->
+                  <div class="mye-dash-card mye-dash-right-card" style="padding: 16px; min-width: unset; flex: 1.1; display: flex; flex-direction: column;">
+                    <h3 class="mye-planning-title" style="font-size: 18px; margin-top: 0; margin-bottom: 15px;">Planning</h3>
+                    <div class="mye-planning-list" style="gap: 6px; flex-grow: 1;">
+                      <div class="mye-planning-item" style="padding: 6px 8px; gap: 8px; border-radius: 10px;">
+                        <div class="mye-planning-date" style="padding: 2px 4px; min-width: 32px; border-radius: 6px;">
+                          <div class="mye-planning-month" style="font-size: 8px;">juin</div>
+                          <div class="mye-planning-day" style="font-size: 12px; font-weight: bold;">09</div>
+                        </div>
+                        <div class="mye-planning-info">
+                          <div class="mye-planning-course" style="font-size: 11px; font-weight: bold;">Algorithmique</div>
+                          <div class="mye-planning-details" style="font-size: 9px; margin-top: 0;">Kepler 101 &bull; 08:30</div>
+                        </div>
+                      </div>
+                      <div class="mye-planning-item" style="padding: 6px 8px; gap: 8px; border-radius: 10px;">
+                        <div class="mye-planning-date" style="padding: 2px 4px; min-width: 32px; border-radius: 6px;">
+                          <div class="mye-planning-month" style="font-size: 8px;">juin</div>
+                          <div class="mye-planning-day" style="font-size: 12px; font-weight: bold;">09</div>
+                        </div>
+                        <div class="mye-planning-info">
+                          <div class="mye-planning-course" style="font-size: 11px; font-weight: bold;">NoSQL Databases</div>
+                          <div class="mye-planning-details" style="font-size: 9px; margin-top: 0;">Lovelace 402 &bull; 13:00</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+                
+                <!-- Bottom Carousel (Fake actualité de l'extension) -->
+                <div class="mye-dash-carousel-card" style="margin-top: 12px; height: 110px; border-radius: 16px; overflow: hidden; position: relative; flex-shrink: 0;">
+                  <div class="mye-carousel-container" style="height: 100%; width: 100%; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+                    <div class="mye-carousel-slide active" style="position: absolute; width: 100%; height: 100%; display: block;">
+                      <div style="width: 100%; height: 100%; background: linear-gradient(135deg, #1e3a8a 0%, #0d1b2a 100%); display: flex; align-items: flex-end; padding: 12px 16px; box-sizing: border-box;">
+                        <div class="mye-carousel-overlay" style="position: absolute; bottom: 0; left: 0; width: 100%; padding: 45px 16px 12px; background: linear-gradient(transparent, rgba(0,0,0,0.9)); color: white; box-sizing: border-box;">
+                          <h4 class="mye-carousel-title" style="margin: 0; font-size: 13px; font-weight: 700; letter-spacing: -0.2px; line-height: 1.2; font-family: var(--font-family);">Ouverture des inscriptions pour le Hackathon RACYWAMA 2026 !</h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer Segmented Selector (Fake actualités / évènements tabs) -->
+                <div class="mye-segmented-container" style="margin-top: 12px; flex-shrink: 0;">
+                  <div class="mye-segmented-selector" style="display: flex; background: #cbd5e1; border-radius: 999px; padding: 3px; gap: 2px;">
+                    <div class="mye-segmented-item active" style="flex: 1; text-align: center; padding: 6px; font-size: 10px; font-weight: bold; background: #ffffff; color: #000; border-radius: 999px;">Actualité</div>
+                    <div class="mye-segmented-item" style="flex: 1; text-align: center; padding: 6px; font-size: 10px; font-weight: bold; color: #475569;">Évènements</div>
+                    <div class="mye-segmented-item" style="flex: 1; text-align: center; padding: 6px; font-size: 10px; font-weight: bold; color: #475569;">Contact</div>
+                    <div class="mye-segmented-item" style="flex: 1; text-align: center; padding: 6px; font-size: 10px; font-weight: bold; color: #475569;">Social</div>
+                  </div>
+                </div>
+
+                <!-- Fake news list items to fill the remaining body height -->
+                <div class="mye-news-list-mock" style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px; flex-shrink: 0;">
+                  <div class="mye-planning-item" style="padding: 10px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; transition: none;">
+                    <span style="font-size: 11px; font-weight: bold; color: #00205C;">Semaine de la Cybersécurité - Conférences & CTF</span>
+                    <span style="font-size: 9px; color: #94a3b8; font-weight: 600;">Il y a 2h</span>
+                  </div>
+                  <div class="mye-planning-item" style="padding: 10px; border-radius: 10px; display: flex; justify-content: space-between; align-items: center; transition: none;">
+                    <span style="font-size: 11px; font-weight: bold; color: #00205C;">Forum Entreprises : Rencontrez les recruteurs</span>
+                    <span style="font-size: 9px; color: #94a3b8; font-weight: 600;">Hier</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </article>
+
+          <!-- Window 2: Interactive GPA Simulator -->
+          <article class="interactive-window" id="win-simulator">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot minimize"></span>
+                <span class="window-dot maximize"></span>
+              </div>
+              <span class="window-title">MyEfrei ULTRA - Simulateur De Notes</span>
+              <span class="window-action-lbl">Interactif</span>
+            </div>
+            <div class="window-body" style="padding: 16px;">
+              
+              <div id="mye-grades-mock-container">
+                <!-- Left Panel -->
+                <div class="mye-grades-left">
+                  <div class="mye-semester-selector" style="width: 100%;">
+                    <button class="mye-semester-btn">
+                      <span>Semestre 6 - 2026</span>
+                      <span>▼</span>
+                    </button>
+                  </div>
+                  
+                  <div class="mye-grade-circle-container">
+                    <span class="mye-grade-label">Moyenne Réelle</span>
+                    <div class="mye-grade-circle">
+                      <svg viewBox="0 0 200 200">
+                        <circle class="mye-grade-circle-bg" cx="100" cy="100" r="90" />
+                        <circle class="mye-grade-circle-fill" id="js-real-circle-fill" cx="100" cy="100" r="90"
+                                stroke-dasharray="565.48" stroke-dashoffset="159.25" style="stroke: #84cc16;" />
+                      </svg>
+                      <div class="mye-grade-circle-value" id="js-real-circle-val">14,37</div>
+                    </div>
+                    <span class="mye-grade-disclaimer">Les notes ne sont pas définitives</span>
+                  </div>
+                  
+                  <!-- Estimated simulator card -->
+                  <div class="mye-grade-sim-card">
+                    <span class="mye-grade-sim-label">Moyenne Estimée</span>
+                    <span class="mye-grade-sim-value" id="js-est-sim-value">14,67</span>
+                    <div class="mye-grade-sim-track">
+                      <div class="mye-grade-sim-progress" id="js-est-sim-progress" style="width: 73.35%; background-color: #84cc16;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Panel (Scrollable list of UE and subjects cards) -->
+                <div class="mye-grades-right">
+                  <div class="mye-ue-block">
+                    <!-- UE Header -->
+                    <div class="mye-ue-header">
+                      <h4 class="mye-ue-title">UE1 : Informatique & Technologies</h4>
+                      <span class="mye-ue-grade" id="js-ue-grade-val">14,67</span>
+                    </div>
+                    
+                    <!-- Subjects grid -->
+                    <div class="mye-ue-subjects">
+                      <!-- Subject 1: Web -->
+                      <div class="mye-subject-card">
+                        <div class="mye-subject-top">
+                          <div class="mye-subject-name-container">
+                            <span class="mye-subject-name">Développement Web</span>
+                            <span class="mye-subject-coef">Coef 2 &bull; M1</span>
+                          </div>
+                          <span class="mye-subject-grade">12,00</span>
+                        </div>
+                        <div class="mye-subject-bottom">
+                          <div class="mye-subject-details">
+                            <div class="mye-detail-row">
+                              <div class="mye-detail-left">
+                                <span class="mye-detail-type">CC1</span>
+                                <span class="mye-detail-coef">Coef 0.40</span>
+                              </div>
+                              <span class="mye-detail-value">10,00</span>
+                            </div>
+                            <div class="mye-detail-row">
+                              <div class="mye-detail-left">
+                                <span class="mye-detail-type">DE</span>
+                                <span class="mye-detail-coef">Coef 0.60</span>
+                              </div>
+                              <span class="mye-detail-value">13,33</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Subject 2: Algo -->
+                      <div class="mye-subject-card">
+                        <div class="mye-subject-top">
+                          <div class="mye-subject-name-container">
+                            <span class="mye-subject-name">Algorithmique Avancée</span>
+                            <span class="mye-subject-coef">Coef 3 &bull; M2</span>
+                          </div>
+                          <span class="mye-subject-grade">16,00</span>
+                        </div>
+                        <div class="mye-subject-bottom">
+                          <div class="mye-subject-details">
+                            <div class="mye-detail-row">
+                              <div class="mye-detail-left">
+                                <span class="mye-detail-type">CC1</span>
+                                <span class="mye-detail-coef">Coef 0.40</span>
+                              </div>
+                              <span class="mye-detail-value">15,00</span>
+                            </div>
+                            <div class="mye-detail-row">
+                              <div class="mye-detail-left">
+                                <span class="mye-detail-type">DE</span>
+                                <span class="mye-detail-coef">Coef 0.60</span>
+                              </div>
+                              <span class="mye-detail-value">16,67</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- Subject 3: Projet (Interactive simulation input inside details!) -->
+                      <div class="mye-subject-card">
+                        <div class="mye-subject-top">
+                          <div class="mye-subject-name-container">
+                            <span class="mye-subject-name">Projet Informatique</span>
+                            <span class="mye-subject-coef">Coef 4 &bull; M3</span>
+                          </div>
+                          <span class="mye-subject-grade" id="js-subject-grade-val">15,00</span>
+                        </div>
+                        <div class="mye-subject-bottom" style="padding: 10px;">
+                          <div class="mye-subject-details" style="gap: 8px;">
+                            <div class="mye-detail-row">
+                              <div class="mye-detail-left">
+                                <span class="mye-detail-type">CC1</span>
+                                <span class="mye-detail-coef">Coef 0.30</span>
+                              </div>
+                              <span class="mye-detail-value">12,00</span>
+                            </div>
+                            
+                            <!-- Simulation text/number input inside details -->
+                            <div class="mye-detail-row" style="background: rgba(255, 255, 255, 0.15); display: flex; justify-content: space-between; align-items: center; border-radius: 999px; padding: 4px 12px; color: white;">
+                              <div class="mye-detail-left">
+                                <span class="mye-detail-type">Simulation DE</span>
+                                <span class="mye-detail-coef">Coef 0.70</span>
+                              </div>
+                              <div style="display: flex; align-items: center; gap: 6px;">
+                                <input type="number" id="js-sim-card-input" min="0" max="20" step="0.1" value="16.3" class="mye-sim-input">
+                                <span style="font-size: 12px; font-weight: 700; opacity: 0.8;">/20</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+              
+            </div>
+          </article>
+
+          <!-- Window 3: Interactive Day Planning Switcher -->
+          <article class="interactive-window" id="win-planning">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot minimize"></span>
+                <span class="window-dot maximize"></span>
+              </div>
+              <span class="window-title">MyEfrei ULTRA - Planning de la Semaine</span>
+              <span class="window-action-lbl">Interactif</span>
+            </div>
+            
+            <div class="window-body" style="padding: 0; background: #ffffff; display: flex; flex-direction: row; height: 100%; overflow: hidden;">
+              <!-- Left Sidebar -->
+              <aside class="mac-cal-sidebar" style="width: 140px; min-width: 140px; background-color: #f5f5f7; border-right: 1px solid #cbd5e1; display: flex; flex-direction: column; padding: 12px; gap: 12px; box-sizing: border-box; flex-shrink: 0; height: 100%;">
+                
+                <!-- Hours Gauge -->
+                <div class="mye-planning-stats" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+                  <div class="mye-planning-gauge-wrapper" style="position: relative; width: 74px; height: 74px; display: flex; align-items: center; justify-content: center;">
+                    <svg width="74" height="74" viewBox="0 0 180 180" class="mye-planning-gauge" style="transform: rotate(-90deg); width: 100%; height: 100%;">
+                      <circle cx="90" cy="90" r="80" class="mye-planning-gauge-bg" style="fill: none; stroke: #e5e5ea; stroke-width: 14;"></circle>
+                      <circle cx="90" cy="90" r="80" class="mye-planning-gauge-fill" id="mye-planning-arc-preview" style="fill: none; stroke: #007aff; stroke-width: 14; stroke-dasharray: 502.654; stroke-dashoffset: 201.06; stroke-linecap: round; transition: stroke-dashoffset 1s ease-out;"></circle>
+                    </svg>
+                    <div class="mye-planning-gauge-text" style="position: absolute; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                      <span id="mye-planning-hours-preview" style="font-size: 15px; font-weight: 700; color: #1d1d1f; line-height: 1;">24</span>
+                      <small style="font-size: 8px; color: #86868b; font-weight: 500; margin-top: 2px;">Heures</small>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Countdowns -->
+                <div class="mye-countdown-list" style="display: flex; flex-direction: column; gap: 6px; width: 100%;">
+                  <div class="mye-countdown-item" style="display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; border-radius: 6px; background: #eef2ff; font-size: 10px; font-weight: 600;">
+                    <span class="mye-cd-label" style="color: #4f46e5;">Projet</span>
+                    <span class="mye-cd-value" style="color: #1d1d1f; background: #fff; padding: 1px 4px; border-radius: 4px; font-size: 9px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">12j</span>
+                  </div>
+                  <div class="mye-countdown-item" style="display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; border-radius: 6px; background: #fdf2f8; font-size: 10px; font-weight: 600;">
+                    <span class="mye-cd-label" style="color: #db2777;">DE</span>
+                    <span class="mye-cd-value" style="color: #1d1d1f; background: #fff; padding: 1px 4px; border-radius: 4px; font-size: 9px; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">4j</span>
+                  </div>
+                </div>
+                
+                <!-- Paramètres button mock -->
+                <button type="button" class="plan-settings-mock-btn" style="margin-top: auto; width: 100%; padding: 8px; border-radius: 8px; border: none; background: #e2e8f0; color: #1d1d1f; font-size: 10px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 4px;">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg> Paramètres
+                </button>
+              </aside>
+              
+              <!-- Right Main Area -->
+              <div class="mac-cal-main" style="flex: 1; display: flex; flex-direction: column; height: 100%; overflow: hidden; background: #f1f5f9;">
+                
+                <!-- Toolbar -->
+                <div class="mac-cal-toolbar" style="display: flex; align-items: center; justify-content: space-between; padding: 6px 12px; border-bottom: 1px solid #cbd5e1; height: 40px; background: #f8fafc; flex-shrink: 0; box-sizing: border-box;">
+                  <div class="mac-cal-title" style="font-size: 11px; font-weight: 700; color: #0f172a;">Semaine 24 <span class="year" style="font-weight: 300;">- Juin 2026</span></div>
+                  
+                  <div class="mac-cal-view-toggles" style="display: flex; background: #cbd5e1; border-radius: 999px; padding: 2px;">
+                    <button type="button" class="mac-cal-toggle-btn active" style="font-size: 8px; padding: 3px 6px; border-radius: 999px;">Semaine</button>
+                  </div>
+                </div>
+                
+                <!-- Calendar View Area -->
+                <div class="mac-cal-content" style="flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative;">
+                  <div class="mac-apple-calendar" style="display: flex; flex-direction: column; height: 100%;">
+                    
+                    <!-- Calendar Header (Days) -->
+                    <div class="mac-cal-header" style="display: flex; border-bottom: 1px solid #cbd5e1; background: #f8fafc; z-index: 2; flex-shrink: 0; box-sizing: border-box; width: 100%;">
+                      <div class="mac-cal-time-col-header" style="width: 32px; min-width: 32px; border-right: 1px solid #cbd5e1;"></div>
+                      
+                      <div class="mac-cal-day-header" style="flex: 1; display: flex; flex-direction: row; gap: 4px; align-items: center; justify-content: center; padding: 6px 0; border-right: 1px solid #e2e8f0;">
+                        <span class="mac-cal-day-name" style="font-size: 9px; color: #64748b;">Lun</span>
+                        <span class="mac-cal-day-num" style="font-size: 9px; font-weight: 700; color: #0f172a;">08</span>
+                      </div>
+                      <div class="mac-cal-day-header mac-cal-today" style="flex: 1; display: flex; flex-direction: row; gap: 4px; align-items: center; justify-content: center; padding: 6px 0; border-right: 1px solid #e2e8f0; background: rgba(255, 59, 48, 0.03);">
+                        <span class="mac-cal-day-name" style="font-size: 9px; color: #ff3b30; font-weight: 700;">Mar</span>
+                        <span class="mac-cal-day-num" style="font-size: 9px; font-weight: 700; color: white; background: #ff3b30; border-radius: 50%; width: 14px; height: 14px; display: flex; align-items: center; justify-content: center;">09</span>
+                      </div>
+                      <div class="mac-cal-day-header" style="flex: 1; display: flex; flex-direction: row; gap: 4px; align-items: center; justify-content: center; padding: 6px 0; border-right: 1px solid #e2e8f0;">
+                        <span class="mac-cal-day-name" style="font-size: 9px; color: #64748b;">Mer</span>
+                        <span class="mac-cal-day-num" style="font-size: 9px; font-weight: 700; color: #0f172a;">10</span>
+                      </div>
+                      <div class="mac-cal-day-header" style="flex: 1; display: flex; flex-direction: row; gap: 4px; align-items: center; justify-content: center; padding: 6px 0; border-right: 1px solid #e2e8f0;">
+                        <span class="mac-cal-day-name" style="font-size: 9px; color: #64748b;">Jeu</span>
+                        <span class="mac-cal-day-num" style="font-size: 9px; font-weight: 700; color: #0f172a;">11</span>
+                      </div>
+                      <div class="mac-cal-day-header" style="flex: 1; display: flex; flex-direction: row; gap: 4px; align-items: center; justify-content: center; padding: 6px 0; border-right: none;">
+                        <span class="mac-cal-day-name" style="font-size: 9px; color: #64748b;">Ven</span>
+                        <span class="mac-cal-day-num" style="font-size: 9px; font-weight: 700; color: #0f172a;">12</span>
+                      </div>
+                    </div>
+
+                    <!-- Scrollable Grid Body -->
+                    <div class="mac-cal-scroll-area" style="flex: 1; overflow-y: auto; overflow-x: hidden; position: relative; width: 100%;">
+                      <div class="mac-cal-body" style="height: 400px; display: flex; position: relative;">
+                        
+                        <!-- Time Column -->
+                        <div class="mac-cal-time-col" style="width: 32px; min-width: 32px; background: #f8fafc; border-right: 1px solid #cbd5e1; z-index: 2; position: relative;">
+                          <div class="mac-cal-time-slot" style="height: 40px; position: relative;"><span style="position: absolute; top: -6px; right: 4px; font-size: 8px; color: #64748b;">08:00</span></div>
+                          <div class="mac-cal-time-slot" style="height: 40px; position: relative;"><span style="position: absolute; top: -6px; right: 4px; font-size: 8px; color: #64748b;">09:00</span></div>
+                          <div class="mac-cal-time-slot" style="height: 40px; position: relative;"><span style="position: absolute; top: -6px; right: 4px; font-size: 8px; color: #64748b;">10:00</span></div>
+                          <div class="mac-cal-time-slot" style="height: 40px; position: relative;"><span style="position: absolute; top: -6px; right: 4px; font-size: 8px; color: #64748b;">11:00</span></div>
+                          <div class="mac-cal-time-slot" style="height: 40px; position: relative;"><span style="position: absolute; top: -6px; right: 4px; font-size: 8px; color: #64748b;">12:00</span></div>
+                          <div class="mac-cal-time-slot" style="height: 40px; position: relative;"><span style="position: absolute; top: -6px; right: 4px; font-size: 8px; color: #64748b;">13:00</span></div>
+                          <div class="mac-cal-time-slot" style="height: 40px; position: relative;"><span style="position: absolute; top: -6px; right: 4px; font-size: 8px; color: #64748b;">14:00</span></div>
+                          <div class="mac-cal-time-slot" style="height: 40px; position: relative;"><span style="position: absolute; top: -6px; right: 4px; font-size: 8px; color: #64748b;">15:00</span></div>
+                          <div class="mac-cal-time-slot" style="height: 40px; position: relative;"><span style="position: absolute; top: -6px; right: 4px; font-size: 8px; color: #64748b;">16:00</span></div>
+                          <div class="mac-cal-time-slot" style="height: 40px; position: relative;"><span style="position: absolute; top: -6px; right: 4px; font-size: 8px; color: #64748b;">17:00</span></div>
+                        </div>
+
+                        <!-- Grid -->
+                        <div class="mac-cal-grid" style="flex: 1; position: relative;">
+                          <!-- Grid horizontal lines -->
+                          <div class="mac-cal-grid-lines" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 0;">
+                            <div class="mac-cal-grid-line" style="position: absolute; left: 0; right: 0; height: 1px; background-color: #e2e8f0; top: 0px;"></div>
+                            <div class="mac-cal-grid-line" style="position: absolute; left: 0; right: 0; height: 1px; background-color: #e2e8f0; top: 40px;"></div>
+                            <div class="mac-cal-grid-line" style="position: absolute; left: 0; right: 0; height: 1px; background-color: #e2e8f0; top: 80px;"></div>
+                            <div class="mac-cal-grid-line" style="position: absolute; left: 0; right: 0; height: 1px; background-color: #e2e8f0; top: 120px;"></div>
+                            <div class="mac-cal-grid-line" style="position: absolute; left: 0; right: 0; height: 1px; background-color: #e2e8f0; top: 160px;"></div>
+                            <div class="mac-cal-grid-line" style="position: absolute; left: 0; right: 0; height: 1px; background-color: #e2e8f0; top: 200px;"></div>
+                            <div class="mac-cal-grid-line" style="position: absolute; left: 0; right: 0; height: 1px; background-color: #e2e8f0; top: 240px;"></div>
+                            <div class="mac-cal-grid-line" style="position: absolute; left: 0; right: 0; height: 1px; background-color: #e2e8f0; top: 280px;"></div>
+                            <div class="mac-cal-grid-line" style="position: absolute; left: 0; right: 0; height: 1px; background-color: #e2e8f0; top: 320px;"></div>
+                            <div class="mac-cal-grid-line" style="position: absolute; left: 0; right: 0; height: 1px; background-color: #e2e8f0; top: 360px;"></div>
+                          </div>
+
+                          <!-- Columns with Course Blocks -->
+                          <div class="mac-cal-day-cols" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; z-index: 1;">
+                            
+                            <!-- Monday (Lundi) -->
+                            <div class="mac-cal-day-col" style="flex: 1; border-right: 1px solid #e2e8f0; position: relative;">
+                              <!-- Course 1: CM Algorithmique 08:30 - 11:30 -->
+                              <div class="mac-cal-event mac-course-cm" style="position: absolute; top: 20px; height: 118px; left: 2px; width: calc(100% - 4px);">
+                                <div class="mac-cal-event-inner" style="padding: 4px; border-left: 3px solid #34c759; background-color: #e8f8f0; height: 100%; display: flex; flex-direction: column;">
+                                  <div class="mye-event-type-pill" style="background-color: #34c759; color: white; font-size: 7px; width: fit-content; padding: 0px 3px; border-radius: 3px; font-weight: bold; margin-bottom: 2px; line-height: 1.2;">CM</div>
+                                  <div class="mac-cal-event-title" style="font-size: 9px; font-weight: 700; color: #209952; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Algorithmique Avancée</div>
+                                  <div style="flex-grow: 1;"></div>
+                                  <div class="mac-cal-event-room" style="font-size: 8px; color: #209952; opacity: 0.8;">Kepler 101</div>
+                                  <div class="mac-cal-event-time" style="font-size: 8px; color: #209952; opacity: 0.8;">08:30 - 11:30</div>
+                                </div>
+                              </div>
+
+                              <!-- Course 2: TD Anglais 13:30 - 15:30 -->
+                              <div class="mac-cal-event mac-course-td" style="position: absolute; top: 220px; height: 78px; left: 2px; width: calc(100% - 4px);">
+                                <div class="mac-cal-event-inner" style="padding: 4px; border-left: 3px solid #007aff; background-color: #e8f4fc; height: 100%; display: flex; flex-direction: column;">
+                                  <div class="mye-event-type-pill" style="background-color: #007aff; color: white; font-size: 7px; width: fit-content; padding: 0px 3px; border-radius: 3px; font-weight: bold; margin-bottom: 2px; line-height: 1.2;">TD</div>
+                                  <div class="mac-cal-event-title" style="font-size: 9px; font-weight: 700; color: #1e70a6; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Anglais Professionnel</div>
+                                  <div style="flex-grow: 1;"></div>
+                                  <div class="mac-cal-event-room" style="font-size: 8px; color: #1e70a6; opacity: 0.8;">Lovelace 202</div>
+                                  <div class="mac-cal-event-time" style="font-size: 8px; color: #1e70a6; opacity: 0.8;">13:30 - 15:30</div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Tuesday (Mardi) -->
+                            <div class="mac-cal-day-col mac-cal-today-col" style="flex: 1; border-right: 1px solid #e2e8f0; position: relative; background-color: rgba(255, 59, 48, 0.03);">
+                              <!-- Course 3: CM NoSQL 10:00 - 13:00 -->
+                              <div class="mac-cal-event mac-course-cm" style="position: absolute; top: 80px; height: 118px; left: 2px; width: calc(100% - 4px);">
+                                <div class="mac-cal-event-inner" style="padding: 4px; border-left: 3px solid #34c759; background-color: #e8f8f0; height: 100%; display: flex; flex-direction: column;">
+                                  <div class="mye-event-type-pill" style="background-color: #34c759; color: white; font-size: 7px; width: fit-content; padding: 0px 3px; border-radius: 3px; font-weight: bold; margin-bottom: 2px; line-height: 1.2;">CM</div>
+                                  <div class="mac-cal-event-title" style="font-size: 9px; font-weight: 700; color: #209952; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Bases de Données NoSQL</div>
+                                  <div style="flex-grow: 1;"></div>
+                                  <div class="mac-cal-event-room" style="font-size: 8px; color: #209952; opacity: 0.8;">Lovelace 402</div>
+                                  <div class="mac-cal-event-time" style="font-size: 8px; color: #209952; opacity: 0.8;">10:00 - 13:00</div>
+                                </div>
+                              </div>
+
+                              <!-- Course 4: CM Gestion de Projet 15:00 - 18:00 -->
+                              <div class="mac-cal-event mac-course-projet" style="position: absolute; top: 280px; height: 118px; left: 2px; width: calc(100% - 4px);">
+                                <div class="mac-cal-event-inner" style="padding: 4px; border-left: 3px solid #af52de; background-color: #f5eef8; height: 100%; display: flex; flex-direction: column;">
+                                  <div class="mye-event-type-pill" style="background-color: #af52de; color: white; font-size: 7px; width: fit-content; padding: 0px 3px; border-radius: 3px; font-weight: bold; margin-bottom: 2px; line-height: 1.2;">Projet</div>
+                                  <div class="mac-cal-event-title" style="font-size: 9px; font-weight: 700; color: #763b8d; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Gestion de Projet Agile</div>
+                                  <div style="flex-grow: 1;"></div>
+                                  <div class="mac-cal-event-room" style="font-size: 8px; color: #763b8d; opacity: 0.8;">Kepler 203</div>
+                                  <div class="mac-cal-event-time" style="font-size: 8px; color: #763b8d; opacity: 0.8;">15:00 - 18:00</div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Wednesday (Mercredi) -->
+                            <div class="mac-cal-day-col" style="flex: 1; border-right: 1px solid #e2e8f0; position: relative;">
+                              <!-- Course 5: TP Web 08:30 - 11:30 -->
+                              <div class="mac-cal-event mac-course-tp" style="position: absolute; top: 20px; height: 118px; left: 2px; width: calc(100% - 4px);">
+                                <div class="mac-cal-event-inner" style="padding: 4px; border-left: 3px solid #ff9500; background-color: #fff3e0; height: 100%; display: flex; flex-direction: column;">
+                                  <div class="mye-event-type-pill" style="background-color: #ff9500; color: white; font-size: 7px; width: fit-content; padding: 0px 3px; border-radius: 3px; font-weight: bold; margin-bottom: 2px; line-height: 1.2;">TP</div>
+                                  <div class="mac-cal-event-title" style="font-size: 9px; font-weight: 700; color: #b8750a; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Développement Web</div>
+                                  <div style="flex-grow: 1;"></div>
+                                  <div class="mac-cal-event-room" style="font-size: 8px; color: #b8750a; opacity: 0.8;">Lovelace 303</div>
+                                  <div class="mac-cal-event-time" style="font-size: 8px; color: #b8750a; opacity: 0.8;">08:30 - 11:30</div>
+                                </div>
+                              </div>
+
+                              <!-- Course 6: Projet 13:30 - 17:30 -->
+                              <div class="mac-cal-event mac-course-projet" style="position: absolute; top: 220px; height: 158px; left: 2px; width: calc(100% - 4px);">
+                                <div class="mac-cal-event-inner" style="padding: 4px; border-left: 3px solid #af52de; background-color: #f5eef8; height: 100%; display: flex; flex-direction: column;">
+                                  <div class="mye-event-type-pill" style="background-color: #af52de; color: white; font-size: 7px; width: fit-content; padding: 0px 3px; border-radius: 3px; font-weight: bold; margin-bottom: 2px; line-height: 1.2;">Projet</div>
+                                  <div class="mac-cal-event-title" style="font-size: 9px; font-weight: 700; color: #763b8d; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Projet Transversal Tech</div>
+                                  <div style="flex-grow: 1;"></div>
+                                  <div class="mac-cal-event-room" style="font-size: 8px; color: #763b8d; opacity: 0.8;">Kepler 104</div>
+                                  <div class="mac-cal-event-time" style="font-size: 8px; color: #763b8d; opacity: 0.8;">13:30 - 17:30</div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Thursday (Jeudi) -->
+                            <div class="mac-cal-day-col" style="flex: 1; border-right: 1px solid #e2e8f0; position: relative;">
+                              <!-- Course 7: TD Math 09:00 - 12:00 -->
+                              <div class="mac-cal-event mac-course-td" style="position: absolute; top: 40px; height: 118px; left: 2px; width: calc(100% - 4px);">
+                                <div class="mac-cal-event-inner" style="padding: 4px; border-left: 3px solid #007aff; background-color: #e8f4fc; height: 100%; display: flex; flex-direction: column;">
+                                  <div class="mye-event-type-pill" style="background-color: #007aff; color: white; font-size: 7px; width: fit-content; padding: 0px 3px; border-radius: 3px; font-weight: bold; margin-bottom: 2px; line-height: 1.2;">TD</div>
+                                  <div class="mac-cal-event-title" style="font-size: 9px; font-weight: 700; color: #1e70a6; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Mathématiques Appliquées</div>
+                                  <div style="flex-grow: 1;"></div>
+                                  <div class="mac-cal-event-room" style="font-size: 8px; color: #1e70a6; opacity: 0.8;">Kepler 110</div>
+                                  <div class="mac-cal-event-time" style="font-size: 8px; color: #1e70a6; opacity: 0.8;">09:00 - 12:00</div>
+                                </div>
+                              </div>
+
+                              <!-- Course 8: CM IA Conf 14:00 - 16:30 -->
+                              <div class="mac-cal-event mac-course-cm" style="position: absolute; top: 240px; height: 98px; left: 2px; width: calc(100% - 4px);">
+                                <div class="mac-cal-event-inner" style="padding: 4px; border-left: 3px solid #34c759; background-color: #e8f8f0; height: 100%; display: flex; flex-direction: column;">
+                                  <div class="mye-event-type-pill" style="background-color: #34c759; color: white; font-size: 7px; width: fit-content; padding: 0px 3px; border-radius: 3px; font-weight: bold; margin-bottom: 2px; line-height: 1.2;">CM</div>
+                                  <div class="mac-cal-event-title" style="font-size: 9px; font-weight: 700; color: #209952; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Conférence IA</div>
+                                  <div style="flex-grow: 1;"></div>
+                                  <div class="mac-cal-event-room" style="font-size: 8px; color: #209952; opacity: 0.8;">Amphi Kepler</div>
+                                  <div class="mac-cal-event-time" style="font-size: 8px; color: #209952; opacity: 0.8;">14:00 - 16:30</div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            <!-- Friday (Vendredi) -->
+                            <div class="mac-cal-day-col" style="flex: 1; position: relative;">
+                              <!-- Course 9: Projet Soutenance 10:00 - 13:00 -->
+                              <div class="mac-cal-event mac-course-projet" style="position: absolute; top: 80px; height: 118px; left: 2px; width: calc(100% - 4px);">
+                                <div class="mac-cal-event-inner" style="padding: 4px; border-left: 3px solid #af52de; background-color: #f5eef8; height: 100%; display: flex; flex-direction: column;">
+                                  <div class="mye-event-type-pill" style="background-color: #af52de; color: white; font-size: 7px; width: fit-content; padding: 0px 3px; border-radius: 3px; font-weight: bold; margin-bottom: 2px; line-height: 1.2;">Projet</div>
+                                  <div class="mac-cal-event-title" style="font-size: 9px; font-weight: 700; color: #763b8d; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">Soutenance Finale</div>
+                                  <div style="flex-grow: 1;"></div>
+                                  <div class="mac-cal-event-room" style="font-size: 8px; color: #763b8d; opacity: 0.8;">Lovelace 302</div>
+                                  <div class="mac-cal-event-time" style="font-size: 8px; color: #763b8d; opacity: 0.8;">10:00 - 13:00</div>
+                                </div>
+                              </div>
+                            </div>
+
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </article>
+
+          <!-- Window 4: Interactive Campus Map (Vrai système de l'extension) -->
+          <article class="interactive-window" id="win-map">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot minimize"></span>
+                <span class="window-dot maximize"></span>
+              </div>
+              <span class="window-title">MyEfrei ULTRA - Plan Interactif du Campus</span>
+              <span class="window-action-lbl">Interactif</span>
+            </div>
+            
+            <div class="window-body" style="padding: 16px; background: #f0f0f0;">
+              <div id="mye-campus-container" style="padding: 0; min-height: auto;">
+                <div class="mye-campus-inner">
+                  
+                  <!-- Tabs -->
+                  <div class="mye-campus-tabs-wrapper">
+                    <div class="mye-campus-tabs">
+                      <button type="button" class="mye-campus-tab active" data-city="paris">Paris, la ville des Lumières</button>
+                      <button type="button" class="mye-campus-tab inactive" data-city="bordeaux">Bordeaux, la ville des cannelés</button>
+                    </div>
+                  </div>
+                  
+                  <!-- Content Layout -->
+                  <div class="mye-campus-content">
+                    <!-- Map Section -->
+                    <div class="mye-campus-map-wrapper" id="mye-campus-map-wrapper" style="height: 380px; min-height: 380px;">
+                      <!-- Leaflet injected here -->
+                    </div>
+                    
+                    <!-- Accordion Section -->
+                    <div class="mye-campus-list" id="mye-campus-list" style="height: 380px; max-height: 380px; overflow-y: auto;">
+                      <!-- Accordions injected here -->
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE THEME SWITCHER PREVIEW -->
+    <section class="theme-preview-section" id="demo-live">
+      <div class="theme-preview-headline">
+        <h3>Personnalisation chromatique instantanée</h3>
+        <p>Découvrez la suite sous toutes ses couleurs. Sélectionnez un thème pour prévisualiser le rendu en temps réel.</p>
+      </div>
+
+      <div class="theme-preview-layout">
+        <!-- Controls -->
+        <div class="theme-selectors">
+          <button class="theme-btn active" id="theme-btn-navy" data-theme="navy">
+            <span class="theme-dot td-navy"></span>
+            <span>Bleu Classique (Navy)</span>
+          </button>
+          <button class="theme-btn" id="theme-btn-emerald" data-theme="emerald">
+            <span class="theme-dot td-emerald"></span>
+            <span>Vert Émeraude (Emerald)</span>
+          </button>
+          <button class="theme-btn" id="theme-btn-purple" data-theme="purple">
+            <span class="theme-dot td-purple"></span>
+            <span>Violet Royal (Purple)</span>
+          </button>
+          <button class="theme-btn" id="theme-btn-ruby" data-theme="ruby">
+            <span class="theme-dot td-ruby"></span>
+            <span>Rouge Rubis (Ruby)</span>
+          </button>
+          <button class="theme-btn" id="theme-btn-slate" data-theme="slate">
+            <span class="theme-dot td-slate"></span>
+            <span>Gris Ardoise (Slate)</span>
+          </button>
+          <button class="theme-btn" id="theme-btn-oled" data-theme="oled">
+            <span class="theme-dot td-oled"></span>
+            <span>Noir OLED (Ultimate Dark)</span>
+          </button>
+        </div>
+
+        <!-- Live Preview Panel: The actual dashboard design from the extension -->
+        <div id="theme-preview-panel" class="mye-custom-dashboard-mock" data-mye-theme="navy" style="flex: 2.5; width: 100%;">
+          <div class="mye-dash-top-row">
+            <!-- Left Card (Profile & Stats) -->
+            <div class="mye-dash-card mye-dash-left-card">
+              <div class="mye-dash-header">
+                <h3 class="mye-dash-title js-mye-user-name">Rayan BHS</h3>
+                <div class="mye-dash-header-right-col">
+                  <span class="mye-dash-period-badge" id="board-theme-badge">Thème : Navy</span>
+                </div>
+              </div>
+              <div class="mye-dash-stats-grid">
+                <!-- Moyenne -->
+                <div class="mye-stat-box mye-stat-blue">
+                  <div class="mye-stat-title">Moyenne générale</div>
+                  <div class="mye-stat-value js-mye-user-average">14,85</div>
+                  <div class="mye-stat-progress">
+                    <div class="mye-stat-progress-bar js-mye-user-average-bar" style="width: 74.25%; background-color: #84cc16;"></div>
+                  </div>
+                </div>
+                <!-- Middle Col (Absences & Retards) -->
+                <div class="mye-stat-middle-col">
+                  <div class="mye-stat-middle-box mye-stat-red">
+                    <span class="mye-middle-value js-mye-user-absences">0</span>
+                    <span class="mye-middle-title">Absences</span>
+                  </div>
+                  <div class="mye-stat-middle-box mye-stat-green">
+                    <span class="mye-middle-value js-mye-user-retards">2</span>
+                    <span class="mye-middle-title">Retards</span>
+                  </div>
+                </div>
+                <!-- Learning XP -->
+                <div class="mye-stat-box mye-stat-blue">
+                  <div class="mye-stat-title">Learning XP</div>
+                  <div class="mye-stat-value">16</div>
+                  <div class="mye-stat-progress">
+                    <div class="mye-stat-progress-bar" style="width: 80%; background-color: #6d28d9;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Right Card (Planning) -->
+            <div class="mye-dash-card mye-dash-right-card">
+              <h3 class="mye-planning-title">Planning</h3>
+              <div class="mye-planning-list">
+                <!-- Class 1 -->
+                <div class="mye-planning-item">
+                  <div class="mye-planning-date">
+                    <div class="mye-planning-month">juin</div>
+                    <div class="mye-planning-day">09</div>
+                  </div>
+                  <div class="mye-planning-info">
+                    <div class="mye-planning-course">Algorithmique Avancée</div>
+                    <div class="mye-planning-details">Kepler • 08:30 - 11:30</div>
+                  </div>
+                </div>
+                <!-- Class 2 -->
+                <div class="mye-planning-item">
+                  <div class="mye-planning-date">
+                    <div class="mye-planning-month">juin</div>
+                    <div class="mye-planning-day">09</div>
+                  </div>
+                  <div class="mye-planning-info">
+                    <div class="mye-planning-course">Base de données NoSQL</div>
+                    <div class="mye-planning-details">Lovelace • 13:00 - 16:00</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INSTALLATION / PRISE EN MAIN (ONGLETS INTERACTIFS) -->
+    <section id="prise-en-main-ultra" class="section-block" style="background-color: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05);">
+      <span class="section-label">Installation</span>
+      <h3 class="section-headline" style="color: #00205C;">Comment installer l'extension ?</h3>
+      
+      <div class="install-wrapper">
+        <div class="install-tabs-header">
+          <button class="install-tab-btn active" data-tab="chrome-pane-ultra" id="tab-ultra-chrome">Chrome / Brave / Edge</button>
+          <button class="install-tab-btn" data-tab="firefox-pane-ultra" id="tab-ultra-firefox">Firefox</button>
+          <button class="install-tab-btn" data-tab="manual-pane-ultra" id="tab-ultra-manual">GitHub / Développeur</button>
+        </div>
+
+        <div class="install-tabs-content">
+          <!-- Chrome Guide -->
+          <div class="install-tab-pane active" id="chrome-pane-ultra">
+            <ol class="install-steps">
+              <li>
+                <div class="step-number">1</div>
+                <div class="step-text">Téléchargez l'archive ZIP de la dernière version de MyEfrei ULTRA.</div>
+              </li>
+              <li>
+                <div class="step-number">2</div>
+                <div class="step-text">Extrayez le fichier ZIP dans un dossier sur votre ordinateur.</div>
+              </li>
+              <li>
+                <div class="step-number">3</div>
+                <div class="step-text">Ouvrez votre navigateur Chrome/Brave/Edge et rendez-vous sur <code>chrome://extensions/</code>.</div>
+              </li>
+              <li>
+                <div class="step-number">4</div>
+                <div class="step-text">Activez l'option <strong>Mode développeur</strong> en haut à droite.</div>
+              </li>
+              <li>
+                <div class="step-number">5</div>
+                <div class="step-text">Cliquez sur <strong>Charger l'extension non empaquetée</strong> et sélectionnez le dossier extrait.</div>
+              </li>
+            </ol>
+            <div class="install-actions">
+              <a href="#" class="btn-action-download" id="btn-dl-chrome">Télécharger l'extension (ZIP)</a>
+            </div>
+          </div>
+
+          <!-- Firefox Guide -->
+          <div class="install-tab-pane" id="firefox-pane-ultra">
+            <ol class="install-steps">
+              <li>
+                <div class="step-number">1</div>
+                <div class="step-text">Téléchargez le fichier de l'extension pour Firefox.</div>
+              </li>
+              <li>
+                <div class="step-number">2</div>
+                <div class="step-text">Entrez <code>about:debugging</code> dans votre barre d'adresse Firefox.</div>
+              </li>
+              <li>
+                <div class="step-number">3</div>
+                <div class="step-text">Cliquez sur <strong>Ce Firefox</strong>, puis sur <strong>Charger un module temporaire...</strong>.</div>
+              </li>
+              <li>
+                <div class="step-number">4</div>
+                <div class="step-text">Sélectionnez le fichier <code>manifest.json</code> du dossier extrait.</div>
+              </li>
+            </ol>
+            <div class="install-actions">
+              <a href="#" class="btn-action-download btn-firefox" id="btn-dl-firefox">Installer sur Firefox</a>
+            </div>
+          </div>
+
+          <!-- GitHub / Manual -->
+          <div class="install-tab-pane" id="manual-pane-ultra">
+            <ol class="install-steps">
+              <li>
+                <div class="step-number">1</div>
+                <div class="step-text">Clonez le dépôt Git officiel de l'extension.</div>
+              </li>
+              <li>
+                <div class="step-number">2</div>
+                <div class="step-text">Modifiez ou personnalisez les couleurs et fonctionnalités dans les fichiers <code>portal.js</code> et <code>dashboard.js</code>.</div>
+              </li>
+              <li>
+                <div class="step-number">3</div>
+                <div class="step-text">Rechargez simplement l'extension sur votre navigateur pour tester vos propres fonctionnalités !</div>
+              </li>
+            </ol>
+            <div class="install-actions">
+              <a href="https://github.com" target="_blank" class="btn-action-download btn-manual" id="btn-github-repo">Dépôt GitHub Racywama</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+      <div class="footer-wrapper">
+        <div class="footer-brand">
+          <img src="img/logo.png" alt="Racywama Comet" class="footer-logo">
+          <span>RACYWAMA</span>
+        </div>
+        <div class="footer-copyright">
+          &copy; 2026 RACYWAMA. Projet étudiant indépendant, non affilié à l'Efrei Paris.
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Leaflet Map Library -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Javascript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Sidebar Search Logic
+      const searchInput = document.getElementById('sidebar-search');
+      const sidebarLinks = document.querySelectorAll('.sidebar-menu li');
+
+      // ==========================================
+      // Parameter Synchronization & Banner Logic
+      // ==========================================
+      const themeButtons = document.querySelectorAll('.theme-btn');
+      const previewPanel = document.getElementById('theme-preview-panel');
+      const badgeText = document.getElementById('board-theme-badge');
+      const dashBody = document.getElementById('dash-win-body');
+      const btnDarkToggle = document.getElementById('btn-dash-darktoggle');
+
+      const themeNames = {
+        'navy': 'Navy',
+        'emerald': 'Emerald',
+        'purple': 'Purple',
+        'ruby': 'Ruby',
+        'slate': 'Slate',
+        'oled': 'OLED'
+      };
+
+      const loadUserParams = () => {
+        const nameVal = localStorage.getItem('mye_user_name');
+        const classVal = localStorage.getItem('mye_user_class');
+        const avgVal = localStorage.getItem('mye_user_average');
+        const absVal = localStorage.getItem('mye_user_absences');
+        const retVal = localStorage.getItem('mye_user_retards');
+        const themeVal = localStorage.getItem('mye_user_theme') || 'navy';
+        const darkModeVal = localStorage.getItem('mye_user_darkmode') === 'true';
+
+        const banner = document.getElementById('mye-ultra-connection-banner');
+
+        if (!nameVal) {
+          if (banner) banner.style.display = 'flex';
+          updateMockupElements('Non connecté', 'Aucune extension', '--', '0', '0');
+        } else {
+          if (banner) banner.style.display = 'none';
+          updateMockupElements(nameVal, classVal || 'S6 - 2026', avgVal, absVal || '0', retVal || '0');
+        }
+
+        // Apply theme color
+        const themeMocks = document.querySelectorAll('.mye-custom-dashboard-mock');
+        themeMocks.forEach(mock => {
+          mock.setAttribute('data-mye-theme', themeVal);
+        });
+
+        // Activate theme button
+        themeButtons.forEach(btn => {
+          if (btn.getAttribute('data-theme') === themeVal) {
+            themeButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (badgeText) {
+              badgeText.textContent = `Thème : ${themeNames[themeVal] || themeVal}`;
+            }
+          }
+        });
+
+        // Apply dark mode by default if checked
+        if (darkModeVal) {
+          if (dashBody) {
+            dashBody.classList.add('dash-window-darkmode-active');
+            const toggleSpan = btnDarkToggle.querySelector('span');
+            if (toggleSpan) toggleSpan.textContent = '☀️ Mode Clair';
+          }
+        } else {
+          if (dashBody) {
+            dashBody.classList.remove('dash-window-darkmode-active');
+            const toggleSpan = btnDarkToggle.querySelector('span');
+            if (toggleSpan) toggleSpan.textContent = '🌙 Mode Sombre';
+          }
+        }
+      };
+
+      const updateMockupElements = (name, className, average, absences, retards) => {
+        // Update names
+        document.querySelectorAll('.js-mye-user-name').forEach(el => {
+          el.textContent = name;
+        });
+
+        // Update classes
+        document.querySelectorAll('.js-mye-user-period').forEach(el => {
+          el.textContent = className;
+        });
+
+        // Update average scores
+        const avgNum = parseFloat(average);
+        const avgStr = isNaN(avgNum) ? '--' : avgNum.toFixed(2).replace('.', ',');
+        document.querySelectorAll('.js-mye-user-average').forEach(el => {
+          el.textContent = avgStr;
+        });
+
+        // Update average bars
+        const ratio = isNaN(avgNum) ? 0 : Math.min(avgNum / 20, 1);
+        document.querySelectorAll('.js-mye-user-average-bar').forEach(el => {
+          el.style.width = `${ratio * 100}%`;
+          
+          let color = '#84cc16'; // Vert clair
+          if (avgNum < 10) color = '#ef4444'; // Rouge
+          else if (avgNum < 13) color = '#f59e0b'; // Orange
+          else if (avgNum < 15) color = '#84cc16'; // Vert
+          
+          el.style.backgroundColor = color;
+        });
+
+        // Update absences
+        document.querySelectorAll('.js-mye-user-absences').forEach(el => {
+          el.textContent = absences;
+          const absCount = parseInt(absences);
+          if (absCount === 0) {
+            el.style.color = '#10b981';
+          } else {
+            el.style.color = '#ef4444';
+          }
+        });
+
+        // Update retards
+        document.querySelectorAll('.js-mye-user-retards').forEach(el => {
+          el.textContent = retards;
+          const retCount = parseInt(retards);
+          if (retCount === 0) {
+            el.style.color = '#10b981';
+          } else {
+            el.style.color = '#f59e0b';
+          }
+        });
+
+        // Update simulated average circle if we are on Tab 2
+        const realCircleVal = document.getElementById('js-real-circle-val');
+        if (realCircleVal) {
+          realCircleVal.textContent = avgStr;
+        }
+      };
+
+      // Call load on startup
+      loadUserParams();
+
+      // Listen for data synchronization from the extension content script
+      window.addEventListener('mye-sync-data', () => {
+        loadUserParams();
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          sidebarLinks.forEach(linkLi => {
+            const linkText = linkLi.querySelector('.sidebar-menu-link').textContent.toLowerCase();
+            if (linkText.includes(query)) {
+              linkLi.style.display = 'block';
+            } else {
+              linkLi.style.display = 'none';
+            }
+          });
+        });
+      }
+
+      // Interactive Theme Switcher Preview Logic
+      themeButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Remove active class from buttons
+          themeButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const theme = btn.getAttribute('data-theme');
+          
+          // Set custom theme attribute on mockup panel
+          previewPanel.setAttribute('data-mye-theme', theme);
+
+          // Update theme badge text inside mockup header
+          badgeText.textContent = `Thème : ${themeNames[theme] || theme}`;
+        });
+      });
+
+      // Installation Tabs Logic
+      const installTabs = document.querySelectorAll('.install-tab-btn');
+      const installPanes = document.querySelectorAll('.install-tab-pane');
+
+      installTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const tabId = tab.getAttribute('data-tab');
+
+          installTabs.forEach(t => t.classList.remove('active'));
+          installPanes.forEach(p => p.classList.remove('active'));
+
+          tab.classList.add('active');
+          document.getElementById(tabId).classList.add('active');
+        });
+      });
+
+      // ==========================================
+      // Window 1: Dashboard Dark Mode Simulator
+      // ==========================================
+      const btnDarkToggle = document.getElementById('btn-dash-darktoggle');
+      const dashBody = document.getElementById('dash-win-body');
+      
+      btnDarkToggle.addEventListener('click', () => {
+        const isActive = dashBody.classList.toggle('dash-window-darkmode-active');
+        btnDarkToggle.querySelector('span').textContent = isActive ? '☀️ Mode Clair' : '🌙 Mode Sombre';
+      });
+
+      // ==========================================
+      // Window 2: Grade Simulator
+      // ==========================================
+      const simInput = document.getElementById('js-sim-card-input');
+      const subjectGradeVal = document.getElementById('js-subject-grade-val');
+      const ueGradeVal = document.getElementById('js-ue-grade-val');
+      const estSimVal = document.getElementById('js-est-sim-value');
+      const estSimProgress = document.getElementById('js-est-sim-progress');
+
+      function updateGradesSimulator(deSimVal) {
+        if (isNaN(deSimVal) || deSimVal < 0 || deSimVal > 20) return;
+        
+        // Calculate Projet Average: CC1 (12.00 * 0.30) + DE (deSimVal * 0.70)
+        const projetAvg = 12 * 0.3 + deSimVal * 0.7;
+        subjectGradeVal.textContent = projetAvg.toFixed(2).replace('.', ',');
+        
+        // Calculate UE1 Average: (Web * 2 + Algo * 3 + Projet * 4) / 9
+        const ueAvg = (12 * 2 + 16 * 3 + projetAvg * 4) / 9;
+        ueGradeVal.textContent = ueAvg.toFixed(2).replace('.', ',');
+        
+        // Update Estimated GPA Card text
+        estSimVal.textContent = ueAvg.toFixed(2).replace('.', ',');
+        
+        // Update Estimated GPA Progress bar width (ratio of 20)
+        const ratio = Math.min(ueAvg / 20, 1);
+        estSimProgress.style.width = `${ratio * 100}%`;
+        
+        // Update Estimated GPA Progress bar color
+        let color = '#16a34a'; // Vert foncé
+        if (ueAvg < 10) color = '#ef4444'; // Rouge
+        else if (ueAvg < 13) color = '#f59e0b'; // Orange
+        else if (ueAvg < 15) color = '#84cc16'; // Vert clair
+        
+        estSimProgress.style.backgroundColor = color;
+      }
+
+      if (simInput) {
+        simInput.addEventListener('input', (e) => {
+          let val = parseFloat(e.target.value);
+          if (!isNaN(val)) {
+            if (val < 0) val = 0;
+            if (val > 20) val = 20;
+            updateGradesSimulator(val);
+          }
+        });
+        // Initial state (default DE grade 16.3 yields Projet = 15.00, UE1 = 14.67)
+        updateGradesSimulator(16.3);
+      }
+
+
+
+      // ==========================================
+      // Window 4: Interactive Campus Map (Leaflet)
+      // ==========================================
+      const campusData = {
+        paris: [
+          {
+            id: 'maison',
+            site: 'Site La maison',
+            bat: 'Bat. A à F',
+            address: '30-32 Av. de la République, 94800 Villejuif',
+            coords: [48.7887147, 2.3637183],
+            hours: "Lundi au vendredi : 7h30 à 20h (18h pour l'accueil)",
+            contact: [
+              'Accueil : <a href="tel:+33188289000">+33 188 289 000</a>',
+              '<a href="mailto:accueil@efrei.fr">accueil@efrei.fr</a>',
+              'Gardien : <a href="tel:+33626096241">+33 626 096 241</a>'
+            ],
+            plan: true
+          },
+          {
+            id: 'factory',
+            site: 'Site La Factory',
+            bat: 'Bat. H',
+            address: '147 Bd Maxime Gorki, 94800 Villejuif',
+            coords: [48.7892711, 2.3685598],
+            hours: "Lundi au vendredi : 7h30 à 20h (18h pour l'accueil)",
+            contact: [
+              'Accueil : <a href="tel:+33188289000">+33 188 289 000</a>',
+              '<a href="mailto:accueil@efrei.fr">accueil@efrei.fr</a>',
+              'Gardien : <a href="tel:+33626096241">+33 626 096 241</a>'
+            ],
+            plan: false
+          },
+          {
+            id: 'aquarium',
+            site: "Site L'aquarium",
+            bat: 'Bat. K',
+            address: '136 bis Bd Maxime Gorki, 94800 Villejuif',
+            coords: [48.7899274, 2.3685979],
+            hours: "Lundi au vendredi : 7h30 à 20h (16h30 pour l'accueil)",
+            contact: [
+              'Accueil : <a href="tel:+33188289000">+33 188 289 000</a>',
+              '<a href="mailto:accueil@efrei.fr">accueil@efrei.fr</a>',
+              'Gardien : <a href="tel:+33188289311">+33 188 289 311</a>'
+            ],
+            plan: true
+          },
+          {
+            id: 'newrepublic',
+            site: 'Site New Republic',
+            bat: 'Bat. N',
+            address: '33 Av. de la République, 94800 Villejuif',
+            coords: [48.7884430, 2.3629770],
+            hours: 'Lundi au vendredi : 6h30 à 21h30',
+            contact: [
+              '<a href="mailto:accueil@efrei.fr">accueil@efrei.fr</a>'
+            ],
+            plan: false
+          }
+        ],
+        bordeaux: [
+          {
+            id: 'bdx',
+            site: 'Site Bordeaux',
+            bat: 'Bat. BDX',
+            address: '83 rue Lucien Faure, 33000 Bordeaux',
+            coords: [44.8657363, -0.5595686],
+            hours: 'Lundi au vendredi : 7h30 à 21h',
+            contact: [
+              '<a href="mailto:accueil-bordeaux@efrei.fr">accueil-bordeaux@efrei.fr</a>'
+            ],
+            plan: false
+          }
+        ]
+      };
+
+      let currentMap = null;
+      let currentMarker = null;
+      let activeCity = 'paris';
+
+      function initLeafletMap(coords) {
+        if (typeof L === 'undefined') return;
+
+        if (currentMap) {
+          currentMap.setView(coords, 17);
+          if (currentMarker) {
+            currentMarker.setLatLng(coords);
+          } else {
+            currentMarker = L.marker(coords).addTo(currentMap);
+          }
+          // Force Leaflet recalculation for dynamic tab display
+          setTimeout(() => {
+            currentMap.invalidateSize();
+          }, 100);
+          return;
+        }
+
+        // Initialize Map
+        currentMap = L.map('mye-campus-map-wrapper', {
+          zoomControl: true,
+          attributionControl: true
+        }).setView(coords, 17);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors',
+          maxZoom: 19
+        }).addTo(currentMap);
+        
+        currentMarker = L.marker(coords).addTo(currentMap);
+        
+        setTimeout(() => {
+          currentMap.invalidateSize();
+        }, 150);
+      }
+
+      function renderCampusAccordions(city) {
+        const listPanel = document.getElementById('mye-campus-list');
+        if (!listPanel) return;
+
+        listPanel.innerHTML = '';
+        const campuses = campusData[city];
+
+        campuses.forEach((campus, index) => {
+          const isFirst = index === 0;
+          
+          const acc = document.createElement('div');
+          acc.className = 'mye-campus-accordion' + (isFirst ? ' open' : '');
+          
+          const contactHtml = campus.contact.map(c => `<p>${c}</p>`).join('');
+          const planHtml = campus.plan ? `<button type="button" class="mye-campus-plan-btn mye-campus-trigger-download" data-campus="${campus.id}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 15v3H6v-3H4v3c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-3h-2zm-1-4-1.41-1.41L13 12.17V4h-2v8.17L8.41 9.59 7 11l5 5 5-5z"></path></svg> PLAN DU SITE</button>` : '';
+
+          acc.innerHTML = `
+            <div class="mye-campus-accordion-header">
+              <h3 class="mye-campus-accordion-title">${campus.site} <span>${campus.bat}</span></h3>
+              <div class="mye-campus-accordion-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"></path></svg>
+              </div>
+            </div>
+            <div class="mye-campus-accordion-body" style="${isFirst ? 'max-height: 500px;' : 'max-height: 0;'}">
+              <div class="mye-campus-accordion-content">
+                <div class="mye-campus-col">
+                  <h4>Adresse</h4>
+                  <p>${campus.address}</p>
+                  <br/>
+                  <h4>Horaires</h4>
+                  <p>${campus.hours}</p>
+                </div>
+                <div class="mye-campus-col" style="text-align: right;">
+                  <h4>Contact de l'accueil</h4>
+                  ${contactHtml}
+                  ${planHtml}
+                </div>
+              </div>
+            </div>
+          `;
+
+          // Click to open logic
+          const header = acc.querySelector('.mye-campus-accordion-header');
+          header.addEventListener('click', () => {
+            const body = acc.querySelector('.mye-campus-accordion-body');
+            
+            // Close if already open
+            if (acc.classList.contains('open')) {
+              acc.classList.remove('open');
+              body.style.maxHeight = '0';
+            } else {
+              // Close all others
+              const allAccs = listPanel.querySelectorAll('.mye-campus-accordion');
+              allAccs.forEach(a => {
+                a.classList.remove('open');
+                a.querySelector('.mye-campus-accordion-body').style.maxHeight = '0';
+              });
+              
+              acc.classList.add('open');
+              body.style.maxHeight = body.scrollHeight + 'px';
+              
+              // Inject Map
+              initLeafletMap(campus.coords);
+            }
+          });
+
+          listPanel.appendChild(acc);
+          
+          if (isFirst) {
+            initLeafletMap(campus.coords);
+          }
+        });
+      }
+
+      // City Tabs Logic
+      const cityTabs = document.querySelectorAll('.mye-campus-tab');
+      cityTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          cityTabs.forEach(t => {
+            t.classList.remove('active');
+            t.classList.add('inactive');
+          });
+          tab.classList.remove('inactive');
+          tab.classList.add('active');
+          
+          activeCity = tab.getAttribute('data-city');
+          renderCampusAccordions(activeCity);
+        });
+      });
+
+      // Render default Paris city accordions
+      renderCampusAccordions('paris');
+    });
+  </script>
+</body>
+</html>
