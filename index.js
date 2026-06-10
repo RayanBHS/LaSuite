@@ -97,6 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- DYNAMIC ACTIVE LINK ON SCROLL (HORIZONTAL NAV) ---
   const sections = document.querySelectorAll('.section-block, .hero-card-banner');
   const navLinks = document.querySelectorAll('.h-nav-link');
+  let lastActiveId = '';
 
   const updateActiveNavLink = () => {
     let currentSectionId = 'fonctionnement'; // default fallback
@@ -112,12 +113,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${currentSectionId}`) {
-        link.classList.add('active');
-      }
-    });
+    if (currentSectionId !== lastActiveId) {
+      lastActiveId = currentSectionId;
+      
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSectionId}`) {
+          link.classList.add('active');
+          // Smooth scroll active tab into view horizontally (centered)
+          link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+        }
+      });
+    }
   };
 
   window.addEventListener('scroll', updateActiveNavLink);
@@ -208,13 +215,59 @@ document.addEventListener('DOMContentLoaded', () => {
         bar.style.width = '0%';
       });
       updateText('.js-mye-user-absences', '--');
-      updateText('.js-mye-user-retards', '--');
     }
+  };
+  
   syncHomepageMockups();
+
+  // --- MOBILE DRAWER TOGGLE LOGIC ---
+  const hamburgerBtn = document.getElementById('mye-hamburger-btn');
+  const mobileDrawer = document.getElementById('mye-mobile-drawer');
+  const drawerClose = document.getElementById('mye-drawer-close');
+  const drawerOverlay = document.getElementById('mye-drawer-overlay');
+
+  if (hamburgerBtn && mobileDrawer && drawerOverlay) {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileDrawer.classList.add('active');
+      drawerOverlay.classList.add('active');
+    });
+  }
+
+  const closeDrawer = () => {
+    if (mobileDrawer) mobileDrawer.classList.remove('active');
+    if (drawerOverlay) drawerOverlay.classList.remove('active');
+  };
+
+  if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+  // --- MOBILE DRAWER PROFILE SYNC ---
+  const updateDrawerProfile = () => {
+    const nameVal = localStorage.getItem('mye_user_name');
+    const classVal = localStorage.getItem('mye_user_class');
+    const drawerName = document.getElementById('drawer-profile-name');
+    const drawerClass = document.getElementById('drawer-profile-class');
+    const drawerAvatar = document.getElementById('drawer-profile-avatar');
+
+    if (drawerName) drawerName.textContent = nameVal || 'Non connecté';
+    if (drawerClass) drawerClass.textContent = classVal || 'Aucune extension';
+    if (drawerAvatar) {
+      if (nameVal) {
+        const initials = nameVal.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        drawerAvatar.textContent = initials;
+      } else {
+        drawerAvatar.textContent = '--';
+      }
+    }
+  };
+
+  updateDrawerProfile();
 
   // Listen for data synchronization from the extension content script
   window.addEventListener('mye-sync-data', () => {
     syncHomepageMockups();
+    updateDrawerProfile();
   });
   
 });

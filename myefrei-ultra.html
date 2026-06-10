@@ -28,6 +28,55 @@
 </head>
 <body class="myefrei-ultra-page">
 
+  <!-- MOBILE HEADER (Visible on <= 992px) -->
+  <header class="mobile-header">
+    <a href="index.html" class="mobile-logo-wrapper">
+      <img src="img/logo.png" alt="RACYWAMA Comet Logo" class="mobile-logo-img">
+    </a>
+    <button class="mye-hamburger-btn" id="mye-hamburger-btn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- MOBILE DRAWER (Visible on <= 992px) -->
+  <div id="mye-mobile-drawer" class="mye-mobile-drawer">
+    <div class="mye-drawer-header">
+      <button class="mye-drawer-close" id="mye-drawer-close" aria-label="Fermer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <!-- Drawer Profile Info -->
+    <div class="mye-drawer-profile-container">
+      <div class="avatar-gradient drawer-avatar" id="drawer-profile-avatar">--</div>
+      <div class="mye-drawer-profile-details">
+        <h3 class="mye-drawer-name" id="drawer-profile-name">Non connecté</h3>
+        <span class="mye-drawer-badge" id="drawer-profile-class">Aucune extension</span>
+      </div>
+    </div>
+    
+    <!-- Drawer Navigation Menu -->
+    <nav class="mye-drawer-nav">
+      <a href="index.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">Accueil du portail</span>
+      </a>
+      <a href="myefrei-ultra.html" class="mye-drawer-item active">
+        <span class="mye-drawer-item-text">MyEfrei ULTRA</span>
+      </a>
+      <a href="index.html#card-mymoodle-ultra" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyMoodle ULTRA</span>
+      </a>
+      <a href="mon-compte.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">Mon Compte</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- DRAWER OVERLAY -->
+  <div id="mye-drawer-overlay" class="mye-drawer-overlay"></div>
+
   <!-- LEFT SIDEBAR (Identique au portail d'accueil pour cohérence de navigation) -->
   <aside class="sidebar">
     <div class="sidebar-top">
@@ -1044,6 +1093,50 @@
   <!-- Javascript -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // --- MOBILE DRAWER TOGGLE LOGIC ---
+      const hamburgerBtn = document.getElementById('mye-hamburger-btn');
+      const mobileDrawer = document.getElementById('mye-mobile-drawer');
+      const drawerClose = document.getElementById('mye-drawer-close');
+      const drawerOverlay = document.getElementById('mye-drawer-overlay');
+
+      if (hamburgerBtn && mobileDrawer && drawerOverlay) {
+        hamburgerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          mobileDrawer.classList.add('active');
+          drawerOverlay.classList.add('active');
+        });
+      }
+
+      const closeDrawer = () => {
+        if (mobileDrawer) mobileDrawer.classList.remove('active');
+        if (drawerOverlay) drawerOverlay.classList.remove('active');
+      };
+
+      if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+      if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+      // --- MOBILE DRAWER PROFILE SYNC ---
+      const updateDrawerProfile = () => {
+        const nameVal = localStorage.getItem('mye_user_name');
+        const classVal = localStorage.getItem('mye_user_class');
+        const drawerName = document.getElementById('drawer-profile-name');
+        const drawerClass = document.getElementById('drawer-profile-class');
+        const drawerAvatar = document.getElementById('drawer-profile-avatar');
+
+        if (drawerName) drawerName.textContent = nameVal || 'Non connecté';
+        if (drawerClass) drawerClass.textContent = classVal || 'Aucune extension';
+        if (drawerAvatar) {
+          if (nameVal) {
+            const initials = nameVal.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+            drawerAvatar.textContent = initials;
+          } else {
+            drawerAvatar.textContent = '--';
+          }
+        }
+      };
+
+      updateDrawerProfile();
+
       // Sidebar Search Logic
       const searchInput = document.getElementById('sidebar-search');
       const sidebarLinks = document.querySelectorAll('.sidebar-menu li');
@@ -1184,6 +1277,7 @@
       // Listen for data synchronization from the extension content script
       window.addEventListener('mye-sync-data', () => {
         loadUserParams();
+        updateDrawerProfile();
       });
 
       if (searchInput) {
@@ -1236,8 +1330,7 @@
       // ==========================================
       // Window 1: Dashboard Dark Mode Simulator
       // ==========================================
-      const btnDarkToggle = document.getElementById('btn-dash-darktoggle');
-      const dashBody = document.getElementById('dash-win-body');
+      
       
       btnDarkToggle.addEventListener('click', () => {
         const isActive = dashBody.classList.toggle('dash-window-darkmode-active');
