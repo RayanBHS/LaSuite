@@ -120,8 +120,17 @@ document.addEventListener('DOMContentLoaded', () => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${currentSectionId}`) {
           link.classList.add('active');
-          // Smooth scroll active tab into view horizontally (centered)
-          link.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          // Smooth scroll active tab into view horizontally (centered) inside its scrollable parent without scrolling the window
+          const navBar = link.closest('.horizontal-nav-bar');
+          if (navBar) {
+            const navBarWidth = navBar.offsetWidth;
+            const linkLeft = link.offsetLeft;
+            const linkWidth = link.offsetWidth;
+            navBar.scrollTo({
+              left: linkLeft - (navBarWidth / 2) + (linkWidth / 2),
+              behavior: 'smooth'
+            });
+          }
         }
       });
     }
@@ -134,11 +143,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const logoBtn = document.getElementById('sidebar-logo');
   if (logoBtn) {
     logoBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      const path = window.location.pathname;
+      const isHomePage = path === '/' || path.endsWith('index.html') || path.endsWith('index');
+      if (isHomePage) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
     });
   }
 
@@ -168,6 +181,24 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetPreview = document.getElementById(targetId);
       if (targetPreview) {
         targetPreview.classList.add('active');
+      }
+
+      // Update floating badge image depending on whether the target is Moodle, MyEfrei, MyHub or MyMessage
+      const badgeImg = document.querySelector('.office-floating-badge img');
+      if (badgeImg) {
+        if (targetId === 'preview-moodle-chat') {
+          badgeImg.src = 'img/logoMyMessageUltra.png';
+          badgeImg.alt = 'MyMessage ULTRA logo';
+        } else if (targetId === 'preview-ai') {
+          badgeImg.src = 'img/logoMyHub.png';
+          badgeImg.alt = 'MyHub ULTRA logo';
+        } else if (targetId.startsWith('preview-moodle')) {
+          badgeImg.src = 'img/logoMyMoodleUltra.png';
+          badgeImg.alt = 'myMoodle ULTRA logo';
+        } else {
+          badgeImg.src = 'img/logomyEfreiUltra.png';
+          badgeImg.alt = 'myEfrei ULTRA logo';
+        }
       }
     });
   });
@@ -271,3 +302,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   
 });
+

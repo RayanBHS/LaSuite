@@ -179,6 +179,12 @@ body {
   text-align: left;
 }
 
+.sidebar-menu-link.active {
+  background-color: var(--tab-active-bg, #3d507a);
+  color: #ffffff;
+  font-weight: bold;
+}
+
 /* Sidebar Bottom (Account Button) */
 .sidebar-bottom {
   margin-top: auto;
@@ -462,11 +468,16 @@ body {
 
 .software-cards-stack {
   display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  align-items: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 4rem;
+  align-items: stretch;
   justify-content: flex-start;
   width: 100%;
+}
+
+.software-cards-stack .software-card {
+  margin-right: 0;
 }
 
 /* Software Card Design */
@@ -540,6 +551,7 @@ body {
   transition: opacity 0.2s ease;
   width: 100%;
   text-align: center;
+  margin-top: auto;
 }
 
 .btn-card:hover {
@@ -1237,6 +1249,11 @@ body {
     font-size: 1.8rem;
   }
   
+  .software-cards-stack {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  
   .software-card {
     padding: 2.5rem 1.5rem;
     max-width: 100%;
@@ -1279,5 +1296,6 @@ body {
     font-size: 2rem;
   }
 }
+
 
 

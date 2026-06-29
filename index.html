@@ -53,16 +53,18 @@
       </div>
     </div>
     
-    <!-- Drawer Navigation Menu -->
     <nav class="mye-drawer-nav">
-      <a href="index.html" class="mye-drawer-item active">
-        <span class="mye-drawer-item-text">Accueil du portail</span>
-      </a>
       <a href="myefrei-ultra.html" class="mye-drawer-item">
         <span class="mye-drawer-item-text">MyEfrei ULTRA</span>
       </a>
-      <a href="#card-mymoodle-ultra" class="mye-drawer-item">
+      <a href="mymoodle-ultra.html" class="mye-drawer-item">
         <span class="mye-drawer-item-text">MyMoodle ULTRA</span>
+      </a>
+      <a href="MyHub-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyHub ULTRA</span>
+      </a>
+      <a href="mymessage-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyMessage ULTRA</span>
       </a>
       <a href="mon-compte.html" class="mye-drawer-item">
         <span class="mye-drawer-item-text">Mon Compte</span>
@@ -95,8 +97,18 @@
           </a>
         </li>
         <li>
-          <a href="#card-mymoodle-ultra" class="sidebar-menu-link">
+          <a href="mymoodle-ultra.html" class="sidebar-menu-link">
             MyMoodle ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="MyHub-ultra.html" class="sidebar-menu-link">
+            MyHub ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="mymessage-ultra.html" class="sidebar-menu-link">
+            MyMessage ULTRA
           </a>
         </li>
       </ul>
@@ -144,7 +156,6 @@
         <h3 class="section-headline" style="font-weight: 700; color: #00205C; margin-bottom: 3.5rem;">Gagnez en productivité avec la Suite</h3>
         
         <div class="office-style-layout">
-          <!-- Left Accordion Tabs -->
           <div class="office-tabs">
             <div class="office-tab-item active" data-target="preview-dash">
               <div class="office-tab-header">
@@ -156,33 +167,33 @@
               </div>
             </div>
             
-            <div class="office-tab-item" data-target="preview-schedule">
+            <div class="office-tab-item" data-target="preview-ai">
               <div class="office-tab-header">
-                <h4>Planifiez avec précision</h4>
+                <h4>Pilotez votre scolarité avec l'IA</h4>
                 <span class="office-tab-arrow">▼</span>
               </div>
               <div class="office-tab-body">
-                <p>Consultez votre agenda de la semaine au style Apple Calendar. Visualisez l'intitulé de vos cours, les salles (Kepler, Lovelace) et les enseignants d'un coup d'œil.</p>
+                <p>Interrogez l'assistant intelligent MyHub ULTRA directement depuis votre ENT. Obtenez des résumés de cours, des synthèses de mails ou des réponses sur votre moyenne en langage naturel.</p>
               </div>
             </div>
             
-            <div class="office-tab-item" data-target="preview-grades">
+            <div class="office-tab-item" data-target="preview-moodle-viewer">
               <div class="office-tab-header">
-                <h4>Simulez en toute confiance</h4>
+                <h4>Lisez vos documents en ligne</h4>
                 <span class="office-tab-arrow">▼</span>
               </div>
               <div class="office-tab-body">
-                <p>Estimez vos résultats semestriels en direct. Saisissez vos notes prévisionnelles dans le simulateur pour observer le recalcul immédiat de vos moyennes d'UE.</p>
+                <p>Consultez vos PDF, Word (DOCX) et PowerPoint (PPTX) dans un lecteur intégré directement sur Moodle, sans surcharger votre dossier de téléchargements.</p>
               </div>
             </div>
             
-            <div class="office-tab-item" data-target="preview-map">
+            <div class="office-tab-item" data-target="preview-moodle-chat">
               <div class="office-tab-header">
-                <h4>Trouvez votre chemin facilement</h4>
+                <h4>Échangez en toute simplicité</h4>
                 <span class="office-tab-arrow">▼</span>
               </div>
               <div class="office-tab-body">
-                <p>Trouvez vos salles de cours sans effort. L'extension intègre une carte Leaflet interactive recensant les différents bâtiments de l'école (Villejuif, Bordeaux).</p>
+                <p>Discutez de manière intuitive avec vos professeurs et camarades de classe grâce à un fil de messagerie modernisé selon les standards One UI.</p>
               </div>
             </div>
           </div>
@@ -233,88 +244,76 @@
                 </div>
               </div>
               
-              <!-- Preview 2: Schedule -->
-              <div class="office-preview-content" id="preview-schedule">
-                <div style="width: 100%; display: flex; flex-direction: column; background: white; border-radius: 12px; border: 1px solid #cbd5e1; overflow: hidden; text-align: left; box-sizing: border-box;">
-                  <div style="display: flex; border-bottom: 1px solid #cbd5e1; background: #f8fafc; padding: 6px 10px; font-size: 9px; font-weight: 700;">
-                    <div style="flex: 1; text-align: center; color: #ff3b30;">Mardi 09 Juin (Aujourd'hui)</div>
+              <!-- Preview 2: IA Chatbot (MyHub) -->
+              <div class="office-preview-content" id="preview-ai">
+                <div style="width: 100%; display: flex; flex-direction: column; background: #ffffff; border-radius: 12px; border: 1px solid #cbd5e1; overflow: hidden; text-align: left; box-sizing: border-box; font-family: sans-serif;">
+                  <!-- Chatbot Header -->
+                  <div style="background: #f8fafc; padding: 8px 12px; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; justify-content: space-between;">
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                      <img src="img/logoMyHub.png" style="width: 14px; height: 14px; border-radius: 4px;" alt="MyHub">
+                      <span style="font-size: 9px; font-weight: bold; color: #1a73e8;">Assistant IA MyHub</span>
+                    </div>
+                    <span style="font-size: 8px; color: #059669; font-weight: 700;">★ ULTRA</span>
                   </div>
-                  <div style="padding: 10px; display: flex; flex-direction: column; gap: 8px; background: #f1f5f9;">
-                    <div class="mac-cal-event mac-course-cm" style="position: relative; border-radius: 6px; display: flex; width: 100%;">
-                      <div class="mac-cal-event-inner" style="padding: 6px; border-left: 3px solid #34c759; background-color: #e8f8f0; width: 100%; border-radius: 0 4px 4px 0;">
-                        <span class="mye-event-type-pill" style="background-color: #34c759; color: white; font-size: 7px; padding: 1px 3px; border-radius: 3px; font-weight: bold; width: fit-content; display: block;">CM</span>
-                        <div class="mac-cal-event-title" style="font-size: 10px; font-weight: 700; color: #209952; margin-top: 2px;">Bases de Données NoSQL</div>
-                        <div class="mac-cal-event-time" style="font-size: 8px; color: #209952; opacity: 0.8; margin-top: 2px;">10:00 - 13:00 &bull; Lovelace 402</div>
-                      </div>
+                  <!-- Chat messages -->
+                  <div style="padding: 10px; display: flex; flex-direction: column; gap: 6px; background: #f4f6fa; min-height: 80px; justify-content: center;">
+                    <div style="align-self: flex-end; background: #1a73e8; color: white; padding: 6px 8px; border-radius: 10px; border-bottom-right-radius: 2px; font-size: 8px; max-width: 80%;">
+                      Calcule ma moyenne pour l'UE1 NoSQL
+                    </div>
+                    <div style="align-self: flex-start; background: white; color: #1f2937; padding: 6px 8px; border-radius: 10px; border-bottom-left-radius: 2px; font-size: 8px; max-width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,0.05); line-height: 1.3;">
+                      Votre moyenne pour l'UE1 est de <strong>15,00/20</strong>. Projet NoSQL : 15 &bull; Simulation DE : 16.30/20.
                     </div>
                   </div>
                 </div>
                 <div class="office-suggestion-chips">
-                  <span class="office-chip">Semaine suivante</span>
-                  <span class="office-chip">Exporter l'agenda .ics</span>
-                </div>
-              </div>
-              
-              <!-- Preview 3: Grades Circle -->
-              <div class="office-preview-content" id="preview-grades">
-                <div style="display: flex; gap: 12px; width: 100%; box-sizing: border-box; align-items: center;">
-                  <!-- Left Circle -->
-                  <div style="padding: 12px; border-radius: 12px; flex: 0.9; gap: 6px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; border: 1px solid #cbd5e1;">
-                    <span style="font-size: 10px; font-weight: 700; color: #111111;">Moyenne</span>
-                    <div style="width: 60px; height: 60px; position: relative;">
-                      <svg viewBox="0 0 200 200" style="width: 100%; height: 100%; transform: rotate(-90deg);">
-                        <circle cx="100" cy="100" r="90" style="fill: none; stroke: #e2e8f0; stroke-width: 16;" />
-                        <circle cx="100" cy="100" r="90" style="fill: none; stroke: #84cc16; stroke-width: 16; stroke-dasharray: 565.48; stroke-dashoffset: 159.25; stroke-linecap: round;" />
-                      </svg>
-                      <div class="js-mye-user-average" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 14px; font-weight: 800; color: #00205C;">14,37</div>
-                    </div>
-                  </div>
-                  <!-- Right Subject Card -->
-                  <div style="flex: 1.1; border: 2px solid #00205C; border-radius: 12px; overflow: hidden; background: #00205C; text-align: left; display: flex; flex-direction: column;">
-                    <div style="background: white; padding: 8px 12px; display: flex; justify-content: space-between; align-items: center;">
-                      <div style="display: flex; flex-direction: column;">
-                        <span style="font-size: 11px; font-weight: 700; color: #00205C;">Projet Informatique</span>
-                        <span style="font-size: 8px; color: #64748b;">Coef 4 &bull; M3</span>
-                      </div>
-                      <span style="font-size: 14px; font-weight: 800; color: #00205C;">15,00</span>
-                    </div>
-                    <div style="padding: 6px 10px; display: flex; flex-direction: column; gap: 4px;">
-                      <div style="background: rgba(255, 255, 255, 0.15); display: flex; justify-content: space-between; border-radius: 999px; padding: 4px 10px; font-size: 9px; color: white;">
-                        <span>Simulation DE</span>
-                        <strong>16,30/20</strong>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="office-suggestion-chips">
-                  <span class="office-chip">Simuler un 18/20</span>
-                  <span class="office-chip">Voir le bulletin officiel</span>
+                  <span class="office-chip">Mes devoirs</span>
+                  <span class="office-chip">Synthèse du cours</span>
                 </div>
               </div>
 
-              <!-- Preview 4: Map -->
-              <div class="office-preview-content" id="preview-map">
-                <div class="mye-campus-accordion" style="background: white; border: 2px solid #00205C; border-radius: 12px; overflow: hidden; width: 100%; text-align: left; box-sizing: border-box;">
-                  <div class="mye-campus-accordion-header" style="padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; background: #f8fafc; border-bottom: 1px solid #cbd5e1;">
-                    <h3 class="mye-campus-accordion-title" style="font-size: 11px; font-weight: 700; color: #00205C; margin: 0; display: flex; align-items: center; gap: 6px;">
-                      Site La maison <span style="font-size: 9px; color: #64748b; font-weight: normal;">(Bat. A à F)</span>
-                    </h3>
-                    <span style="font-size: 9px; color: #00205C;">▼</span>
+              <!-- Preview 3: Moodle Document Viewer -->
+              <div class="office-preview-content" id="preview-moodle-viewer">
+                <div style="width: 100%; display: flex; flex-direction: column; background: #151a24; border-radius: 12px; border: 1px solid #1d2633; overflow: hidden; text-align: left; box-sizing: border-box; font-family: sans-serif;">
+                  <div style="background: #1e2535; padding: 6px 10px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #1d2633;">
+                    <span style="font-size: 9px; color: white; font-weight: 600;">📂 Cours_NoSQL_Intro.pptx</span>
+                    <span style="font-size: 8px; color: #ff8a00; font-weight: 700;">Diaporama</span>
                   </div>
-                  <div class="mye-campus-accordion-content" style="padding: 10px; display: flex; font-size: 9px; gap: 8px; line-height: 1.4; color: #334155;">
-                    <div class="mye-campus-col" style="flex: 1;">
-                      <h4 style="font-size: 9px; font-weight: 700; margin: 0 0 2px 0;">Adresse</h4>
-                      <p style="margin: 0;">30-32 Av. de la République, Villejuif</p>
+                  <div style="padding: 10px; background: white; color: #333; height: 90px; display: flex; flex-direction: column; justify-content: center; gap: 4px;">
+                    <span style="font-size: 7px; color: #888; font-weight: 600;">Diapositive 1 / 3</span>
+                    <h5 style="font-size: 9px; font-weight: 700; margin: 0; color: #111;">Bases de Données NoSQL</h5>
+                    <ul style="font-size: 7px; margin: 0; padding-left: 10px; color: #444; line-height: 1.3;">
+                      <li>Scalabilité horizontale</li>
+                      <li>Modèles Clé-Valeur, Documents, Graphes</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="office-suggestion-chips">
+                  <span class="office-chip">Diapositive suivante</span>
+                  <span class="office-chip">Extraire le texte</span>
+                </div>
+              </div>
+
+              <!-- Preview 4: Moodle Chat Messagerie -->
+              <div class="office-preview-content" id="preview-moodle-chat">
+                <div style="width: 100%; display: flex; flex-direction: column; background: #f4f6fa; border-radius: 12px; border: 1px solid #cbd5e1; overflow: hidden; text-align: left; box-sizing: border-box;">
+                  <!-- Chat Header -->
+                  <div style="background: white; padding: 6px 10px; border-bottom: 1px solid #e5e7eb; display: flex; align-items: center; gap: 6px;">
+                    <div style="width: 16px; height: 16px; border-radius: 50%; background: #007aff; color: white; display: flex; align-items: center; justify-content: center; font-size: 8px; font-weight: bold;">A</div>
+                    <span style="font-size: 9px; font-weight: bold; color: #1f2937;">Alexandre (Professeur)</span>
+                  </div>
+                  <!-- Chat Message -->
+                  <div style="padding: 10px; display: flex; flex-direction: column; gap: 6px;">
+                    <div style="align-self: flex-start; background: white; color: #1f2937; padding: 6px 8px; border-radius: 10px; border-bottom-left-radius: 2px; font-size: 8px; max-width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,0.05);">
+                      Avez-vous regardé le projet NoSQL ?
                     </div>
-                    <div class="mye-campus-col" style="flex: 1; text-align: right;">
-                      <h4 style="font-size: 9px; font-weight: 700; margin: 0 0 2px 0;">Horaires</h4>
-                      <p style="margin: 0;">Lundi au vendredi : 7h30 à 20h</p>
+                    <div style="align-self: flex-end; background: #ff8a00; color: white; padding: 6px 8px; border-radius: 10px; border-bottom-right-radius: 2px; font-size: 8px; max-width: 80%;">
+                      Oui, j'analyse le document en ce moment.
                     </div>
                   </div>
                 </div>
                 <div class="office-suggestion-chips">
-                  <span class="office-chip">Bâtiments du campus</span>
-                  <span class="office-chip">Télécharger le plan PDF</span>
+                  <span class="office-chip">Répondre au message</span>
+                  <span class="office-chip">Synthèse IA du cours</span>
                 </div>
               </div>
               
@@ -343,19 +342,28 @@
             <a href="myefrei-ultra.html" class="btn-card btn-card-blue">En savoir plus</a>
           </article>
 
-          <span class="section-label dev-label">En construction</span>
-
           <!-- MyMoodle ULTRA Card -->
           <article class="software-card" id="card-mymoodle-ultra">
-            <div class="card-icon-wrapper icon-orange">
-              <!-- Inline Moodle SVG styled orange -->
-              <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="moodle-svg"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path><path d="M12 10v6" stroke-width="2"></path></svg>
+            <div class="card-icon-wrapper">
+              <img src="img/logoMyMoodleUltra.png" alt="MyMoodle ULTRA Logo" class="card-logo-img">
             </div>
             <h4 class="card-title">MyMoodle ULTRA</h4>
             <p class="card-description">
-              Naviguez facilement dans votre vie étudiante avec MyEfrei ULTRA, votre portail personnalisé qui centralise vos notes, simplifie votre planning et transforme vos données complexes sous forme de tableaux de bord intuitifs.
+              Optimisez votre expérience sur Moodle avec une interface sombre, un visualiseur de documents intégré (PDF/Word/PowerPoint), une messagerie One UI redessinée et un transfert IA ultra-rapide.
             </p>
-            <a href="#prise-en-main" class="btn-card btn-card-orange">En savoir plus</a>
+            <a href="mymoodle-ultra.html" class="btn-card btn-card-orange">En savoir plus</a>
+          </article>
+
+          <!-- MyHub ULTRA Card -->
+          <article class="software-card" id="card-MyHub-ultra">
+            <div class="card-icon-wrapper">
+              <img src="img/logoMyHub.png" alt="MyHub ULTRA Logo" class="card-logo-img">
+            </div>
+            <h4 class="card-title">MyHub ULTRA</h4>
+            <p class="card-description">
+              Centralisez votre ENT avec un assistant IA intelligent et recherche globale. Posez vos questions de scolarité par écrit et obtenez des synthèses en un instant.
+            </p>
+            <a href="MyHub-ultra.html" class="btn-card btn-card-purple" style="background-color: var(--ultra-blue-ai, #1a73e8);">En savoir plus</a>
           </article>
         </div>
       </div>
@@ -473,3 +481,4 @@
   <script src="index.js"></script>
 </body>
 </html>
+

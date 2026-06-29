@@ -47,16 +47,18 @@
       </div>
     </div>
     
-    <!-- Drawer Navigation Menu -->
     <nav class="mye-drawer-nav">
-      <a href="index.html" class="mye-drawer-item">
-        <span class="mye-drawer-item-text">Accueil du portail</span>
-      </a>
       <a href="myefrei-ultra.html" class="mye-drawer-item">
         <span class="mye-drawer-item-text">MyEfrei ULTRA</span>
       </a>
-      <a href="index.html#card-mymoodle-ultra" class="mye-drawer-item">
+      <a href="mymoodle-ultra.html" class="mye-drawer-item">
         <span class="mye-drawer-item-text">MyMoodle ULTRA</span>
+      </a>
+      <a href="MyHub-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyHub ULTRA</span>
+      </a>
+      <a href="mymessage-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyMessage ULTRA</span>
       </a>
       <a href="mon-compte.html" class="mye-drawer-item active">
         <span class="mye-drawer-item-text">Mon Compte</span>
@@ -84,18 +86,23 @@
       <p class="sidebar-nav-title">Logiciels de la Suite</p>
       <ul class="sidebar-menu">
         <li>
-          <a href="index.html" class="sidebar-menu-link">
-            Accueil du portail
-          </a>
-        </li>
-        <li>
           <a href="myefrei-ultra.html" class="sidebar-menu-link">
             MyEfrei ULTRA
           </a>
         </li>
         <li>
-          <a href="index.html#card-mymoodle-ultra" class="sidebar-menu-link">
+          <a href="mymoodle-ultra.html" class="sidebar-menu-link">
             MyMoodle ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="MyHub-ultra.html" class="sidebar-menu-link">
+            MyHub ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="mymessage-ultra.html" class="sidebar-menu-link">
+            MyMessage ULTRA
           </a>
         </li>
       </ul>
@@ -153,6 +160,18 @@
             </div>
             <label class="switch">
               <input type="checkbox" id="moodle-toggle-unconnected">
+              <span class="slider"></span>
+            </label>
+          </div>
+
+          <!-- Extension 3: MyHub ULTRA -->
+          <div class="extension-pill-item">
+            <div class="extension-pill-left">
+              <img src="img/logoMyHub.png" alt="MyHub ULTRA Logo" class="extension-logo-img">
+              <span class="extension-name">MyHub ULTRA</span>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="hub-toggle-unconnected">
               <span class="slider"></span>
             </label>
           </div>
@@ -217,6 +236,18 @@
                 </div>
                 <label class="switch">
                   <input type="checkbox" id="moodle-toggle-connected">
+                  <span class="slider"></span>
+                </label>
+              </div>
+
+              <!-- Extension 3: MyHub ULTRA -->
+              <div class="extension-pill-item">
+                <div class="extension-pill-left">
+                  <img src="img/logoMyHub.png" alt="MyHub ULTRA Logo" class="extension-logo-img">
+                  <span class="extension-name">MyHub ULTRA</span>
+                </div>
+                <label class="switch">
+                  <input type="checkbox" id="hub-toggle-connected">
                   <span class="slider"></span>
                 </label>
               </div>
@@ -1034,3 +1065,4 @@
   </script>
 </body>
 </html>
+

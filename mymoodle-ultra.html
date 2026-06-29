@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyMoodle ULTRA - Présentation complète de l'extension RACYWAMA</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Découvrez MyMoodle ULTRA par RACYWAMA. L'extension ultime pour moderniser le Moodle de l'Efrei Paris : visualiseur de documents intégré, chat Samsung One UI, passerelle IA et thème sombre.">
+  <meta name="keywords" content="MyMoodle ULTRA, Efrei, RACYWAMA, Chrome extension, Moodle, thème sombre, visualiseur pdf, word, pptx, chat, samsung one ui">
+  <meta name="author" content="Racywama">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MyMoodle ULTRA - Présentation complète">
+  <meta property="og:description" content="Libérez-vous des lenteurs de Moodle. Visualiseur de documents intégré, messagerie One UI et connectivité IA.">
+  <meta property="og:image" content="img/logoMyMoodleUltra.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="mymoodle-ultra.css">
+</head>
+<body class="mymoodle-ultra-page">
+
+  <!-- MOBILE HEADER (Visible on <= 992px) -->
+  <header class="mobile-header">
+    <a href="index.html" class="mobile-logo-wrapper">
+      <img src="img/logo.png" alt="RACYWAMA Comet Logo" class="mobile-logo-img">
+    </a>
+    <button class="mye-hamburger-btn" id="mye-hamburger-btn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- MOBILE DRAWER (Visible on <= 992px) -->
+  <div id="mye-mobile-drawer" class="mye-mobile-drawer">
+    <div class="mye-drawer-header">
+      <button class="mye-drawer-close" id="mye-drawer-close" aria-label="Fermer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <!-- Drawer Profile Info -->
+    <div class="mye-drawer-profile-container">
+      <div class="avatar-gradient drawer-avatar" id="drawer-profile-avatar">--</div>
+      <div class="mye-drawer-profile-details">
+        <h3 class="mye-drawer-name" id="drawer-profile-name">Non connecté</h3>
+        <span class="mye-drawer-badge" id="drawer-profile-class">Aucune extension</span>
+      </div>
+    </div>
+    
+    <nav class="mye-drawer-nav">
+      <a href="myefrei-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyEfrei ULTRA</span>
+      </a>
+      <a href="mymoodle-ultra.html" class="mye-drawer-item active">
+        <span class="mye-drawer-item-text">MyMoodle ULTRA</span>
+      </a>
+      <a href="MyHub-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyHub ULTRA</span>
+      </a>
+      <a href="mymessage-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyMessage ULTRA</span>
+      </a>
+      <a href="mon-compte.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">Mon Compte</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- DRAWER OVERLAY -->
+  <div id="mye-drawer-overlay" class="mye-drawer-overlay"></div>
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <a href="index.html" class="sidebar-logo-wrapper" id="sidebar-logo">
+        <img src="img/logo.png" alt="RACYWAMA Comet Logo" class="sidebar-logo-img">
+      </a>
+      <div class="sidebar-search-container">
+        <svg class="sidebar-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" placeholder="Rechercher..." id="sidebar-search" class="sidebar-search-input">
+      </div>
+    </div>
+    
+    <!-- Software List inside Sidebar -->
+    <nav class="sidebar-nav">
+      <p class="sidebar-nav-title">Logiciels de la Suite</p>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="myefrei-ultra.html" class="sidebar-menu-link">
+            MyEfrei ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="mymoodle-ultra.html" class="sidebar-menu-link active">
+            MyMoodle ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="MyHub-ultra.html" class="sidebar-menu-link">
+            MyHub ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="mymessage-ultra.html" class="sidebar-menu-link">
+            MyMessage ULTRA
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Sidebar Bottom (Account Button) -->
+    <div class="sidebar-bottom">
+      <a href="mon-compte.html" class="sidebar-account-btn" id="sidebar-account-btn">
+        <svg class="sidebar-account-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Mon Compte</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="main-content">
+
+    <!-- Top Header -->
+    <header class="top-header ultra-header-container">
+      <span class="section-label" style="margin-bottom: 0.25rem;">RACYWAMA - Focus Logiciel</span>
+      <h1 class="main-title" style="font-size: 4.5rem; font-weight: 700; color: #00205C;">MyMoodle ULTRA</h1>
+      <p class="ultra-tagline">L'interface académique réinventée pour le Moodle de l'Efrei Paris.</p>
+    </header>
+
+    <!-- HERO PRESENTATION -->
+    <section class="ultra-hero" id="hero-ultra">
+      <div class="ultra-hero-content">
+        <h2>Une plateforme d'apprentissage moderne, <span>sans frictions</span>.</h2>
+        <p>
+          MyMoodle ULTRA est une extension de navigateur moderne qui repense entièrement l'interface de Moodle. Visualisez instantanément vos documents (Word, PDF, PowerPoint) directement dans le navigateur, chattez de manière intuitive grâce au client redessiné Samsung One UI, et partagez vos cours en un clic avec vos intelligences artificielles préférées pour accélérer vos révisions.
+        </p>
+        <div class="ultra-hero-actions">
+          <a href="#prise-en-main-ultra" class="btn-ultra-primary" id="btn-installez-maintenant">
+            <span>Télécharger l'extension</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </a>
+          <a href="#visual-demo" class="btn-ultra-secondary" id="btn-tester-demo">Essayer la démo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE FEATURES SHOWCASE -->
+    <section class="section-block" style="background-color: #f8fafc; border: 1px solid rgba(0, 0, 0, 0.05);" id="features-list">
+      <span class="section-label">Fonctionnalités</span>
+      <h3 class="section-headline" style="color: #00205C;">Conçu pour votre productivité</h3>
+      
+      <div class="feature-showcase-grid">
+        <!-- Feature 1: Hero search -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+          <h4>Recherche intelligente</h4>
+          <p>Retrouvez vos cours instantanément grâce à la barre de recherche du tableau de bord. Elle filtre dynamiquement vos matières en temps réel sans rechargement.</p>
+        </article>
+
+        <!-- Feature 2: Integrated viewer -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(255, 138, 0, 0.08); color: var(--ultra-orange);">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <h4>Visualiseur intégré</h4>
+          <p>Consultez vos PDF, Word (DOCX) et PowerPoint (PPTX) dans un lecteur modale sur le site. Plus besoin de polluer votre dossier Téléchargements.</p>
+        </article>
+
+        <!-- Feature 3: Chat Samsung One UI -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(16, 185, 129, 0.08); color: #10b981;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <h4>Messagerie One UI</h4>
+          <p>Une refonte complète du chat Moodle aux standards de Samsung One UI. Profitez des accusés de lecture et d'un fil de réponse structuré.</p>
+        </article>
+
+        <!-- Feature 4: AI Injector -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(109, 40, 217, 0.08); color: #6d28d9;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          </div>
+          <h4>Passerelle IA en 1 clic</h4>
+          <p>Partagez vos polycopiés et devoirs directement à ChatGPT, Claude, Gemini ou Perplexity. L'extension reconstruit et injecte les fichiers automatiquement.</p>
+        </article>
+
+        <!-- Feature 5: Theme Sombre & Auto -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(14, 165, 233, 0.08); color: #0ea5e9;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </div>
+          <h4>Thème Sombre Natif</h4>
+          <p>Un design sombre reposant conçu pixel-perfect pour toute la plateforme Moodle. Synchronisez le thème avec les préférences de votre système.</p>
+        </article>
+
+        <!-- Feature 6: Local et Sécurisé -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(239, 68, 68, 0.08); color: #ef4444;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <h4>100% Local & Privé</h4>
+          <p>Vos codes de connexion, messages et documents ne transitent jamais sur nos serveurs. L'extension s'exécute localement et en toute sécurité.</p>
+        </article>
+
+        <!-- Feature 7: myHub ULTRA integration -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(147, 51, 234, 0.08); color: #9333ea;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          </div>
+          <h4>Intégration myHub ULTRA</h4>
+          <p>Connectez vos cours Moodle au panneau latéral IA de <a href="MyHub-ultra.html" style="color: #9333ea; font-weight: 700; text-decoration: underline;">myHub ULTRA</a> pour interroger l'IA vocalement ou par écrit sur vos documents.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- DETAILED MODULE PREVIEWS -->
+    <section class="preview-section" id="visual-demo">
+      <div class="preview-grid">
+        <div class="preview-text">
+          <h3>Un Moodle moderne, dynamique et intelligent</h3>
+          <p>
+            L'extension myMoodle ULTRA supprime les frustrations liées à l'ergonomie datée de la plateforme universitaire. Naviguez sur une interface moderne, organisez vos cours et lisez directement vos diaporamas PowerPoint ou Word sans quitter l'onglet.
+          </p>
+          <p>
+            Interagissez directement avec les simulateurs en direct sur la droite pour découvrir le design exact et les fonctionnalités de l'extension !
+          </p>
+        </div>
+        
+        <!-- Interactive Windows Grid -->
+        <div class="interactive-windows-grid">
+          
+          <!-- Window 1: Moodle Dashboard Dark Mode -->
+          <article class="interactive-window" id="win-dashboard">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot minimize"></span>
+                <span class="window-dot maximize"></span>
+              </div>
+              <span class="window-title">myMoodle ULTRA - Tableau de bord</span>
+              <button class="viewer-btn-mock" id="btn-dash-darktoggle" style="margin-left: auto; margin-right: 12px;">
+                <span>🌙 Mode Sombre</span>
+              </button>
+              <span class="window-action-lbl">Interactif</span>
+            </div>
+            
+            <div class="window-body">
+              <div class="moodle-dash-mock" id="moodle-dash-mock">
+                <!-- Header -->
+                <div class="moodle-header-mock">
+                  <div class="moodle-logo-container">
+                    <img src="img/logoMyMoodleUltra.png" class="moodle-logo-img-mock" alt="Logo">
+                    <span>myMoodle <strong style="color:var(--ultra-orange);">ULTRA</strong></span>
+                  </div>
+                  <div class="moodle-user-pill">RB</div>
+                </div>
+                
+                <!-- Hero search banner -->
+                <div class="moodle-hero-banner-mock">
+                  <h3 class="moodle-hero-title-mock">Bienvenue dans <span>myMoodle ULTRA</span></h3>
+                  <div class="moodle-search-row" style="width:100%; display:flex; justify-content:center;">
+                    <div class="moodle-search-bar-mock">
+                      <span class="moodle-search-icon-mock">🔍</span>
+                      <input type="text" class="moodle-search-input-mock" id="moodle-search-input-mock" placeholder="Rechercher une matière (ex: NoSQL)..." autocomplete="off" />
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Courses grid -->
+                <div class="moodle-courses-grid-mock" id="moodle-courses-grid-mock">
+                  <div class="moodle-course-card-mock" data-course-title="no-sql databases bases de donnees">
+                    <div class="moodle-course-card-header-mock" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('img/fond1.png')"></div>
+                    <div class="moodle-course-card-body-mock">
+                      <h4 class="moodle-course-card-title-mock">Bases de Données NoSQL</h4>
+                      <span class="moodle-course-card-subtitle-mock">FH401 &bull; Semestre 6</span>
+                      <div class="moodle-course-card-progress-mock">
+                        <div class="moodle-progress-bar-mock">
+                          <div class="moodle-progress-fill-mock" style="width: 80%;"></div>
+                        </div>
+                        <span class="moodle-progress-text-mock">80% complété</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="moodle-course-card-mock" data-course-title="developpement web mobile applications">
+                    <div class="moodle-course-card-header-mock" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('img/fond1.png')"></div>
+                    <div class="moodle-course-card-body-mock">
+                      <h4 class="moodle-course-card-title-mock">Développement Web & Mobile</h4>
+                      <span class="moodle-course-card-subtitle-mock">FE403 &bull; Semestre 6</span>
+                      <div class="moodle-course-card-progress-mock">
+                        <div class="moodle-progress-bar-mock">
+                          <div class="moodle-progress-fill-mock" style="width: 45%;"></div>
+                        </div>
+                        <span class="moodle-progress-text-mock">45% complété</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="moodle-course-card-mock" data-course-title="securite reseau systemes cryptographie">
+                    <div class="moodle-course-card-header-mock" style="background-image: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.4)), url('img/fond1.png')"></div>
+                    <div class="moodle-course-card-body-mock">
+                      <h4 class="moodle-course-card-title-mock">Sécurité & Cryptographie</h4>
+                      <span class="moodle-course-card-subtitle-mock">FE412 &bull; Semestre 6</span>
+                      <div class="moodle-course-card-progress-mock">
+                        <div class="moodle-progress-bar-mock">
+                          <div class="moodle-progress-fill-mock" style="width: 10%;"></div>
+                        </div>
+                        <span class="moodle-progress-text-mock">10% complété</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Window 2: Integrated Document Viewer -->
+          <article class="interactive-window" id="win-viewer">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot minimize"></span>
+                <span class="window-dot maximize"></span>
+              </div>
+              <span class="window-title">myMoodle ULTRA - Visionneuse Intégrée</span>
+              <span class="window-action-lbl">Interactif</span>
+            </div>
+            
+            <div class="window-body" style="background:#000;">
+              <div class="viewer-mock-container">
+                <div class="viewer-header-mock">
+                  <div class="viewer-header-left">
+                    <span style="font-size:1.1rem; color: var(--ultra-orange)">📂</span>
+                    <span class="viewer-doc-title">Cours_NoSQL_Introduction.pptx</span>
+                  </div>
+                  <div class="viewer-header-right">
+                    <button class="viewer-btn-mock active" id="btn-viewer-canvas">Mode Diapositives</button>
+                    <button class="viewer-btn-mock" id="btn-viewer-text">Texte Extrait</button>
+                  </div>
+                </div>
+                
+                <div class="viewer-content-mock">
+                  <!-- Canvas View mode -->
+                  <div class="viewer-canvas-mode" id="viewer-canvas-panel">
+                    <div class="viewer-canvas-slide-num">Diapositive 1 / 3</div>
+                    <h4 class="viewer-canvas-slide-title">Bases de Données Non Relationnelles (NoSQL)</h4>
+                    <ul class="viewer-canvas-slide-bullets">
+                      <li>Limites des bases de données relationnelles classiques (SQL).</li>
+                      <li>Montée en charge (scalabilité horizontale vs verticale).</li>
+                      <li>Les 4 grands modèles : Clé-Valeur, Colonnes, Documents, Graphes.</li>
+                      <li>Le théorème de CAP (Cohérence, Disponibilité, Partitionnement).</li>
+                    </ul>
+                    <div style="margin-top: auto; display: flex; gap: 8px;">
+                      <button class="viewer-btn-mock" style="background:#ddd; color:#333;" id="btn-slide-prev" disabled>◀ Précédent</button>
+                      <button class="viewer-btn-mock" style="margin-left:auto;" id="btn-slide-next">Suivant ▶</button>
+                    </div>
+                  </div>
+                  
+                  <!-- Text View mode -->
+                  <div class="viewer-text-mode" id="viewer-text-panel">
+                    <div class="viewer-text-slide-block">
+                      <span class="viewer-text-slide-num">Diapositive 1</span>
+                      <h4 class="viewer-text-slide-title">Bases de Données Non Relationnelles (NoSQL)</h4>
+                      <p class="viewer-text-slide-content">
+                        Limites des bases de données relationnelles classiques (SQL). Montée en charge (scalabilité horizontale vs verticale). Les 4 grands modèles : Clé-Valeur, Colonnes, Documents, Graphes. Le théorème de CAP (Cohérence, Disponibilité, Partitionnement).
+                      </p>
+                    </div>
+                    <div class="viewer-text-slide-block">
+                      <span class="viewer-text-slide-num">Diapositive 2</span>
+                      <h4 class="viewer-text-slide-title">Modèle Document & Stockage JSON</h4>
+                      <p class="viewer-text-slide-content">
+                        Concept de document (représentation en JSON ou BSON). Flexibilité du schéma (Schema-less). Exemple de base documentaire populaire : MongoDB. Gestion des collections et indexation avancée des champs.
+                      </p>
+                    </div>
+                    <div class="viewer-text-slide-block">
+                      <span class="viewer-text-slide-num">Diapositive 3</span>
+                      <h4 class="viewer-text-slide-title">Le Théorème de CAP</h4>
+                      <p class="viewer-text-slide-content">
+                        Consistance (Consistency), Disponibilité (Availability), Tolérance au partitionnement (Partition tolerance). Selon Eric Brewer, un système distribué ne peut garantir que deux de ces trois propriétés simultanément. Choix cornélien lors du design d'architectures.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+          
+          <!-- Window 3: Samsung One UI Messagerie client -->
+          <article class="interactive-window" id="win-chat">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot minimize"></span>
+                <span class="window-dot maximize"></span>
+              </div>
+              <span class="window-title">myMoodle ULTRA - Samsung One UI Chat</span>
+              <span class="window-action-lbl">Interactif</span>
+            </div>
+            
+            <div class="window-body">
+              <div class="chat-mock-container">
+                <!-- Chat Header -->
+                <div class="chat-header-mock">
+                  <div class="chat-avatar-mock">A</div>
+                  <div class="chat-user-details">
+                    <span class="chat-user-name">Alexandre (Professeur)</span>
+                    <span class="chat-user-status">En ligne</span>
+                  </div>
+                  <span class="chat-ultra-badge" id="chat-handshake-status">Handshake ULTRA actif</span>
+                </div>
+                
+                <!-- Chat Bubbles -->
+                <div class="chat-body-mock" id="chat-body-mock">
+                  <div class="chat-message-bubble incoming" data-msg-id="msg-1">
+                    <span class="chat-message-text">Bonjour Rayan, avez-vous pu regarder le projet NoSQL que j'ai déposé sur Moodle ?</span>
+                    <span class="chat-message-meta">14:02 &bull; Reçu</span>
+                  </div>
+                  
+                  <div class="chat-message-bubble outgoing" data-msg-id="msg-2" style="cursor: pointer;" title="Double-cliquez ou cliquez pour répondre">
+                    <div class="chat-reply-preview-in-bubble" style="display:none;" id="bubble-reply-container"></div>
+                    <span class="chat-message-text">Oui monsieur, je suis actuellement en train de lire le document de cours.</span>
+                    <span class="chat-message-meta">14:05 &bull; Lu ✔</span>
+                  </div>
+                </div>
+                
+                <!-- Reply preview bar -->
+                <div class="chat-reply-bar-mock" id="chat-reply-bar-mock">
+                  <div class="chat-reply-bar-content">
+                    <span class="chat-reply-bar-sender" id="chat-reply-sender">Répondre à Alexandre</span>
+                    <span class="chat-reply-bar-text" id="chat-reply-text">Bonjour Rayan, avez-vous pu regarder le projet NoSQL...</span>
+                  </div>
+                  <button class="chat-reply-bar-close" id="btn-chat-reply-close">✖</button>
+                </div>
+                
+                <!-- Input Bar -->
+                <div class="chat-input-bar-mock">
+                  <input type="text" class="chat-input-field-mock" id="chat-input-mock" placeholder="Saisir un message..." />
+                  <button class="chat-send-btn-mock" id="btn-chat-send">➤</button>
+                </div>
+              </div>
+            </div>
+          </article>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PRISE EN MAIN (INSTALLATION) -->
+    <section id="prise-en-main-ultra" class="section-block prise-en-main-section">
+      <div class="section-container">
+        <span class="section-label">Installation</span>
+        <h3 class="section-headline">Prise en Main & Installation Rapide</h3>
+        
+        <div class="install-wrapper">
+          <div class="install-tabs-header">
+            <button class="install-tab-btn active" data-tab="chrome-guide" id="tab-btn-chrome">Chrome / Comet / Arc</button>
+            <button class="install-tab-btn" data-tab="firefox-guide" id="tab-btn-firefox">Firefox / Zen</button>
+            <button class="install-tab-btn" data-tab="manual-guide" id="tab-btn-manual">GitHub / Manuel</button>
+          </div>
+
+          <div class="install-tabs-content">
+            <!-- Chrome Content -->
+            <div class="install-tab-pane active" id="chrome-guide">
+              <ol class="install-steps">
+                <li>
+                  <div class="step-number">1</div>
+                  <div class="step-text">Téléchargez le fichier de l'extension au format ZIP en cliquant sur le bouton ci-dessous.</div>
+                </li>
+                <li>
+                  <div class="step-number">2</div>
+                  <div class="step-text">Ouvrez votre navigateur et accédez à la page <code>chrome://extensions/</code>.</div>
+                </li>
+                <li>
+                  <div class="step-number">3</div>
+                  <div class="step-text">Activez le <strong>Mode développeur</strong> situé en haut à droite.</div>
+                </li>
+                <li>
+                  <div class="step-number">4</div>
+                  <div class="step-text">Cliquez sur <strong>Charger l'extension non empaquetée</strong> en haut à gauche et sélectionnez le dossier extrait.</div>
+                </li>
+              </ol>
+              <div class="install-actions">
+                <a href="https://github.com" target="_blank" class="btn-action-download">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Télécharger pour Chrome (ZIP)
+                </a>
+              </div>
+            </div>
+
+            <!-- Firefox Content -->
+            <div class="install-tab-pane" id="firefox-guide">
+              <ol class="install-steps">
+                <li>
+                  <div class="step-number">1</div>
+                  <div class="step-text">Téléchargez l'archive Firefox signée <code>.xpi</code> depuis nos dépôts sécurisés.</div>
+                </li>
+                <li>
+                  <div class="step-number">2</div>
+                  <div class="step-text">Double-cliquez sur le fichier ou glissez-le directement dans la fenêtre de Firefox.</div>
+                </li>
+                <li>
+                  <div class="step-number">3</div>
+                  <div class="step-text">Acceptez l'autorisation d'installation en cliquant sur <strong>Ajouter</strong>.</div>
+                </li>
+              </ol>
+              <div class="install-actions">
+                <a href="https://github.com" target="_blank" class="btn-action-download">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  Télécharger pour Firefox (XPI)
+                </a>
+              </div>
+            </div>
+
+            <!-- Manual Content -->
+            <div class="install-tab-pane" id="manual-guide">
+              <ol class="install-steps">
+                <li>
+                  <div class="step-number">1</div>
+                  <div class="step-text">Clonez le dépôt officiel GitHub : <code>git clone https://github.com/racywama/mymoodle-ultra.git</code>.</div>
+                </li>
+                <li>
+                  <div class="step-number">2</div>
+                  <div class="step-text">Installez les dépendances npm de développement pour compiler ou exécuter les tests.</div>
+                </li>
+                <li>
+                  <div class="step-number">3</div>
+                  <div class="step-text">Importez le dossier compilé comme extension non empaquetée dans votre navigateur favori.</div>
+                </li>
+              </ol>
+              <div class="install-actions">
+                <a href="https://github.com" target="_blank" class="btn-action-download">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                  Rejoindre le GitHub officiel
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+      <div class="footer-wrapper">
+        <div class="footer-brand">
+          <img src="img/logo.png" alt="Racywama Comet" class="footer-logo">
+          <span>RACYWAMA</span>
+        </div>
+        <div class="footer-copyright">
+          &copy; 2026 RACYWAMA. Projet étudiant indépendant, non affilié à l'Efrei Paris.
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Logic Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+      // --- MOBILE DRAWER TOGGLE LOGIC ---
+      const hamburgerBtn = document.getElementById('mye-hamburger-btn');
+      const mobileDrawer = document.getElementById('mye-mobile-drawer');
+      const drawerClose = document.getElementById('mye-drawer-close');
+      const drawerOverlay = document.getElementById('mye-drawer-overlay');
+
+      if (hamburgerBtn && mobileDrawer && drawerOverlay) {
+        hamburgerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          mobileDrawer.classList.add('active');
+          drawerOverlay.classList.add('active');
+        });
+      }
+
+      const closeDrawer = () => {
+        if (mobileDrawer) mobileDrawer.classList.remove('active');
+        if (drawerOverlay) drawerOverlay.classList.remove('active');
+      };
+
+      if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+      if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+      // --- MOBILE DRAWER PROFILE SYNC ---
+      const updateDrawerProfile = () => {
+        const nameVal = localStorage.getItem('mye_user_name');
+        const classVal = localStorage.getItem('mye_user_class');
+        const drawerName = document.getElementById('drawer-profile-name');
+        const drawerClass = document.getElementById('drawer-profile-class');
+        const drawerAvatar = document.getElementById('drawer-profile-avatar');
+
+        if (drawerName) drawerName.textContent = nameVal || 'Non connecté';
+        if (drawerClass) drawerClass.textContent = classVal || 'Aucune extension';
+        if (drawerAvatar) {
+          if (nameVal) {
+            const initials = nameVal.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+            drawerAvatar.textContent = initials;
+          } else {
+            drawerAvatar.textContent = '--';
+          }
+        }
+      };
+
+      const syncUserParams = () => {
+        const nameVal = localStorage.getItem('mye_user_name');
+        const userPills = document.querySelectorAll('.moodle-user-pill');
+        if (nameVal) {
+          const initials = nameVal.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+          userPills.forEach(pill => {
+            pill.textContent = initials;
+          });
+        } else {
+          userPills.forEach(pill => {
+            pill.textContent = '--';
+          });
+        }
+      };
+
+      // --- SIDEBAR SEARCH FILTER ---
+      const sidebarSearchInput = document.getElementById('sidebar-search');
+      const sidebarLinks = document.querySelectorAll('.sidebar-menu li');
+      if (sidebarSearchInput) {
+        sidebarSearchInput.addEventListener('input', (e) => {
+          const query = e.target.value.toLowerCase().trim();
+          sidebarLinks.forEach(linkLi => {
+            const linkText = linkLi.querySelector('.sidebar-menu-link').textContent.toLowerCase();
+            if (linkText.includes(query)) {
+              linkLi.style.display = 'block';
+            } else {
+              linkLi.style.display = 'none';
+            }
+          });
+        });
+      }
+
+      // --- SYNC EVENTS ---
+      window.addEventListener('mye-sync-data', () => {
+        updateDrawerProfile();
+        syncUserParams();
+      });
+
+      updateDrawerProfile();
+      syncUserParams();
+
+      // ==========================================
+      // Window 1: Dashboard Dark Mode Simulator & Search
+      // ==========================================
+      const btnDarkToggle = document.getElementById('btn-dash-darktoggle');
+      const dashBody = document.getElementById('moodle-dash-mock');
+      const searchInput = document.getElementById('moodle-search-input-mock');
+      const courses = document.querySelectorAll('.moodle-course-card-mock');
+
+      btnDarkToggle.addEventListener('click', () => {
+        const isDark = dashBody.classList.toggle('dark-mode-active');
+        btnDarkToggle.querySelector('span').textContent = isDark ? '☀️ Mode Clair' : '🌙 Mode Sombre';
+      });
+
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
+        courses.forEach(card => {
+          const keywords = card.getAttribute('data-course-title');
+          if (keywords.includes(query) || card.textContent.toLowerCase().includes(query)) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+
+      // ==========================================
+      // Window 2: Document Viewer Slider
+      // ==========================================
+      const btnViewerCanvas = document.getElementById('btn-viewer-canvas');
+      const btnViewerText = document.getElementById('btn-viewer-text');
+      const canvasPanel = document.getElementById('viewer-canvas-panel');
+      const textPanel = document.getElementById('viewer-text-panel');
+      
+      const slideTitle = canvasPanel.querySelector('.viewer-canvas-slide-title');
+      const slideBullets = canvasPanel.querySelector('.viewer-canvas-slide-bullets');
+      const slideNum = canvasPanel.querySelector('.viewer-canvas-slide-num');
+      const btnPrev = document.getElementById('btn-slide-prev');
+      const btnNext = document.getElementById('btn-slide-next');
+      
+      const slides = [
+        {
+          title: "Bases de Données Non Relationnelles (NoSQL)",
+          bullets: [
+            "Limites des bases de données relationnelles classiques (SQL).",
+            "Montée en charge (scalabilité horizontale vs verticale).",
+            "Les 4 grands modèles : Clé-Valeur, Colonnes, Documents, Graphes.",
+            "Le théorème de CAP (Cohérence, Disponibilité, Partitionnement)."
+          ]
+        },
+        {
+          title: "Modèle Document & Stockage JSON",
+          bullets: [
+            "Concept de document (représentation en JSON ou BSON).",
+            "Flexibilité du schéma (Schema-less).",
+            "Exemple de base documentaire populaire : MongoDB.",
+            "Gestion des collections et indexation avancée des champs."
+          ]
+        },
+        {
+          title: "Le Théorème de CAP",
+          bullets: [
+            "Consistance (Consistency), Disponibilité (Availability), Tolérance au partitionnement (Partition tolerance).",
+            "Selon Eric Brewer, un système distribué ne peut garantir que deux de ces trois propriétés simultanément.",
+            "Choix cornélien lors du design d'architectures."
+          ]
+        }
+      ];
+      
+      let currentSlide = 0;
+      
+      const updateSlide = () => {
+        slideNum.textContent = `Diapositive ${currentSlide + 1} / ${slides.length}`;
+        slideTitle.textContent = slides[currentSlide].title;
+        slideBullets.innerHTML = slides[currentSlide].bullets.map(b => `<li>${b}</li>`).join('');
+        
+        btnPrev.disabled = currentSlide === 0;
+        btnNext.disabled = currentSlide === slides.length - 1;
+      };
+      
+      btnPrev.addEventListener('click', () => {
+        if (currentSlide > 0) {
+          currentSlide--;
+          updateSlide();
+        }
+      });
+      
+      btnNext.addEventListener('click', () => {
+        if (currentSlide < slides.length - 1) {
+          currentSlide++;
+          updateSlide();
+        }
+      });
+
+      // Initialize slide view on load
+      updateSlide();
+
+      btnViewerCanvas.addEventListener('click', () => {
+        btnViewerCanvas.classList.add('active');
+        btnViewerText.classList.remove('active');
+        canvasPanel.style.display = 'flex';
+        textPanel.style.display = 'none';
+      });
+
+      btnViewerText.addEventListener('click', () => {
+        btnViewerText.classList.add('active');
+        btnViewerCanvas.classList.remove('active');
+        canvasPanel.style.display = 'none';
+        textPanel.style.display = 'block';
+      });
+
+      // ==========================================
+      // Window 3: Chat Handshake & Replies Simulator
+      // ==========================================
+      const chatBody = document.getElementById('chat-body-mock');
+      const chatInput = document.getElementById('chat-input-mock');
+      const chatSend = document.getElementById('btn-chat-send');
+      const chatReplyBar = document.getElementById('chat-reply-bar-mock');
+      const chatReplySender = document.getElementById('chat-reply-sender');
+      const chatReplyText = document.getElementById('chat-reply-text');
+      const chatReplyClose = document.getElementById('btn-chat-reply-close');
+      const bubbles = document.querySelectorAll('.chat-message-bubble');
+      
+      let activeReply = null;
+      
+      const setReplyMode = (msgId, text, sender) => {
+        activeReply = { id: msgId, text: text, sender: sender };
+        chatReplySender.textContent = `Répondre à ${sender}`;
+        chatReplyText.textContent = text;
+        chatReplyBar.style.display = 'flex';
+        chatInput.focus();
+      };
+      
+      const cancelReply = () => {
+        activeReply = null;
+        chatReplyBar.style.display = 'none';
+      };
+      
+      // Setup reply clicks on message bubbles
+      chatBody.addEventListener('click', (e) => {
+        const bubble = e.target.closest('.chat-message-bubble');
+        if (bubble) {
+          const msgId = bubble.getAttribute('data-msg-id');
+          const isOutgoing = bubble.classList.contains('outgoing');
+          const sender = isOutgoing ? 'Vous' : 'Alexandre';
+          const textEl = bubble.querySelector('.chat-message-text');
+          const text = textEl ? textEl.textContent : '';
+          setReplyMode(msgId, text, sender);
+        }
+      });
+      
+      chatReplyClose.addEventListener('click', cancelReply);
+      
+      const sendMessage = () => {
+        const val = chatInput.value.trim();
+        if (!val) return;
+        
+        // Add new bubble
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-message-bubble outgoing';
+        const uniqueId = `msg-user-${Date.now()}`;
+        bubble.setAttribute('data-msg-id', uniqueId);
+        
+        let contentHtml = '';
+        if (activeReply) {
+          contentHtml += `
+            <div class="chat-reply-preview-in-bubble">
+              <strong>${activeReply.sender}</strong> : ${activeReply.text.substring(0, 40)}${activeReply.text.length > 40 ? '...' : ''}
+            </div>
+          `;
+          cancelReply();
+        }
+        
+        contentHtml += `<span class="chat-message-text">${val}</span>`;
+        contentHtml += `<span class="chat-message-meta">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} &bull; Transmis</span>`;
+        
+        bubble.innerHTML = contentHtml;
+        chatBody.appendChild(bubble);
+        chatInput.value = '';
+        
+        // Scroll to bottom
+        chatBody.scrollTop = chatBody.scrollHeight;
+        
+        // Simulate response after 1.5 seconds
+        setTimeout(() => {
+          const responseBubble = document.createElement('div');
+          responseBubble.className = 'chat-message-bubble incoming';
+          responseBubble.setAttribute('data-msg-id', `msg-alex-${Date.now()}`);
+          
+          responseBubble.innerHTML = `
+            <span class="chat-message-text">Parfait ! J'ai bien reçu votre réponse. N'hésitez pas à lancer la passerelle IA pour faire un résumé du cours si nécessaire.</span>
+            <span class="chat-message-meta">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} &bull; Reçu</span>
+          `;
+          chatBody.appendChild(responseBubble);
+          chatBody.scrollTop = chatBody.scrollHeight;
+          
+          // Update status of outgoing bubble to "Lu ✔"
+          bubble.querySelector('.chat-message-meta').innerHTML = `${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})} &bull; Lu ✔`;
+        }, 1500);
+      };
+      
+      chatSend.addEventListener('click', sendMessage);
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          sendMessage();
+        }
+      });
+
+      // --- INSTALLATION TABS ---
+      const installTabButtons = document.querySelectorAll('.install-tab-btn');
+      const installTabPanes = document.querySelectorAll('.install-tab-pane');
+
+      const switchInstallTab = (tabId) => {
+        installTabButtons.forEach(btn => {
+          if (btn.getAttribute('data-tab') === tabId) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+
+        installTabPanes.forEach(pane => {
+          if (pane.id === tabId) {
+            pane.classList.add('active');
+          } else {
+            pane.classList.remove('active');
+          }
+        });
+      };
+
+      installTabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.getAttribute('data-tab');
+          switchInstallTab(tabId);
+        });
+      });
+      
+    });
+  </script>
+</body>
+</html>
+

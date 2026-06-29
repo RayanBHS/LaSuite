@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyHub ULTRA - Présentation complète de l'extension RACYWAMA</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Découvrez MyHub ULTRA par RACYWAMA. L'assistant intelligent ultime pour centraliser l'ENT MyEfrei et Moodle : chatbot IA connecté aux meilleurs LLM et recherche globale ultra-rapide.">
+  <meta name="keywords" content="MyHub ULTRA, Efrei, RACYWAMA, Chrome extension, IA chatbot, intelligence artificielle, GPT-4o, Claude 3.5, Gemini, recherche ENT, Moodle">
+  <meta name="author" content="Racywama">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MyHub ULTRA - Assistant IA & Recherche Globale">
+  <meta property="og:description" content="Intégrez un chatbot intelligent et une recherche globale dans votre ENT scolaire. Connecté à Gemini, ChatGPT, Claude et DeepSeek.">
+  <meta property="og:image" content="img/logoMyHub.png">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="MyHub-ultra.css">
+</head>
+<body class="MyHub-ultra-page">
+
+  <!-- MOBILE HEADER (Visible on <= 992px) -->
+  <header class="mobile-header">
+    <a href="index.html" class="mobile-logo-wrapper">
+      <img src="img/logo.png" alt="RACYWAMA Comet Logo" class="mobile-logo-img">
+    </a>
+    <button class="mye-hamburger-btn" id="mye-hamburger-btn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <!-- MOBILE DRAWER (Visible on <= 992px) -->
+  <div id="mye-mobile-drawer" class="mye-mobile-drawer">
+    <div class="mye-drawer-header">
+      <button class="mye-drawer-close" id="mye-drawer-close" aria-label="Fermer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    
+    <!-- Drawer Profile Info -->
+    <div class="mye-drawer-profile-container">
+      <div class="avatar-gradient drawer-avatar" id="drawer-profile-avatar">--</div>
+      <div class="mye-drawer-profile-details">
+        <h3 class="mye-drawer-name" id="drawer-profile-name">Non connecté</h3>
+        <span class="mye-drawer-badge" id="drawer-profile-class">Aucune extension</span>
+      </div>
+    </div>
+    
+    <nav class="mye-drawer-nav">
+      <a href="myefrei-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyEfrei ULTRA</span>
+      </a>
+      <a href="mymoodle-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyMoodle ULTRA</span>
+      </a>
+      <a href="MyHub-ultra.html" class="mye-drawer-item active">
+        <span class="mye-drawer-item-text">MyHub ULTRA</span>
+      </a>
+      <a href="mymessage-ultra.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">MyMessage ULTRA</span>
+      </a>
+      <a href="mon-compte.html" class="mye-drawer-item">
+        <span class="mye-drawer-item-text">Mon Compte</span>
+      </a>
+    </nav>
+  </div>
+
+  <!-- DRAWER OVERLAY -->
+  <div id="mye-drawer-overlay" class="mye-drawer-overlay"></div>
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <a href="index.html" class="sidebar-logo-wrapper" id="sidebar-logo">
+        <img src="img/logo.png" alt="RACYWAMA Comet Logo" class="sidebar-logo-img">
+      </a>
+      <div class="sidebar-search-container">
+        <svg class="sidebar-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        <input type="text" placeholder="Rechercher..." id="sidebar-search" class="sidebar-search-input">
+      </div>
+    </div>
+    
+    <!-- Software List inside Sidebar -->
+    <nav class="sidebar-nav">
+      <p class="sidebar-nav-title">Logiciels de la Suite</p>
+      <ul class="sidebar-menu">
+        <li>
+          <a href="myefrei-ultra.html" class="sidebar-menu-link">
+            MyEfrei ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="mymoodle-ultra.html" class="sidebar-menu-link">
+            MyMoodle ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="MyHub-ultra.html" class="sidebar-menu-link active">
+            MyHub ULTRA
+          </a>
+        </li>
+        <li>
+          <a href="mymessage-ultra.html" class="sidebar-menu-link">
+            MyMessage ULTRA
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Sidebar Bottom (Account Button) -->
+    <div class="sidebar-bottom">
+      <a href="mon-compte.html" class="sidebar-account-btn" id="sidebar-account-btn">
+        <svg class="sidebar-account-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        <span>Mon Compte</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="main-content">
+
+    <!-- Top Header -->
+    <header class="top-header ultra-header-container">
+      <span class="section-label" style="margin-bottom: 0.25rem;">RACYWAMA - Focus Logiciel</span>
+      <h1 class="main-title" style="font-size: 4.5rem; font-weight: 700; color: #00205C;">MyHub ULTRA</h1>
+      <p class="ultra-tagline">L'intelligence artificielle et la recherche globale réunies au cœur de votre ENT.</p>
+    </header>
+
+    <!-- HERO PRESENTATION -->
+    <section class="ultra-hero" id="hero-ultra">
+      <div class="ultra-hero-content">
+        <h2>Un assistant IA sur-mesure pour votre scolarité, <span>sans frictions</span>.</h2>
+        <p>
+          MyHub ULTRA est l'assistant intelligent centralisé de la Suite RACYWAMA. Il s'exécute sous forme de panneau latéral interactif et de chatbot sur l'ensemble de votre ENT (MyEfrei et Moodle). Posez des questions à l'IA concernant vos notes, vos absences, vos documents de scolarité ou vos actualités étudiantes, et laissez-la formuler des synthèses instantanées tout en synchronisant votre messagerie en temps réel.
+        </p>
+        <div class="ultra-hero-actions">
+          <a href="#prise-en-main-ultra" class="btn-ultra-primary" id="btn-installez-maintenant">
+            <span>Télécharger l'extension</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+          </a>
+          <a href="#visual-demo" class="btn-ultra-secondary" id="btn-tester-demo">Essayer le Chatbot</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE FEATURES SHOWCASE -->
+    <section class="section-block" style="background-color: #f8fafc; border: 1px solid rgba(0, 0, 0, 0.05);" id="features-list">
+      <span class="section-label">Fonctionnalités</span>
+      <h3 class="section-headline" style="color: #00205C;">Conçu pour vos révisions et votre suivi</h3>
+      
+      <div class="feature-showcase-grid">
+        <!-- Feature 1: LLM Gateway -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+          </div>
+          <h4>Passerelle LLM Directe</h4>
+          <p>Bénéficiez du support des meilleurs modèles d'IA : Google Gemini, ChatGPT, Claude, DeepSeek et Grok sont configurables directement avec vos propres clés API.</p>
+        </article>
+
+        <!-- Feature 2: Universal Search -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(16, 185, 129, 0.08); color: #10b981;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          </div>
+          <h4>Recherche Globale Rapide</h4>
+          <p>Indexation locale automatique en tâche de fond. Retrouvez instantanément une note, une absence, un certificat administratif ou un diaporama en quelques lettres.</p>
+        </article>
+
+        <!-- Feature 3: One UI Messaging Link -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(245, 158, 11, 0.08); color: #f59e0b;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+          </div>
+          <h4>Messagerie Intégrée</h4>
+          <p>Dialoguez avec vos professeurs et collègues Moodle depuis le chat unifié. Recherche de contacts, accusés de lecture et suggestions de réponses intelligentes.</p>
+        </article>
+
+        <!-- Feature 4: Focus filters -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(239, 68, 68, 0.08); color: #ef4444;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          </div>
+          <h4>Filtres de Focus Précis</h4>
+          <p>Activez ou désactivez les sources de données en temps réel. Filtrez vos recherches pour vous concentrer uniquement sur Moodle, MyEfrei ou votre messagerie.</p>
+        </article>
+
+        <!-- Feature 5: Privacy First -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(109, 40, 217, 0.08); color: #6d28d9;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <h4>100% Privé & Sécurisé</h4>
+          <p>Aucune donnée, conversation ou clé API ne transite par des serveurs tiers. Vos données restent chiffrées localement dans le stockage de votre navigateur.</p>
+        </article>
+
+        <!-- Feature 6: School News -->
+        <article class="showcase-card">
+          <div class="showcase-icon-box" style="background: rgba(14, 165, 233, 0.08); color: #0ea5e9;">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 20H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h10l4 4v10a2 2 0 0 1-2 2z"></path><polyline points="14 4 14 8 18 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          </div>
+          <h4>Actualités & Annonces</h4>
+          <p>Récupérez instantanément les dernières actualités publiées sur votre portail d'école ou vos communications importantes sans devoir chercher dans vos mails.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- DETAILED MODULE PREVIEWS -->
+    <section class="preview-section" id="visual-demo">
+      <div class="preview-grid">
+        <div class="preview-text">
+          <h3>Essayez l'Assistant Intelligent</h3>
+          <p>
+            MyHub ULTRA réunit la puissance des meilleurs modèles d'IA actuels avec les informations de votre scolarité Efrei. 
+          </p>
+          <p>
+            Sélectionnez votre mode (Simple ou ULTRA) et configurez les filtres d'API dans la barre latérale. Tapez une recherche ou utilisez les suggestions pour découvrir les réponses synthétisées en temps réel.
+          </p>
+        </div>
+        
+        <!-- Interactive Windows Grid -->
+        <div class="interactive-windows-grid">
+          
+          <!-- Window: Chatbot Demonstration -->
+          <article class="interactive-window" id="win-chatbot">
+            <div class="window-header">
+              <div class="window-dots">
+                <span class="window-dot close"></span>
+                <span class="window-dot minimize"></span>
+                <span class="window-dot maximize"></span>
+              </div>
+              <span class="window-title">MyHub ULTRA - Recherche & IA</span>
+              <span class="window-action-lbl">Interactif</span>
+            </div>
+            
+            <div class="window-body">
+              <div id="mye-ai-container">
+                <div class="mye-ai-main-layout">
+                  
+                  <!-- Left Sidebar -->
+                  <div class="mye-ai-left-sidebar">
+                    <div class="mye-ai-brand-card">
+                      <img src="img/logoMyHub.png" class="mye-ai-brand-logo" alt="MyHub logo">
+                      <span class="mye-ai-brand-name">MyHub ULTRA</span>
+                    </div>
+                    
+                    <!-- Mode Toggle: Simple / ULTRA -->
+                    <div class="mye-mode-toggle-card" style="background:#ffffff; border-radius:20px; padding:12px; box-shadow:0 4px 12px rgba(0,0,0,0.05); display:flex; flex-direction:column; gap:10px; box-sizing:border-box;">
+                      <div class="mye-segmented-control">
+                        <button id="mye-mode-simple" class="mye-mode-btn mye-mode-active-simple">
+                          ⚡ Simple
+                        </button>
+                        <button id="mye-mode-ultra" class="mye-mode-btn">
+                          ★ ULTRA
+                        </button>
+                      </div>
+                      
+                      <!-- ULTRA config panel -->
+                      <div id="mye-ultra-config" style="display: none;">
+                        <label class="mye-ultra-label">Provider IA</label>
+                        <div class="mye-custom-dropdown-container" style="position:relative; margin-bottom:8px;">
+                          <div id="mye-ai-provider-trigger" class="mye-custom-dropdown-trigger">
+                            <span id="mye-ai-provider-selected-logo" class="mye-custom-dropdown-selected-logo-container">
+                              <img src="img/AIlogo/gemini.png" alt="Gemini">
+                            </span>
+                            <span id="mye-ai-provider-selected-name" style="flex:1;">Gemini</span>
+                            <span class="mye-custom-dropdown-arrow">▼</span>
+                          </div>
+                          <div id="mye-ai-provider-options" class="mye-custom-dropdown-options mye-hidden">
+                            <!-- Injected by JS -->
+                          </div>
+                        </div>
+                        
+                        <label class="mye-ultra-label">Clé API</label>
+                        <div class="mye-ultra-input-container">
+                          <input type="password" id="mye-ai-apikey" class="mye-ultra-input" placeholder="sk-..." value="••••••••••••••••">
+                          <button id="mye-ai-toggle-key" class="mye-ultra-toggle-key" title="Afficher/masquer">👁</button>
+                        </div>
+                        <div id="mye-ai-key-status" class="mye-ultra-key-status" style="color: #059669;">
+                          ✓ Clé sauvegardée
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="mye-focus-cards">
+                      <!-- Focus myEfrei -->
+                      <div class="mye-focus-card mye-focus-myefrei">
+                        <div class="mye-focus-icon-circle">
+                          <img src="img/logomyEfreiUltra.png" class="mye-focus-icon-img" alt="myEfrei">
+                        </div>
+                        <div class="mye-focus-card-body">
+                          <span class="mye-focus-title" style="color:#ffffff;">Focus myEfrei</span>
+                          <label class="mye-ai-switch">
+                            <input type="checkbox" id="mye-toggle-myefrei" checked>
+                            <span class="mye-ai-slider"></span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <!-- Focus Moodle -->
+                      <div class="mye-focus-card mye-focus-moodle">
+                        <div class="mye-focus-icon-circle">
+                          <img src="img/logoMyMoodleUltra.png" class="mye-focus-icon-img" alt="Moodle">
+                        </div>
+                        <div class="mye-focus-card-body">
+                          <span class="mye-focus-title" style="color:#000000;">Focus Moodle</span>
+                          <label class="mye-ai-switch">
+                            <input type="checkbox" id="mye-toggle-moodle" checked>
+                            <span class="mye-ai-slider"></span>
+                          </label>
+                        </div>
+                      </div>
+
+                      <!-- Focus Message -->
+                      <div class="mye-focus-card mye-focus-message">
+                        <div class="mye-focus-icon-circle">
+                          <img src="img/Message.png" class="mye-focus-icon-img" alt="Message">
+                        </div>
+                        <div class="mye-focus-card-body">
+                          <span class="mye-focus-title" style="color:#000000;">Focus Message</span>
+                          <label class="mye-ai-switch">
+                            <input type="checkbox" id="mye-toggle-message" checked>
+                            <span class="mye-ai-slider"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <button id="mye-ai-exit-btn" class="mye-ai-exit-btn" onclick="return false;">
+                      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                      <span>Retour sur myEfrei</span>
+                    </button>
+                  </div>
+
+                  <!-- Right Content Area -->
+                  <div class="mye-ai-right-content">
+                    <div class="mye-ai-center-view">
+                      
+                      <!-- Landing Screen -->
+                      <div class="mye-ai-landing" id="mye-ai-landing">
+                        <h1 class="mye-ai-landing-title">BONJOUR</h1>
+                        <h2 class="mye-ai-landing-subtitle">Que cherchez vous ?</h2>
+                        
+                        <div class="mye-ai-search-box">
+                          <input type="text" id="mye-ai-search-input-landing" placeholder="Chercher dans l'univers de l'Efrei" autocomplete="off">
+                          <button id="mye-ai-search-submit-landing" title="Rechercher">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                          </button>
+                        </div>
+
+                        <div class="mye-ai-quick-links">
+                          <button class="mye-ai-link-btn" data-query="actualites">Actualités</button>
+                          <button class="mye-ai-link-btn" data-query="deadlines">Mes deadlines</button>
+                          <button class="mye-ai-link-btn" data-query="message">Envoyer un DM</button>
+                        </div>
+                      </div>
+
+                      <!-- Results Screen -->
+                      <div class="mye-ai-results-panel mye-hidden" id="mye-ai-results-panel">
+                        <div class="mye-ai-results-header-row">
+                          <button id="mye-ai-back-btn" class="mye-ai-back-btn" title="Retour à l'accueil">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                            <span>Retour</span>
+                          </button>
+                        </div>
+                        
+                        <div class="mye-ai-results-scrollable" id="mye-ai-results-scrollable">
+                          <!-- Injected by JS -->
+                        </div>
+                        
+                        <!-- Bottom search input -->
+                        <div class="mye-ai-bottom-container">
+                          <div class="mye-ai-search-box">
+                            <input type="text" id="mye-ai-search-input-bottom" placeholder="Poser une autre question...">
+                            <button id="mye-ai-search-submit-bottom" title="Rechercher">
+                              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: PRISE EN MAIN (INSTALLATION) -->
+    <section id="prise-en-main-ultra" class="section-block prise-en-main-section">
+      <div class="section-container">
+        <span class="section-label">Installation</span>
+        <h3 class="section-headline" style="color: #00205C;">Prise en Main & Installation Rapide</h3>
+        
+        <div class="install-wrapper">
+          <div class="install-tabs-header">
+            <button class="install-tab-btn active" data-tab="chrome-guide" id="tab-btn-chrome">Chrome / Comet / Arc</button>
+            <button class="install-tab-btn" data-tab="firefox-guide" id="tab-btn-firefox">Firefox / Zen</button>
+            <button class="install-tab-btn" data-tab="manual-guide" id="tab-btn-manual">GitHub / Manuel</button>
+          </div>
+
+          <div class="install-tabs-content">
+            <!-- Chrome Content -->
+            <div class="install-tab-pane active" id="chrome-guide">
+              <ol class="install-steps">
+                <li>
+                  <div class="step-number">1</div>
+                  <div class="step-text">Téléchargez le fichier de l'extension au format ZIP en cliquant sur le bouton ci-dessous.</div>
+                </li>
+                <li>
+                  <div class="step-number">2</div>
+                  <div class="step-text">Ouvrez votre navigateur et accédez à la page <code>chrome://extensions/</code>.</div>
+                </li>
+                <li>
+                  <div class="step-number">3</div>
+                  <div class="step-text">Activez le <strong>Mode développeur</strong> situé en haut à droite.</div>
+                </li>
+                <li>
+                  <div class="step-number">4</div>
+                  <div class="step-text">Cliquez sur <strong>Charger l'extension non empaquetée</strong> en haut à gauche et sélectionnez le dossier de l'extension extrait.</div>
+                </li>
+              </ol>
+              <div class="install-actions">
+                <a href="https://github.com" target="_blank" class="btn-action-download" style="background: var(--ultra-gradient);">Télécharger pour Chrome (ZIP)</a>
+              </div>
+            </div>
+
+            <!-- Firefox Content -->
+            <div class="install-tab-pane" id="firefox-guide">
+              <ol class="install-steps">
+                <li>
+                  <div class="step-number">1</div>
+                  <div class="step-text">Téléchargez le fichier de l'extension pour Firefox.</div>
+                </li>
+                <li>
+                  <div class="step-number">2</div>
+                  <div class="step-text">Saisissez <code>about:debugging</code> dans votre barre d'adresse Firefox et cliquez sur <strong>Ce Firefox</strong>.</div>
+                </li>
+                <li>
+                  <div class="step-number">3</div>
+                  <div class="step-text">Cliquez sur <strong>Charger un module temporaire...</strong> et sélectionnez le fichier <code>manifest.json</code> de l'extension.</div>
+                </li>
+              </ol>
+              <div class="install-actions">
+                <a href="https://github.com" target="_blank" class="btn-action-download btn-firefox" style="background: var(--ultra-gradient);">Télécharger pour Firefox</a>
+              </div>
+            </div>
+
+            <!-- Manual Content -->
+            <div class="install-tab-pane" id="manual-guide">
+              <ol class="install-steps">
+                <li>
+                  <div class="step-number">1</div>
+                  <div class="step-text">Rendez-vous sur le dépôt officiel de la suite RACYWAMA sur GitHub.</div>
+                </li>
+                <li>
+                  <div class="step-number">2</div>
+                  <div class="step-text">Clonez le dépôt en ligne de commande : <code>git clone https://github.com/...</code>.</div>
+                </li>
+                <li>
+                  <div class="step-number">3</div>
+                  <div class="step-text">Suivez le guide de contribution pour connecter vos LLM ou ajouter des modules personnalisés !</div>
+                </li>
+              </ol>
+              <div class="install-actions">
+                <a href="https://github.com" target="_blank" class="btn-action-download btn-manual" style="background: var(--ultra-gradient);">Visiter le dépôt GitHub</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: CONTACT & FOOTER -->
+    <section id="contact" class="section-block contact-section">
+      <div class="section-container">
+        <span class="section-label">Contact</span>
+        <h3 class="section-headline">Restons en contact</h3>
+        <p class="section-paragraph">
+          Une question sur l'assistant intelligent MyHub ULTRA ? Vous souhaitez suggérer un connecteur d'IA supplémentaire ou contribuer aux invites de commandes par défaut ? Écrivez-nous ou soumettez directement vos améliorations sur notre dépôt GitHub officiel.
+        </p>
+        
+        <div class="footer-wrapper">
+          <div class="footer-brand">
+            <img src="img/logo.png" alt="Racywama Comet" class="footer-logo">
+            <span>RACYWAMA</span>
+          </div>
+          <div class="footer-copyright">
+            &copy; 2026 RACYWAMA. Projet étudiant indépendant, non affilié à l'Efrei Paris.
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Javascript -->
+  <script src="index.js"></script>
+
+  <!-- Simulator Interactive Logic -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Elements
+      const modeSimpleBtn = document.getElementById('mye-mode-simple');
+      const modeUltraBtn = document.getElementById('mye-mode-ultra');
+      const ultraConfig = document.getElementById('mye-ultra-config');
+      
+      const providerTrigger = document.getElementById('mye-ai-provider-trigger');
+      const providerOptions = document.getElementById('mye-ai-provider-options');
+      const selectedLogoImg = document.querySelector('#mye-ai-provider-selected-logo img');
+      const selectedName = document.getElementById('mye-ai-provider-selected-name');
+      const keyStatus = document.getElementById('mye-ai-key-status');
+      const apiKeyInput = document.getElementById('mye-ai-apikey');
+      const toggleKeyBtn = document.getElementById('mye-ai-toggle-key');
+
+      const landingScreen = document.getElementById('mye-ai-landing');
+      const resultsPanel = document.getElementById('mye-ai-results-panel');
+      const backBtn = document.getElementById('mye-ai-back-btn');
+      
+      const searchInputLanding = document.getElementById('mye-ai-search-input-landing');
+      const searchSubmitLanding = document.getElementById('mye-ai-search-submit-landing');
+      const searchInputBottom = document.getElementById('mye-ai-search-input-bottom');
+      const searchSubmitBottom = document.getElementById('mye-ai-search-submit-bottom');
+      const resultsScrollable = document.getElementById('mye-ai-results-scrollable');
+
+      const quickLinks = document.querySelectorAll('.mye-ai-link-btn');
+
+      // State variables
+      let aiMode = 'simple'; // 'simple' | 'ultra'
+      let aiProvider = 'gemini'; // 'gemini' | 'openai' | 'claude' | 'deepseek'
+
+      const PROVIDER_METADATA = {
+        gemini: { name: 'Gemini', logo: 'img/AIlogo/gemini.png', fullName: 'Gemini 1.5 Pro' },
+        openai: { name: 'ChatGPT', logo: 'img/AIlogo/chatgpt.png', fullName: 'GPT-4o (OpenAI)' },
+        claude: { name: 'Claude', logo: 'img/AIlogo/Claude.png', fullName: 'Claude 3.5 Sonnet' },
+        deepseek: { name: 'DeepSeek', logo: 'img/AIlogo/Deepseek.png', fullName: 'DeepSeek R1' }
+      };
+
+      // Populate Dropdown Choices
+      const providersList = [
+        { id: 'gemini', name: 'Gemini' },
+        { id: 'openai', name: 'ChatGPT' },
+        { id: 'claude', name: 'Claude' },
+        { id: 'deepseek', name: 'DeepSeek' }
+      ];
+
+      providerOptions.innerHTML = providersList.map(p => {
+        const meta = PROVIDER_METADATA[p.id];
+        return `
+          <div class="mye-custom-dropdown-option ${p.id === aiProvider ? 'mye-custom-dropdown-option-active' : ''}" data-value="${p.id}">
+            <span class="mye-custom-dropdown-option-logo"><img src="${meta.logo}" alt="${meta.name}"></span>
+            <span>${meta.name}</span>
+          </div>
+        `;
+      }).join('');
+
+      // Dropdown Toggle
+      providerTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isHidden = providerOptions.classList.contains('mye-hidden');
+        if (isHidden) {
+          providerOptions.classList.remove('mye-hidden');
+          providerTrigger.classList.add('mye-custom-dropdown-trigger-active');
+        } else {
+          providerOptions.classList.add('mye-hidden');
+          providerTrigger.classList.remove('mye-custom-dropdown-trigger-active');
+        }
+      });
+
+      // Close dropdown click outside
+      document.addEventListener('click', () => {
+        providerOptions.classList.add('mye-hidden');
+        providerTrigger.classList.remove('mye-custom-dropdown-trigger-active');
+      });
+
+      // Dropdown Option Select
+      providerOptions.querySelectorAll('.mye-custom-dropdown-option').forEach(opt => {
+        opt.addEventListener('click', (e) => {
+          e.stopPropagation();
+          aiProvider = opt.dataset.value;
+          
+          // Update trigger UI
+          const meta = PROVIDER_METADATA[aiProvider];
+          selectedLogoImg.src = meta.logo;
+          selectedName.textContent = meta.name;
+
+          // Toggle options active class
+          providerOptions.querySelectorAll('.mye-custom-dropdown-option').forEach(o => {
+            o.classList.remove('mye-custom-dropdown-option-active');
+          });
+          opt.classList.add('mye-custom-dropdown-option-active');
+
+          // Close dropdown
+          providerOptions.classList.add('mye-hidden');
+          providerTrigger.classList.remove('mye-custom-dropdown-trigger-active');
+
+          // Append switch message if inside chat
+          if (!resultsPanel.classList.contains('mye-hidden')) {
+            const sysMsg = document.createElement('div');
+            sysMsg.className = 'mye-chat-row-bot';
+            sysMsg.innerHTML = `
+              <div class="mye-chat-bot-content">
+                <div style="background:#e0f2fe; color:#0369a1; border:1px solid #bae6fd; padding:10px 14px; border-radius:12px; font-size:12px; margin-top:8px;">
+                  <em>Moteur d'IA basculé vers <strong>${meta.fullName}</strong>. Handshake de connexion réussi.</em>
+                </div>
+              </div>
+            `;
+            resultsScrollable.appendChild(sysMsg);
+            resultsScrollable.scrollTop = resultsScrollable.scrollHeight;
+          }
+        });
+      });
+
+      // API Key Toggle visibility
+      toggleKeyBtn.addEventListener('click', () => {
+        if (apiKeyInput.type === 'password') {
+          apiKeyInput.type = 'text';
+          toggleKeyBtn.textContent = '🙈';
+        } else {
+          apiKeyInput.type = 'password';
+          toggleKeyBtn.textContent = '👁';
+        }
+      });
+
+      // Simple / ULTRA Mode Switching
+      modeSimpleBtn.addEventListener('click', () => {
+        aiMode = 'simple';
+        modeSimpleBtn.classList.add('mye-mode-active-simple');
+        modeUltraBtn.classList.remove('mye-mode-active-ultra');
+        ultraConfig.style.display = 'none';
+      });
+
+      modeUltraBtn.addEventListener('click', () => {
+        aiMode = 'ultra';
+        modeUltraBtn.classList.add('mye-mode-active-ultra');
+        modeSimpleBtn.classList.remove('mye-mode-active-simple');
+        ultraConfig.style.display = 'block';
+      });
+
+      // Transition Back to Landing
+      backBtn.addEventListener('click', () => {
+        resultsPanel.classList.add('mye-hidden');
+        landingScreen.classList.remove('mye-hidden');
+        resultsScrollable.innerHTML = '';
+        searchInputLanding.value = '';
+        searchInputBottom.value = '';
+      });
+
+      // Simulated Answers Database
+      const SIMULATED_ANSWERS = {
+        moyenne: `Voici le calcul de votre moyenne générale pour le semestre actuel (S6) :
+          <div class="sim-grade-dash">
+            <div class="sim-grade-header"><span>Moyenne générale</span><strong>14,85/20</strong></div>
+            <div class="sim-grade-row"><span>UE1: Informatique & NoSQL</span><div class="sim-grade-bar-bg"><div class="sim-grade-bar-fg" style="width: 75%; background: var(--ultra-blue-ai);"></div></div><strong>15,00/20</strong></div>
+            <div class="sim-grade-row"><span>UE2: Management & Langues</span><div class="sim-grade-bar-bg"><div class="sim-grade-bar-fg" style="width: 72%; background: var(--ultra-blue-ai);"></div></div><strong>14,40/20</strong></div>
+            <div class="sim-grade-row"><span>UE3: Sciences & Maths</span><div class="sim-grade-bar-bg"><div class="sim-grade-bar-fg" style="width: 80%; background: var(--ultra-blue-ai);"></div></div><strong>16,00/20</strong></div>
+          </div>`,
+        absences: `J'ai scanné votre registre d'assiduité MyEfrei.<br><br>Excellente nouvelle ! Vous n'avez **aucune absence** et aucun retard enregistré pour cette semaine.`,
+        deadlines: `Voici vos deadlines et devoirs à rendre identifiés sur votre calendrier Moodle :
+          <ul style="margin: 6px 0 0 16px; padding: 0; line-height: 1.5; font-size: 13px;">
+            <li><strong>Projet NoSQL :</strong> Rapport final et code source à rendre avant le <strong>15 Juillet 2026 à 23h59</strong>.</li>
+            <li><strong>QCM Anglais :</strong> Test de vocabulaire en ligne à valider avant le <strong>2 Juillet 2026 à 18:00</strong>.</li>
+          </ul>`,
+        message: `Vous pouvez échanger avec vos contacts directement en DM Moodle :
+          <div class="sim-doc-list" style="margin-top: 8px;">
+            <a href="#" class="sim-doc-item" onclick="return false;">💬 Alexandre (Professeur) - En ligne</a>
+            <a href="#" class="sim-doc-item" onclick="return false;">💬 Équipe de Scolarité S6 - Inactif</a>
+          </div>`,
+        docs: `J'ai localisé les documents administratifs suivants dans vos dossiers MyEfrei :
+          <div class="sim-doc-list">
+            <a href="#" class="sim-doc-item" onclick="return false;">📄 Certificat_Scolarite_2026.pdf (145 KB)</a>
+            <a href="#" class="sim-doc-item" onclick="return false;">📄 Attestation_Frais_Scolarite.pdf (320 KB)</a>
+          </div>`,
+        actualites: `Voici les dernières actualités publiées sur votre portail MyEfrei :
+          <ul style="margin: 6px 0 0 16px; padding: 0; line-height: 1.5; font-size: 13px;">
+            <li><strong>Forum Stages & Alternance :</strong> Le forum annuel se tiendra le 18 Octobre dans le bâtiment principal de l'Efrei.</li>
+            <li><strong>Rénovation des laboratoires :</strong> Les salles informatiques du bâtiment L seront inaccessibles du 5 au 12 Juillet.</li>
+          </ul>`
+      };
+
+      // Perform simulated query search
+      const performSearch = (queryText, queryKey) => {
+        if (!queryText.trim()) return;
+
+        // Hide landing, show results
+        landingScreen.classList.add('mye-hidden');
+        resultsPanel.classList.remove('mye-hidden');
+
+        // Append user chat row
+        const userRow = document.createElement('div');
+        userRow.className = 'mye-chat-row-user';
+        userRow.innerHTML = `
+          <div class="mye-chat-bubble-user">
+            ${escapeHtml(queryText)}
+          </div>
+        `;
+        resultsScrollable.appendChild(userRow);
+        resultsScrollable.scrollTop = resultsScrollable.scrollHeight;
+
+        // Loading indicator
+        const meta = PROVIDER_METADATA[aiProvider];
+        const loadingRow = document.createElement('div');
+        loadingRow.className = 'mye-chat-row-bot mye-temp-loading';
+        loadingRow.innerHTML = `
+          <div class="mye-chat-bot-header">
+            <span class="mye-chat-bot-avatar"><img src="${meta.logo}" class="mye-chat-bot-avatar-img" alt="logo"></span>
+            <span class="mye-chat-bot-name">Assistant IA · ${meta.name}</span>
+          </div>
+          <div class="mye-chat-bot-content">
+            <div style="font-style: italic; color: #64748b; font-size: 13px; display: flex; align-items: center; gap: 8px;">
+              <span class="sim-status-dot" style="margin:0;"></span>
+              Recherche en cours dans vos modules...
+            </div>
+          </div>
+        `;
+        resultsScrollable.appendChild(loadingRow);
+        resultsScrollable.scrollTop = resultsScrollable.scrollHeight;
+
+        // Answer Simulation
+        setTimeout(() => {
+          loadingRow.remove();
+          
+          let answerHtml = '';
+          if (queryKey && SIMULATED_ANSWERS[queryKey]) {
+            answerHtml = SIMULATED_ANSWERS[queryKey];
+          } else {
+            // Check if keywords match any key
+            const cleanText = queryText.toLowerCase();
+            if (cleanText.includes('moyenne') || cleanText.includes('note')) {
+              answerHtml = SIMULATED_ANSWERS.moyenne;
+            } else if (cleanText.includes('absence')) {
+              answerHtml = SIMULATED_ANSWERS.absences;
+            } else if (cleanText.includes('deadline') || cleanText.includes('devoir') || cleanText.includes('projet')) {
+              answerHtml = SIMULATED_ANSWERS.deadlines;
+            } else if (cleanText.includes('document') || cleanText.includes('inscription') || cleanText.includes('certificat')) {
+              answerHtml = SIMULATED_ANSWERS.docs;
+            } else if (cleanText.includes('dm') || cleanText.includes('message') || cleanText.includes('chat')) {
+              answerHtml = SIMULATED_ANSWERS.message;
+            } else if (cleanText.includes('actu')) {
+              answerHtml = SIMULATED_ANSWERS.actualites;
+            } else {
+              answerHtml = `Je suis connecté en mode démonstration locale. Pour poser des requêtes complexes en langage naturel, veuillez installer l'extension <strong>MyHub ULTRA</strong> et y connecter votre clé API LLM personnelle (${meta.name} Pro) !`;
+            }
+          }
+
+          // Append bot chat row
+          const botRow = document.createElement('div');
+          botRow.className = 'mye-chat-row-bot';
+          botRow.innerHTML = `
+            <div class="mye-chat-bot-header">
+              <span class="mye-chat-bot-avatar"><img src="${meta.logo}" class="mye-chat-bot-avatar-img" alt="logo"></span>
+              <span class="mye-chat-bot-name">Assistant IA <span style="font-size: 10px; background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white; padding: 2px 8px; border-radius: 10px; margin-left: 6px; font-weight: 700;">ULTRA · ${meta.name}</span></span>
+            </div>
+            <div class="mye-chat-bot-content">
+              <div class="mye-ultra-response-formatted">
+                ${answerHtml}
+              </div>
+            </div>
+          `;
+          resultsScrollable.appendChild(botRow);
+          resultsScrollable.scrollTop = resultsScrollable.scrollHeight;
+
+          // Clear inputs
+          searchInputLanding.value = '';
+          searchInputBottom.value = '';
+        }, 900);
+      };
+
+      // Quick links action
+      quickLinks.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const queryKey = btn.getAttribute('data-query');
+          const queryText = btn.textContent;
+          performSearch(queryText, queryKey);
+        });
+      });
+
+      // Submit from landing search box
+      searchSubmitLanding.addEventListener('click', () => {
+        performSearch(searchInputLanding.value, null);
+      });
+      searchInputLanding.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          performSearch(searchInputLanding.value, null);
+        }
+      });
+
+      // Submit from bottom search box
+      searchSubmitBottom.addEventListener('click', () => {
+        performSearch(searchInputBottom.value, null);
+      });
+      searchInputBottom.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          performSearch(searchInputBottom.value, null);
+        }
+      });
+
+      // --- MOBILE DRAWER TOGGLE LOGIC ---
+      const hamburgerBtn = document.getElementById('mye-hamburger-btn');
+      const mobileDrawer = document.getElementById('mye-mobile-drawer');
+      const drawerClose = document.getElementById('mye-drawer-close');
+      const drawerOverlay = document.getElementById('mye-drawer-overlay');
+
+      if (hamburgerBtn && mobileDrawer && drawerOverlay) {
+        hamburgerBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          mobileDrawer.classList.add('active');
+          drawerOverlay.classList.add('active');
+        });
+      }
+
+      const closeDrawer = () => {
+        if (mobileDrawer) mobileDrawer.classList.remove('active');
+        if (drawerOverlay) drawerOverlay.classList.remove('active');
+      };
+
+      if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+      if (drawerOverlay) drawerOverlay.addEventListener('click', closeDrawer);
+
+      // --- MOBILE DRAWER PROFILE & GREETING SYNC ---
+      const updateDrawerProfile = () => {
+        const nameVal = localStorage.getItem('mye_user_name');
+        const classVal = localStorage.getItem('mye_user_class');
+        const drawerName = document.getElementById('drawer-profile-name');
+        const drawerClass = document.getElementById('drawer-profile-class');
+        const drawerAvatar = document.getElementById('drawer-profile-avatar');
+        const landingTitle = document.querySelector('.mye-ai-landing-title');
+
+        if (drawerName) drawerName.textContent = nameVal || 'Non connecté';
+        if (drawerClass) drawerClass.textContent = classVal || 'Aucune extension';
+        if (drawerAvatar) {
+          if (nameVal) {
+            const initials = nameVal.trim().split(/\s+/).map(n => n[0]).join('').substring(0, 2).toUpperCase();
+            drawerAvatar.textContent = initials;
+          } else {
+            drawerAvatar.textContent = '--';
+          }
+        }
+        if (landingTitle) {
+          if (nameVal) {
+            const firstName = nameVal.trim().split(/\s+/)[0].toUpperCase();
+            landingTitle.textContent = `BONJOUR ${firstName}`;
+          } else {
+            landingTitle.textContent = 'BONJOUR';
+          }
+        }
+      };
+
+      // Listen for data synchronization
+      window.addEventListener('mye-sync-data', updateDrawerProfile);
+      updateDrawerProfile(); // Initial sync
+
+      // --- EXIT BUTTON REDIRECT ---
+      const exitBtn = document.getElementById('mye-ai-exit-btn');
+      if (exitBtn) {
+        exitBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.location.href = 'myefrei-ultra.html';
+        });
+      }
+
+      // --- API KEY TYPING FEEDBACK ---
+      apiKeyInput.addEventListener('input', () => {
+        keyStatus.textContent = '⏳ Enregistrement...';
+        keyStatus.style.color = '#d97706';
+        
+        clearTimeout(apiKeyInput.saveTimeout);
+        apiKeyInput.saveTimeout = setTimeout(() => {
+          keyStatus.textContent = '✓ Clé sauvegardée';
+          keyStatus.style.color = '#059669';
+        }, 800);
+      });
+
+      // Helper escape html
+      function escapeHtml(text) {
+        return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+    });
+  </script>
+</body>
+</html>
+
