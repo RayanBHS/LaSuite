@@ -1286,14 +1286,29 @@ body {
     font-size: 1.1rem;
     padding: 0.8rem 2rem;
   }
-  .office-preview-panel {
-    display: none !important;
-  }
 }
 
 @media (max-width: 480px) {
   .main-title {
     font-size: 2rem;
+  }
+  .office-preview-card {
+    aspect-ratio: auto;
+    height: auto;
+    min-height: 320px;
+    padding: 2.2rem 1.2rem;
+  }
+  .office-floating-badge {
+    top: -16px;
+    left: -16px;
+    width: 44px;
+    height: 44px;
+    padding: 6px;
+  }
+  .mye-dash-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 6px !important;
   }
 }
 

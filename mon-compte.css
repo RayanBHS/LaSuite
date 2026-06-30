@@ -8,19 +8,28 @@
 }
 
 /* STATE DISPLAY CONTROLLER */
-.account-page-body.is-connected #state-unconnected {
+#state-unconnected {
+  display: none !important;
+}
+
+#state-connected {
+  display: grid !important;
+}
+
+/* MyEfrei connection state details inside preferences card */
+.account-page-body.is-mye-connected .mye-unconnected-only {
   display: none;
 }
 
-.account-page-body.is-connected #state-connected {
-  display: grid;
+.account-page-body.is-mye-connected .mye-connected-only {
+  display: block;
 }
 
-.account-page-body.is-unconnected #state-unconnected {
-  display: flex;
+.account-page-body:not(.is-mye-connected) .mye-unconnected-only {
+  display: block;
 }
 
-.account-page-body.is-unconnected #state-connected {
+.account-page-body:not(.is-mye-connected) .mye-connected-only {
   display: none;
 }
 
@@ -1295,4 +1304,124 @@
     margin-bottom: 1.25rem !important;
   }
 }
+
+/* ==========================================================================
+   SEGMENTED CONTROL & SETTINGS TABS
+   ========================================================================== */
+
+.settings-tabs-header {
+  display: flex;
+  background-color: #f1f5f9;
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 2rem;
+  width: 100%;
+  border: 1px solid #e2e8f0;
+}
+
+.settings-tab-btn {
+  flex: 1;
+  background: none;
+  border: none;
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #64748b;
+  padding: 10px 12px;
+  cursor: pointer;
+  border-radius: 9px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  outline: none;
+  text-align: center;
+}
+
+.settings-tab-btn:hover {
+  color: #00205C;
+}
+
+.settings-tab-btn.active {
+  background-color: #ffffff;
+  color: #00205C;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.settings-tab-content {
+  display: none;
+  animation: tabFadeIn 0.25s ease-out forwards;
+}
+
+.settings-tab-content.active {
+  display: block;
+}
+
+@keyframes tabFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom Text inputs for Apple Settings Card */
+.apple-input-text {
+  border: none;
+  background-color: transparent;
+  font-size: 15px;
+  color: #1d1d1f;
+  font-family: var(--font-family);
+  text-align: right;
+  outline: none;
+  width: 180px;
+  max-width: 100%;
+}
+
+.apple-input-text::placeholder {
+  color: #86868b;
+}
+
+.apple-input-text:focus {
+  color: #0066cc;
+}
+
+.apple-btn-toggle-key {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0 4px;
+  font-size: 14px;
+  margin-left: 8px;
+  outline: none;
+}
+
+@media (max-width: 576px) {
+  .settings-tabs-header {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .settings-tab-btn {
+    width: 100%;
+  }
+  .apple-input-text {
+    width: 100%;
+    text-align: left;
+    margin-top: 4px;
+  }
+}
+
+/* Custom buttons for installation/connection states */
+.btn-mye-connect:hover {
+  background-color: #2f2bc1 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(66, 62, 226, 0.25) !important;
+}
+
+.btn-mye-install:hover {
+  background-color: #d9621c !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(243, 121, 54, 0.25) !important;
+}
+
 

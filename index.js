@@ -246,9 +246,21 @@ document.addEventListener('DOMContentLoaded', () => {
         bar.style.width = '0%';
       });
       updateText('.js-mye-user-absences', '--');
-    }
   };
   
+  const checkExtensionInstalled = () => document.documentElement.dataset.myefreiUltraInstalled === "true";
+
+  if (!checkExtensionInstalled()) {
+    localStorage.removeItem('mye_user_name');
+    localStorage.removeItem('mye_user_class');
+    localStorage.removeItem('mye_user_email');
+    localStorage.removeItem('mye_user_id');
+    localStorage.removeItem('mye_user_average');
+    localStorage.removeItem('mye_user_absences');
+    localStorage.removeItem('mye_user_retards');
+    localStorage.setItem('mye_user_enabled', 'false');
+  }
+
   syncHomepageMockups();
 
   // --- MOBILE DRAWER TOGGLE LOGIC ---

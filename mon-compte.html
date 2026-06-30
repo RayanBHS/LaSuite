@@ -127,10 +127,16 @@
 
     <!-- STATE 1: UNCONNECTED VIEW (Default) -->
     <div id="state-unconnected" class="unconnected-container">
-      <!-- Unconnected Message Card -->
-      <div class="card-unconnected-msg" style="text-align: center;">
+      <!-- Unconnected Message Card (If installed but not connected) -->
+      <div class="card-unconnected-msg mye-installed-only" style="text-align: center;">
         <h2 style="margin-bottom: 2rem;">Veuillez lancer myEfrei ULTRA pour avoir vos informations</h2>
         <a href="https://auth.myefrei.fr/uaa/interaction/dcYDgSKBVvpcvzDMq9liF" target="_blank" class="btn-mye-connect" style="display: inline-block; padding: 0.85rem 2.5rem; background-color: var(--btn-blue, #423ee2); color: #ffffff; text-decoration: none; border-radius: 100px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(66, 62, 226, 0.15); transition: all 0.2s ease;">Se connecter à myEfrei</a>
+      </div>
+
+      <!-- Unconnected Message Card (If NOT installed) -->
+      <div class="card-unconnected-msg mye-not-installed-only" style="text-align: center; display: none;">
+        <h2 style="margin-bottom: 2rem;">MyEfrei ULTRA n'est pas installé</h2>
+        <a href="index.html#prise-en-main" class="btn-mye-install" style="display: inline-block; padding: 0.85rem 2.5rem; background-color: var(--btn-orange, #f37936); color: #ffffff; text-decoration: none; border-radius: 100px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(243, 121, 54, 0.15); transition: all 0.2s ease;">Installer l'extension</a>
       </div>
 
       <!-- Extensions Status Card -->
@@ -262,16 +268,42 @@
       <div class="account-right-col">
         <div class="preferences-card">
 
-          <h3 class="card-section-title">Configuration MyEfrei ULTRA</h3>
-          <p class="card-section-subtitle">Personnalisez les données scolaires et de profil simulées par l'extension.</p>
+          <h3 class="card-section-title" id="preferences-card-title">Configuration MyEfrei ULTRA</h3>
+          <p class="card-section-subtitle" id="preferences-card-subtitle">Personnalisez les données scolaires et de profil simulées par l'extension.</p>
 
-          <div class="mye-sync-notice" id="mye-sync-notice">
-            <div class="mye-sync-notice-icon">⚠️</div>
-            <div class="mye-sync-notice-text">
-              <strong>Veuillez vous <a href="https://auth.myefrei.fr/uaa/interaction/dcYDgSKBVvpcvzDMq9liF" target="_blank" style="color: #78350f; text-decoration: underline;">connecter à myEfrei</a> avec l'extension</strong><br>
-              Aucune donnée n'a été importée de l'ENT officiel. Ces informations de profil et de notes sont obligatoirement extraites depuis le site de l'école par l'application et ne peuvent pas être modifiées manuellement.
-            </div>
+          <div class="settings-tabs-header">
+            <button class="settings-tab-btn active" data-settings-tab="tab-myefrei" type="button">myEfrei ULTRA</button>
+            <button class="settings-tab-btn" data-settings-tab="tab-mymoodle" type="button">myMoodle ULTRA</button>
+            <button class="settings-tab-btn" data-settings-tab="tab-myhub" type="button">myHub ULTRA</button>
           </div>
+
+          <!-- TAB 1: MYEFREI ULTRA -->
+          <div id="settings-tab-content-myefrei" class="settings-tab-content active">
+
+            <!-- UNCONNECTED STATE VIEW FOR MYEFREI (Only shown if body has is-unconnected) -->
+            <div class="mye-unconnected-only" style="margin-bottom: 2rem;">
+              <!-- If installed but not connected -->
+              <div class="card-unconnected-msg mye-installed-only" style="text-align: center; border: 1px solid #e5e5e7; padding: 4rem 2rem; border-radius: 20px; box-shadow: none;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #00205C; font-weight: 500; letter-spacing: -0.5px;">Veuillez lancer myEfrei ULTRA pour avoir vos informations</h2>
+                <a href="https://auth.myefrei.fr/uaa/interaction/dcYDgSKBVvpcvzDMq9liF" target="_blank" class="btn-mye-connect" style="display: inline-block; padding: 0.85rem 2.5rem; background-color: var(--btn-blue, #423ee2); color: #ffffff; text-decoration: none; border-radius: 100px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(66, 62, 226, 0.15); transition: all 0.2s ease;">Se connecter à myEfrei</a>
+              </div>
+              <!-- If NOT installed -->
+              <div class="card-unconnected-msg mye-not-installed-only" style="text-align: center; border: 1px solid #e5e5e7; padding: 4rem 2rem; border-radius: 20px; box-shadow: none; display: none;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #00205C; font-weight: 500; letter-spacing: -0.5px;">MyEfrei ULTRA n'est pas installé</h2>
+                <a href="index.html#prise-en-main" class="btn-mye-install" style="display: inline-block; padding: 0.85rem 2.5rem; background-color: var(--btn-orange, #f37936); color: #ffffff; text-decoration: none; border-radius: 100px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(243, 121, 54, 0.15); transition: all 0.2s ease;">Installer l'extension</a>
+              </div>
+            </div>
+
+            <!-- CONNECTED STATE VIEW FOR MYEFREI (Only shown if body has is-connected) -->
+            <div class="mye-connected-only">
+
+              <div class="mye-sync-notice" id="mye-sync-notice">
+                <div class="mye-sync-notice-icon">⚠️</div>
+                <div class="mye-sync-notice-text">
+                  <strong>Veuillez vous <a href="https://auth.myefrei.fr/uaa/interaction/dcYDgSKBVvpcvzDMq9liF" target="_blank" style="color: #78350f; text-decoration: underline;">connecter à myEfrei</a> avec l'extension</strong><br>
+                  Aucune donnée n'a été importée de l'ENT officiel. Ces informations de profil et de notes sont obligatoirement extraites depuis le site de l'école par l'application et ne peuvent pas être modifiées manuellement.
+                </div>
+              </div>
           
           <!-- Catégorie 1: Profil Étudiant -->
           <div class="pref-category">
@@ -473,14 +505,255 @@
                 </div>
               </div>
             </div>
-          </div>
+            </div> <!-- Close mye-connected-only -->
+          </div> <!-- Close TAB 1: MYEFREI ULTRA -->
+          </div> <!-- Close settings-tab-content-myefrei -->
+
+          <!-- TAB 2: MYMOODLE ULTRA -->
+          <div id="settings-tab-content-mymoodle" class="settings-tab-content">
+            <!-- Catégorie 1: Apparence & Personnalisation -->
+            <div class="pref-category">
+              <h4 class="pref-cat-title">Apparence de l'extension</h4>
+              <div class="apple-settings-card">
+                <div class="apple-settings-row">
+                  <span class="apple-row-label">Thème de Moodle</span>
+                  <div class="apple-row-interactive">
+                    <select id="mym-input-theme" class="apple-select-dropdown">
+                      <option value="light">Clair</option>
+                      <option value="dark">Sombre</option>
+                      <option value="auto">Automatique (Système)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="apple-settings-row">
+                  <div class="apple-row-label-desc" style="text-align: left;">
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Masquer le pied de page</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Masquer le pied de page (Footer) sur Moodle.</span>
+                  </div>
+                  <label class="apple-switch">
+                    <input type="checkbox" id="mym-input-hidefooter">
+                    <span class="apple-slider"></span>
+                  </label>
+                </div>
+                <div class="apple-settings-row">
+                  <div class="apple-row-label-desc" style="text-align: left;">
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Affichage condensé</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Activer l'affichage condensé des matières sur le tableau de bord.</span>
+                  </div>
+                  <label class="apple-switch">
+                    <input type="checkbox" id="mym-input-condensedcards">
+                    <span class="apple-slider"></span>
+                  </label>
+                </div>
+                <div class="apple-settings-row">
+                  <div class="apple-row-label-desc" style="text-align: left;">
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Masquer le tiroir latéral</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Masquer le tiroir latéral gauche par défaut au chargement.</span>
+                  </div>
+                  <label class="apple-switch">
+                    <input type="checkbox" id="mym-input-hidesidebar">
+                    <span class="apple-slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Catégorie 2: Fonctionnalités ULTRA -->
+            <div class="pref-category">
+              <h4 class="pref-cat-title">Fonctionnalités ULTRA</h4>
+              <div class="apple-settings-card">
+                <div class="apple-settings-row">
+                  <div class="apple-row-label-desc" style="text-align: left;">
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Lecteur de documents intégré</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Consulter les fichiers PDF/Word/PPTX directement dans le navigateur.</span>
+                  </div>
+                  <label class="apple-switch">
+                    <input type="checkbox" id="mym-input-viewer">
+                    <span class="apple-slider"></span>
+                  </label>
+                </div>
+                <div class="apple-settings-row">
+                  <div class="apple-row-label-desc" style="text-align: left;">
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Messagerie style One UI</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Moderniser le volet de messagerie de Moodle.</span>
+                  </div>
+                  <label class="apple-switch">
+                    <input type="checkbox" id="mym-input-oneui">
+                    <span class="apple-slider"></span>
+                  </label>
+                </div>
+                <div class="apple-settings-row">
+                  <div class="apple-row-label-desc" style="text-align: left;">
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Handshake ULTRA actif</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Autoriser la négociation automatique peer-to-peer de l'extension.</span>
+                  </div>
+                  <label class="apple-switch">
+                    <input type="checkbox" id="mym-input-handshake">
+                    <span class="apple-slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Catégorie 3: Calendrier Moodle -->
+            <div class="pref-category">
+              <h4 class="pref-cat-title">Calendrier Moodle</h4>
+              <div class="apple-settings-card">
+                <!-- Amplitude horaire (Dual range slider) -->
+                <div class="apple-settings-row mye-slider-row" style="flex-direction: column; align-items: stretch; padding: 18px 16px;">
+                  <div style="display: flex; justify-content: center; font-size: 14px; font-weight: 500; color: #1d1d1f; margin-bottom: 12px; gap: 4px;">
+                    <span>De</span>
+                    <span id="mym-calendar-start-val" style="color: #007aff; font-weight: 600; font-variant-numeric: tabular-nums;">08h00</span>
+                    <span>À</span>
+                    <span id="mym-calendar-end-val" style="color: #007aff; font-weight: 600; font-variant-numeric: tabular-nums;">19h00</span>
+                  </div>
+                  <div class="mye-dual-slider-container">
+                    <div class="mye-dual-slider-track"></div>
+                    <div id="mym-calendar-slider-range" class="mye-dual-slider-range"></div>
+                    <input type="range" id="mym-calendar-start" class="mye-dual-slider-input" min="0" max="23.5" step="0.5" value="8" style="z-index: 4;">
+                    <input type="range" id="mym-calendar-end" class="mye-dual-slider-input" min="0.5" max="24" step="0.5" value="19" style="z-index: 5;">
+                  </div>
+                </div>
+                <div class="apple-settings-row" style="background-color: #f5f5f7; padding: 10px 16px; pointer-events: none;">
+                  <span class="apple-row-label" style="color: #1d1d1f; font-weight: 600;">Couleurs des cours & événements</span>
+                </div>
+                <div class="apple-settings-colors-grid">
+                  <div class="apple-color-row">
+                    <span class="apple-color-label">Cours</span>
+                    <div class="apple-color-picker-wrapper">
+                      <input type="color" id="mym-calendar-color-cours" class="apple-color-picker">
+                    </div>
+                  </div>
+                  <div class="apple-color-row">
+                    <span class="apple-color-label">Devoirs</span>
+                    <div class="apple-color-picker-wrapper">
+                      <input type="color" id="mym-calendar-color-devoir" class="apple-color-picker">
+                    </div>
+                  </div>
+                  <div class="apple-color-row">
+                    <span class="apple-color-label">Quiz / Tests</span>
+                    <div class="apple-color-picker-wrapper">
+                      <input type="color" id="mym-calendar-color-quiz" class="apple-color-picker">
+                    </div>
+                  </div>
+                  <div class="apple-color-row">
+                    <span class="apple-color-label">Événements personnels</span>
+                    <div class="apple-color-picker-wrapper">
+                      <input type="color" id="mym-calendar-color-personnel" class="apple-color-picker">
+                    </div>
+                  </div>
+                  <div class="apple-color-row">
+                    <span class="apple-color-label">Événements de site</span>
+                    <div class="apple-color-picker-wrapper">
+                      <input type="color" id="mym-calendar-color-site" class="apple-color-picker">
+                    </div>
+                  </div>
+                  <div class="apple-color-row">
+                    <span class="apple-color-label">Date limite (Deadline)</span>
+                    <div class="apple-color-picker-wrapper">
+                      <input type="color" id="mym-calendar-color-deadline" class="apple-color-picker">
+                    </div>
+                  </div>
+                  <div class="apple-color-row">
+                    <span class="apple-color-label">Autres événements</span>
+                    <div class="apple-color-picker-wrapper">
+                      <input type="color" id="mym-calendar-color-evenement" class="apple-color-picker">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> <!-- Close TAB 2: MYMOODLE ULTRA -->
+
+          <!-- TAB 3: MYHUB ULTRA -->
+          <div id="settings-tab-content-myhub" class="settings-tab-content">
+            <!-- Catégorie 1: Assistant IA -->
+            <div class="pref-category">
+              <h4 class="pref-cat-title">Mode de fonctionnement</h4>
+              <div class="apple-settings-card">
+                <div class="apple-settings-row">
+                  <span class="apple-row-label">Mode de l'assistant IA</span>
+                  <div class="apple-row-interactive">
+                    <select id="myh-input-mode" class="apple-select-dropdown">
+                      <option value="simple">Mode Simple (Simulations locales)</option>
+                      <option value="ultra">Mode ULTRA (Accès API LLM direct)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Catégorie 2: Configuration API (ULTRA) -->
+            <div class="pref-category" id="myh-section-api" style="display: none;">
+              <h4 class="pref-cat-title">Configuration Fournisseur d'IA (ULTRA)</h4>
+              <div class="apple-settings-card">
+                <div class="apple-settings-row">
+                  <span class="apple-row-label">Fournisseur d'IA</span>
+                  <div class="apple-row-interactive">
+                    <select id="myh-input-provider" class="apple-select-dropdown">
+                      <option value="gemini">Gemini (Google)</option>
+                      <option value="openai">ChatGPT (OpenAI)</option>
+                      <option value="claude">Claude (Anthropic)</option>
+                      <option value="deepseek">DeepSeek (R1)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="apple-settings-row">
+                  <span class="apple-row-label">Clé d'API</span>
+                  <div style="display: flex; align-items: center;">
+                    <input type="password" id="myh-input-apikey" class="apple-input-text" placeholder="Entrez votre clé API...">
+                    <button type="button" id="myh-btn-toggle-key" class="apple-btn-toggle-key">👁</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Catégorie 3: Sources de Données -->
+            <div class="pref-category">
+              <h4 class="pref-cat-title">Sources de Données Actives</h4>
+              <div class="apple-settings-card">
+                <div class="apple-settings-row">
+                  <div class="apple-row-label-desc" style="text-align: left;">
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Synchroniser myEfrei</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Permettre à l'IA d'accéder à vos notes et absences.</span>
+                  </div>
+                  <label class="apple-switch">
+                    <input type="checkbox" id="myh-input-sync-myefrei">
+                    <span class="apple-slider"></span>
+                  </label>
+                </div>
+                <div class="apple-settings-row">
+                  <div class="apple-row-label-desc" style="text-align: left;">
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Synchroniser myMoodle</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Permettre à l'IA d'accéder à vos devoirs et cours.</span>
+                  </div>
+                  <label class="apple-switch">
+                    <input type="checkbox" id="myh-input-sync-moodle">
+                    <span class="apple-slider"></span>
+                  </label>
+                </div>
+                <div class="apple-settings-row">
+                  <div class="apple-row-label-desc" style="text-align: left;">
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Synchroniser myMessage</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Permettre à l'IA d'analyser vos fils de discussion.</span>
+                  </div>
+                  <label class="apple-switch">
+                    <input type="checkbox" id="myh-input-sync-message">
+                    <span class="apple-slider"></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div> <!-- Close TAB 3: MYHUB ULTRA -->
 
           <!-- Actions -->
           <div class="mye-settings-actions" style="margin-top: 2rem;">
             <button type="button" class="btn-mye-reset" id="btn-mye-reset">Vider / Réinitialiser</button>
           </div>
 
-    </div>
+        </div> <!-- Close preferences-card -->
+      </div> <!-- Close account-right-col -->
+    </div> <!-- Close state-connected -->
 
     <!-- Toast Notification for Toggles -->
     <div id="toast" class="toast">Préférence mise à jour !</div>
@@ -490,6 +763,34 @@
   <!-- Javascript -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Check if extension is installed and update UI accordingly
+      const checkExtensionInstalled = () => document.documentElement.dataset.myefreiUltraInstalled === "true";
+      const checkMymExtensionInstalled = () => document.documentElement.dataset.mymoodleUltraInstalled === "true";
+
+      const updateInstallationStateUI = () => {
+        const myeInstalled = checkExtensionInstalled();
+        const installedOnlyEls = document.querySelectorAll('.mye-installed-only');
+        const notInstalledOnlyEls = document.querySelectorAll('.mye-not-installed-only');
+        
+        if (myeInstalled) {
+          installedOnlyEls.forEach(el => {
+            el.style.display = '';
+          });
+          notInstalledOnlyEls.forEach(el => {
+            el.style.display = 'none';
+          });
+        } else {
+          installedOnlyEls.forEach(el => {
+            el.style.display = 'none';
+          });
+          notInstalledOnlyEls.forEach(el => {
+            el.style.display = 'block';
+          });
+        }
+      };
+
+      updateInstallationStateUI();
+
       // Sidebar Search Logic
       const searchInput = document.getElementById('sidebar-search');
       const sidebarLinks = document.querySelectorAll('.sidebar-menu li');
@@ -542,6 +843,56 @@
         }, 3000);
       };
 
+      // --- SETTINGS TABS LOGIC ---
+      const settingsTabButtons = document.querySelectorAll('.settings-tab-btn');
+      const settingsTabPanes = document.querySelectorAll('.settings-tab-content');
+      const prefCardTitle = document.getElementById('preferences-card-title');
+      const prefCardSubtitle = document.getElementById('preferences-card-subtitle');
+
+      const tabTitles = {
+        'tab-myefrei': 'Configuration MyEfrei ULTRA',
+        'tab-mymoodle': 'Configuration MyMoodle ULTRA',
+        'tab-myhub': 'Configuration MyHub ULTRA'
+      };
+
+      const tabSubtitles = {
+        'tab-myefrei': 'Personnalisez les données scolaires et de profil simulées par l\'extension.',
+        'tab-mymoodle': 'Personnalisez les fonctionnalités et l\'apparence de Moodle ULTRA.',
+        'tab-myhub': 'Personnalisez l\'assistant IA MyHub ULTRA et ses sources.'
+      };
+
+      const switchSettingsTab = (tabId) => {
+        settingsTabButtons.forEach(btn => {
+          if (btn.getAttribute('data-settings-tab') === tabId) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+
+        settingsTabPanes.forEach(pane => {
+          if (pane.id === `settings-tab-content-${tabId.replace('tab-', '')}`) {
+            pane.classList.add('active');
+          } else {
+            pane.classList.remove('active');
+          }
+        });
+
+        if (prefCardTitle && tabTitles[tabId]) {
+          prefCardTitle.textContent = tabTitles[tabId];
+        }
+        if (prefCardSubtitle && tabSubtitles[tabId]) {
+          prefCardSubtitle.textContent = tabSubtitles[tabId];
+        }
+      };
+
+      settingsTabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const tabId = btn.getAttribute('data-settings-tab');
+          switchSettingsTab(tabId);
+        });
+      });
+
       // localStorage sync keys
       const keys = {
         name: 'mye_user_name',
@@ -554,14 +905,33 @@
         theme: 'mye_user_theme',
         darkmode: 'mye_user_darkmode',
         planning: 'mye-planning-settings',
-        calendar: 'mye-calendars-settings'
+        calendar: 'mye-calendars-settings',
+        
+        // Moodle Settings
+        mym_theme: 'mymoodle_user_theme',
+        mym_hidefooter: 'mymoodle_user_hidefooter',
+        mym_condensedcards: 'mymoodle_user_condensedcards',
+        mym_hidesidebar: 'mymoodle_user_hidesidebar',
+        mym_viewer: 'mymoodle_user_viewer',
+        mym_oneui: 'mymoodle_user_oneui',
+        mym_handshake: 'mymoodle_user_handshake',
+        mym_calendar: 'mymoodle_calendar_settings',
+        mym_enabled: 'mymoodle_user_enabled',
+
+        // Hub Settings
+        myh_mode: 'myhub_user_mode',
+        myh_provider: 'myhub_user_provider',
+        myh_apikey: 'myhub_user_apikey',
+        myh_sync_myefrei: 'myhub_user_sync_myefrei',
+        myh_sync_moodle: 'myhub_user_sync_moodle',
+        myh_sync_message: 'myhub_user_sync_message'
       };
 
       // Generate hour options dynamically for all start/end dropdowns to support 0h00-24h00 with 30-min steps
-      const startSelects = ['mye-planning-start', 'mye-calendar-start'];
+      const startSelects = ['mye-planning-start', 'mye-calendar-start', 'mym-calendar-start'];
       startSelects.forEach(id => {
         const el = document.getElementById(id);
-        if (el) {
+        if (el && el.tagName === 'SELECT') {
           el.innerHTML = '';
           for (let h = 0; h <= 23.5; h += 0.5) {
             const option = document.createElement('option');
@@ -574,10 +944,10 @@
         }
       });
 
-      const endSelects = ['mye-planning-end', 'mye-calendar-end'];
+      const endSelects = ['mye-planning-end', 'mye-calendar-end', 'mym-calendar-end'];
       endSelects.forEach(id => {
         const el = document.getElementById(id);
-        if (el) {
+        if (el && el.tagName === 'SELECT') {
           el.innerHTML = '';
           for (let h = 0.5; h <= 24; h += 0.5) {
             const option = document.createElement('option');
@@ -601,7 +971,24 @@
 
       const inputs = {
         theme: document.getElementById('mye-input-theme'),
-        darkmode: document.getElementById('mye-input-darkmode')
+        darkmode: document.getElementById('mye-input-darkmode'),
+        
+        // Moodle Inputs
+        mym_theme: document.getElementById('mym-input-theme'),
+        mym_hidefooter: document.getElementById('mym-input-hidefooter'),
+        mym_condensedcards: document.getElementById('mym-input-condensedcards'),
+        mym_hidesidebar: document.getElementById('mym-input-hidesidebar'),
+        mym_viewer: document.getElementById('mym-input-viewer'),
+        mym_oneui: document.getElementById('mym-input-oneui'),
+        mym_handshake: document.getElementById('mym-input-handshake'),
+
+        // Hub Inputs
+        myh_mode: document.getElementById('myh-input-mode'),
+        myh_provider: document.getElementById('myh-input-provider'),
+        myh_apikey: document.getElementById('myh-input-apikey'),
+        myh_sync_myefrei: document.getElementById('myh-input-sync-myefrei'),
+        myh_sync_moodle: document.getElementById('myh-input-sync-moodle'),
+        myh_sync_message: document.getElementById('myh-input-sync-message')
       };
 
       // Profile Card DOM references
@@ -623,12 +1010,12 @@
         return `${String(hours).padStart(2, '0')}h${mins}`;
       };
 
-      const updateDualSlider = (prefix) => {
-        const startInput = document.getElementById(`mye-${prefix}-start`);
-        const endInput = document.getElementById(`mye-${prefix}-end`);
-        const rangeLine = document.getElementById(`mye-${prefix}-slider-range`);
-        const startValDisplay = document.getElementById(`mye-${prefix}-start-val`);
-        const endValDisplay = document.getElementById(`mye-${prefix}-end-val`);
+      const updateDualSlider = (fullPrefix) => {
+        const startInput = document.getElementById(`${fullPrefix}-start`);
+        const endInput = document.getElementById(`${fullPrefix}-end`);
+        const rangeLine = document.getElementById(`${fullPrefix}-slider-range`);
+        const startValDisplay = document.getElementById(`${fullPrefix}-start-val`);
+        const endValDisplay = document.getElementById(`${fullPrefix}-end-val`);
         
         if (!startInput || !endInput || !rangeLine) return;
         
@@ -678,6 +1065,31 @@
         
         inputs.theme.value = localStorage.getItem(keys.theme) || 'navy';
         inputs.darkmode.checked = localStorage.getItem(keys.darkmode) === 'true';
+
+        // Load Moodle Settings
+        inputs.mym_theme.value = localStorage.getItem(keys.mym_theme) || 'light';
+        inputs.mym_hidefooter.checked = localStorage.getItem(keys.mym_hidefooter) !== 'false';
+        inputs.mym_condensedcards.checked = localStorage.getItem(keys.mym_condensedcards) !== 'false';
+        inputs.mym_hidesidebar.checked = localStorage.getItem(keys.mym_hidesidebar) !== 'false';
+        inputs.mym_viewer.checked = localStorage.getItem(keys.mym_viewer) !== 'false';
+        inputs.mym_oneui.checked = localStorage.getItem(keys.mym_oneui) !== 'false';
+        inputs.mym_handshake.checked = localStorage.getItem(keys.mym_handshake) !== 'false';
+
+        // Load Hub Settings
+        inputs.myh_mode.value = localStorage.getItem(keys.myh_mode) || 'simple';
+        inputs.myh_provider.value = localStorage.getItem(keys.myh_provider) || 'gemini';
+        inputs.myh_apikey.value = localStorage.getItem(keys.myh_apikey) || '';
+        inputs.myh_sync_myefrei.checked = localStorage.getItem(keys.myh_sync_myefrei) !== 'false';
+        inputs.myh_sync_moodle.checked = localStorage.getItem(keys.myh_sync_moodle) !== 'false';
+        inputs.myh_sync_message.checked = localStorage.getItem(keys.myh_sync_message) !== 'false';
+
+        const updateHubApiVisibility = () => {
+          const apiSec = document.getElementById('myh-section-api');
+          if (apiSec) {
+            apiSec.style.display = inputs.myh_mode.value === 'ultra' ? 'block' : 'none';
+          }
+        };
+        updateHubApiVisibility();
 
         // Load Planning Settings
         let planningData = {
@@ -738,8 +1150,42 @@
         document.getElementById('mye-calendar-color-Asso').value = calendarData.colors.Asso || '#ff9500';
         document.getElementById('mye-calendar-color-Events').value = calendarData.colors['Evénements'] || '#ff3b30';
 
-        updateDualSlider('planning');
-        updateDualSlider('calendar');
+        // Load Moodle Calendar Settings
+        let mymCalendarData = {
+          colors: {
+            cours: '#007aff',
+            devoir: '#ff9500',
+            quiz: '#af52de',
+            personnel: '#34c759',
+            site: '#ff3b30',
+            deadline: '#ff2d55',
+            evenement: '#8e8e93'
+          },
+          displayStart: 8.0,
+          displayEnd: 19.0
+        };
+        try {
+          const savedMymCalendar = localStorage.getItem(keys.mym_calendar);
+          if (savedMymCalendar) {
+            const parsed = JSON.parse(savedMymCalendar);
+            mymCalendarData = { ...mymCalendarData, ...parsed };
+            mymCalendarData.colors = { ...mymCalendarData.colors, ...(parsed.colors || {}) };
+          }
+        } catch(e){}
+
+        document.getElementById('mym-calendar-start').value = String(mymCalendarData.displayStart);
+        document.getElementById('mym-calendar-end').value = String(mymCalendarData.displayEnd);
+        document.getElementById('mym-calendar-color-cours').value = mymCalendarData.colors.cours || '#007aff';
+        document.getElementById('mym-calendar-color-devoir').value = mymCalendarData.colors.devoir || '#ff9500';
+        document.getElementById('mym-calendar-color-quiz').value = mymCalendarData.colors.quiz || '#af52de';
+        document.getElementById('mym-calendar-color-personnel').value = mymCalendarData.colors.personnel || '#34c759';
+        document.getElementById('mym-calendar-color-site').value = mymCalendarData.colors.site || '#ff3b30';
+        document.getElementById('mym-calendar-color-deadline').value = mymCalendarData.colors.deadline || '#ff2d55';
+        document.getElementById('mym-calendar-color-evenement').value = mymCalendarData.colors.evenement || '#8e8e93';
+
+        updateDualSlider('mye-planning');
+        updateDualSlider('mye-calendar');
+        updateDualSlider('mym-calendar');
       };
 
       // Update Profile Card
@@ -817,6 +1263,77 @@
         showToast(`Mode sombre par défaut : ${e.target.checked ? 'Activé' : 'Désactivé'}`);
       });
 
+      // Moodle Listeners
+      inputs.mym_theme.addEventListener('change', (e) => {
+        saveParam(keys.mym_theme, e.target.value);
+        showToast(`myMoodle ULTRA Thème : ${e.target.value.toUpperCase()}`);
+      });
+      inputs.mym_hidefooter.addEventListener('change', (e) => {
+        saveParam(keys.mym_hidefooter, e.target.checked);
+        showToast(`Footer Moodle : ${e.target.checked ? 'Masqué' : 'Affiché'}`);
+      });
+      inputs.mym_condensedcards.addEventListener('change', (e) => {
+        saveParam(keys.mym_condensedcards, e.target.checked);
+        showToast(`Matières condensées : ${e.target.checked ? 'Activé' : 'Désactivé'}`);
+      });
+      inputs.mym_hidesidebar.addEventListener('change', (e) => {
+        saveParam(keys.mym_hidesidebar, e.target.checked);
+        showToast(`Tiroir latéral : ${e.target.checked ? 'Masqué par défaut' : 'Affiché par défaut'}`);
+      });
+      inputs.mym_viewer.addEventListener('change', (e) => {
+        saveParam(keys.mym_viewer, e.target.checked);
+        showToast(`Lecteur intégré : ${e.target.checked ? 'Activé' : 'Désactivé'}`);
+      });
+      inputs.mym_oneui.addEventListener('change', (e) => {
+        saveParam(keys.mym_oneui, e.target.checked);
+        showToast(`Messagerie style One UI : ${e.target.checked ? 'Activée' : 'Désactivée'}`);
+      });
+      inputs.mym_handshake.addEventListener('change', (e) => {
+        saveParam(keys.mym_handshake, e.target.checked);
+        showToast(`Handshake ULTRA : ${e.target.checked ? 'Actif' : 'Inactif'}`);
+      });
+
+      // Hub Listeners
+      inputs.myh_mode.addEventListener('change', (e) => {
+        saveParam(keys.myh_mode, e.target.value);
+        const apiSec = document.getElementById('myh-section-api');
+        if (apiSec) apiSec.style.display = e.target.value === 'ultra' ? 'block' : 'none';
+        showToast(`myHub Mode : ${e.target.value.toUpperCase()}`);
+      });
+      inputs.myh_provider.addEventListener('change', (e) => {
+        saveParam(keys.myh_provider, e.target.value);
+        showToast(`myHub IA : ${e.target.value.toUpperCase()}`);
+      });
+      inputs.myh_apikey.addEventListener('input', (e) => {
+        saveParam(keys.myh_apikey, e.target.value);
+      });
+      inputs.myh_sync_myefrei.addEventListener('change', (e) => {
+        saveParam(keys.myh_sync_myefrei, e.target.checked);
+        showToast(`Sync myEfrei : ${e.target.checked ? 'Activée' : 'Désactivée'}`);
+      });
+      inputs.myh_sync_moodle.addEventListener('change', (e) => {
+        saveParam(keys.myh_sync_moodle, e.target.checked);
+        showToast(`Sync Moodle : ${e.target.checked ? 'Activée' : 'Désactivée'}`);
+      });
+      inputs.myh_sync_message.addEventListener('change', (e) => {
+        saveParam(keys.myh_sync_message, e.target.checked);
+        showToast(`Sync Messagerie : ${e.target.checked ? 'Activée' : 'Désactivée'}`);
+      });
+
+      // Toggle Hub API Key visibility
+      const btnToggleKey = document.getElementById('myh-btn-toggle-key');
+      if (btnToggleKey) {
+        btnToggleKey.addEventListener('click', () => {
+          if (inputs.myh_apikey.type === 'password') {
+            inputs.myh_apikey.type = 'text';
+            btnToggleKey.textContent = '🙈';
+          } else {
+            inputs.myh_apikey.type = 'password';
+            btnToggleKey.textContent = '👁';
+          }
+        });
+      }
+
       // Save planning settings
       const savePlanningSettings = () => {
         const startVal = parseFloat(document.getElementById('mye-planning-start').value);
@@ -881,12 +1398,44 @@
         showToast('Calendrier association/campus mis à jour !');
       };
 
-      // Attach input event listeners for real-time visual updates
-      const bindDualSliderRealTime = (prefix, saveFunc) => {
-        const startInput = document.getElementById(`mye-${prefix}-start`);
-        const endInput = document.getElementById(`mye-${prefix}-end`);
+      // Save Moodle calendar settings
+      const saveMymCalendarSettings = () => {
+        const startVal = parseFloat(document.getElementById('mym-calendar-start').value);
+        const endVal = parseFloat(document.getElementById('mym-calendar-end').value);
         
-        const updateVisuals = () => updateDualSlider(prefix);
+        if (startVal >= endVal) {
+          showToast('Erreur : L\'heure de début doit être inférieure à l\'heure de fin.');
+          loadParams();
+          return;
+        }
+
+        const mymCalendarSettings = {
+          displayStart: startVal,
+          displayEnd: endVal,
+          colors: {
+            cours: document.getElementById('mym-calendar-color-cours').value,
+            devoir: document.getElementById('mym-calendar-color-devoir').value,
+            quiz: document.getElementById('mym-calendar-color-quiz').value,
+            personnel: document.getElementById('mym-calendar-color-personnel').value,
+            site: document.getElementById('mym-calendar-color-site').value,
+            deadline: document.getElementById('mym-calendar-color-deadline').value,
+            evenement: document.getElementById('mym-calendar-color-evenement').value
+          }
+        };
+        const valueStr = JSON.stringify(mymCalendarSettings);
+        localStorage.setItem(keys.mym_calendar, valueStr);
+        window.dispatchEvent(new CustomEvent('mye-portal-save', { 
+          detail: { key: keys.mym_calendar, value: valueStr } 
+        }));
+        showToast('Calendrier Moodle mis à jour !');
+      };
+
+      // Attach input event listeners for real-time visual updates
+      const bindDualSliderRealTime = (fullPrefix, saveFunc) => {
+        const startInput = document.getElementById(`${fullPrefix}-start`);
+        const endInput = document.getElementById(`${fullPrefix}-end`);
+        
+        const updateVisuals = () => updateDualSlider(fullPrefix);
         
         if (startInput && endInput) {
           startInput.addEventListener('input', updateVisuals);
@@ -903,8 +1452,9 @@
         }
       };
 
-      bindDualSliderRealTime('planning', savePlanningSettings);
-      bindDualSliderRealTime('calendar', saveCalendarSettings);
+      bindDualSliderRealTime('mye-planning', savePlanningSettings);
+      bindDualSliderRealTime('mye-calendar', saveCalendarSettings);
+      bindDualSliderRealTime('mym-calendar', saveMymCalendarSettings);
 
       // Attach change event listeners to Planning color inputs
       const planningColorInputIds = [
@@ -928,6 +1478,17 @@
         if (el) el.addEventListener('change', saveCalendarSettings);
       });
 
+      // Attach change event listeners to Moodle Calendar color inputs
+      const mymCalendarColorInputIds = [
+        'mym-calendar-color-cours', 'mym-calendar-color-devoir', 'mym-calendar-color-quiz',
+        'mym-calendar-color-personnel', 'mym-calendar-color-site', 'mym-calendar-color-deadline',
+        'mym-calendar-color-evenement'
+      ];
+      mymCalendarColorInputIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('change', saveMymCalendarSettings);
+      });
+
       // Reset logic
       const btnReset = document.getElementById('btn-mye-reset');
       btnReset.addEventListener('click', () => {
@@ -943,6 +1504,24 @@
         // Clear calendar overrides
         localStorage.removeItem(keys.planning);
         localStorage.removeItem(keys.calendar);
+
+        // Clear Moodle settings
+        localStorage.removeItem(keys.mym_theme);
+        localStorage.removeItem(keys.mym_hidefooter);
+        localStorage.removeItem(keys.mym_condensedcards);
+        localStorage.removeItem(keys.mym_hidesidebar);
+        localStorage.removeItem(keys.mym_viewer);
+        localStorage.removeItem(keys.mym_oneui);
+        localStorage.removeItem(keys.mym_handshake);
+        localStorage.removeItem(keys.mym_calendar);
+
+        // Clear Hub settings
+        localStorage.removeItem(keys.myh_mode);
+        localStorage.removeItem(keys.myh_provider);
+        localStorage.removeItem(keys.myh_apikey);
+        localStorage.removeItem(keys.myh_sync_myefrei);
+        localStorage.removeItem(keys.myh_sync_moodle);
+        localStorage.removeItem(keys.myh_sync_message);
 
         // Keep default theme
         localStorage.setItem(keys.theme, 'navy');
@@ -964,6 +1543,34 @@
       const toggleConnected = document.getElementById('extension-toggle-connected');
       const body = document.body;
 
+      const updateLayoutState = () => {
+        const myeInstalled = checkExtensionInstalled();
+        const mymInstalled = checkMymExtensionInstalled();
+        
+        const myeEnabled = localStorage.getItem('mye_user_enabled') !== 'false';
+        const mymEnabled = localStorage.getItem(keys.mym_enabled) !== 'false';
+        
+        const nameVal = localStorage.getItem(keys.name);
+        const myeConnected = !!nameVal && myeEnabled;
+        
+        // Show settings if either extension is active (installed/enabled or connected)
+        const showSettings = myeConnected || (mymInstalled && mymEnabled) || (myeInstalled && myeEnabled);
+        
+        if (showSettings) {
+          body.classList.remove('is-unconnected');
+          body.classList.add('is-connected');
+        } else {
+          body.classList.remove('is-connected');
+          body.classList.add('is-unconnected');
+        }
+        
+        if (myeConnected) {
+          body.classList.add('is-mye-connected');
+        } else {
+          body.classList.remove('is-mye-connected');
+        }
+      };
+
       const setConnectionState = (isEnabled) => {
         const wasEnabled = localStorage.getItem('mye_user_enabled') !== 'false';
         localStorage.setItem('mye_user_enabled', isEnabled ? 'true' : 'false');
@@ -977,28 +1584,12 @@
         if (toggleConnected) toggleConnected.checked = isEnabled;
 
         if (isEnabled) {
-          const nameVal = localStorage.getItem(keys.name);
-          if (nameVal) {
-            body.classList.remove('is-unconnected');
-            body.classList.add('is-connected');
-            loadParams();
-            updateProfileCard();
-            if (wasEnabled !== isEnabled) {
-              showToast('myEfrei ULTRA : Activé. Données synchronisées.');
-            }
-          } else {
-            body.classList.remove('is-connected');
-            body.classList.add('is-unconnected');
-            loadParams();
-            updateProfileCard();
-            if (wasEnabled !== isEnabled) {
-              showToast('myEfrei ULTRA : Activé. En attente de connexion sur l\'ENT.');
-            }
+          loadParams();
+          updateProfileCard();
+          if (wasEnabled !== isEnabled) {
+            showToast('myEfrei ULTRA : Activé.');
           }
         } else {
-          body.classList.remove('is-connected');
-          body.classList.add('is-unconnected');
-
           // Clear school data when disabled
           localStorage.removeItem(keys.name);
           localStorage.removeItem(keys.class);
@@ -1018,6 +1609,7 @@
             showToast('myEfrei ULTRA : Désactivé.');
           }
         }
+        updateLayoutState();
       };
 
       if (toggleUnconnected) {
@@ -1032,18 +1624,39 @@
         });
       }
 
+      // "Se connecter" buttons click handler to activate extension automatically
+      document.querySelectorAll('.btn-mye-connect').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setConnectionState(true);
+        });
+      });
+
       // Moodle Toggles Sync
       const moodleToggleUnconnected = document.getElementById('moodle-toggle-unconnected');
       const moodleToggleConnected = document.getElementById('moodle-toggle-connected');
 
-      if (moodleToggleUnconnected && moodleToggleConnected) {
+      const setMymConnectionState = (isEnabled) => {
+        localStorage.setItem(keys.mym_enabled, isEnabled ? 'true' : 'false');
+        window.dispatchEvent(new CustomEvent('mye-portal-save', { 
+          detail: { key: keys.mym_enabled, value: isEnabled ? 'true' : 'false' } 
+        }));
+
+        if (moodleToggleUnconnected) moodleToggleUnconnected.checked = isEnabled;
+        if (moodleToggleConnected) moodleToggleConnected.checked = isEnabled;
+        
+        updateLayoutState();
+      };
+
+      if (moodleToggleUnconnected) {
         moodleToggleUnconnected.addEventListener('change', () => {
-          moodleToggleConnected.checked = moodleToggleUnconnected.checked;
+          setMymConnectionState(moodleToggleUnconnected.checked);
           showToast(`myMoodle ULTRA : ${moodleToggleUnconnected.checked ? 'Activé' : 'Désactivé'}`);
         });
+      }
 
+      if (moodleToggleConnected) {
         moodleToggleConnected.addEventListener('change', () => {
-          moodleToggleUnconnected.checked = moodleToggleConnected.checked;
+          setMymConnectionState(moodleToggleConnected.checked);
           showToast(`myMoodle ULTRA : ${moodleToggleConnected.checked ? 'Activé' : 'Désactivé'}`);
         });
       }
@@ -1051,15 +1664,26 @@
       // Initial load
       loadParams();
       updateProfileCard();
-      const initialEnabled = localStorage.getItem('mye_user_enabled') !== 'false';
+      
+      const isInstalled = checkExtensionInstalled();
+      const initialEnabled = isInstalled && (localStorage.getItem('mye_user_enabled') !== 'false');
       setConnectionState(initialEnabled);
+
+      const mymInstalled = checkMymExtensionInstalled();
+      const mymInitialEnabled = mymInstalled && (localStorage.getItem(keys.mym_enabled) !== 'false');
+      setMymConnectionState(mymInitialEnabled);
 
       // Listen for data synchronization from the extension content script
       window.addEventListener('mye-sync-data', () => {
         loadParams();
         updateProfileCard();
-        const currentEnabled = localStorage.getItem('mye_user_enabled') !== 'false';
+        const currentEnabled = checkExtensionInstalled() && (localStorage.getItem('mye_user_enabled') !== 'false');
         setConnectionState(currentEnabled);
+        
+        const mymCurrentEnabled = checkMymExtensionInstalled() && (localStorage.getItem(keys.mym_enabled) !== 'false');
+        setMymConnectionState(mymCurrentEnabled);
+        
+        updateInstallationStateUI();
       });
     });
   </script>

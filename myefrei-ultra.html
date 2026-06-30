@@ -163,7 +163,7 @@
     </section>
 
     <!-- CORE FEATURES SHOWCASE -->
-    <section class="section-block" style="background-color: #f8fafc; border: 1px solid rgba(0, 0, 0, 0.05);" id="features-list">
+    <section class="section-block" style="background-color: #f8fafc; border-top: 1px solid #cbd5e1; border-bottom: 1px solid #cbd5e1;" id="features-list">
       <span class="section-label">Fonctionnalités</span>
       <h3 class="section-headline" style="color: #00205C;">Conçu pour votre productivité</h3>
       
@@ -924,32 +924,34 @@
                   <span class="mye-dash-period-badge" id="board-theme-badge">Thème : Navy</span>
                 </div>
               </div>
-              <div class="mye-dash-stats-grid">
+              <div class="mye-dash-stats-grid" style="height: 135px; gap: 8px;">
                 <!-- Moyenne -->
-                <div class="mye-stat-box mye-stat-blue">
-                  <div class="mye-stat-title">Moyenne générale</div>
-                  <div class="mye-stat-value js-mye-user-average">14,85</div>
-                  <div class="mye-stat-progress">
-                    <div class="mye-stat-progress-bar js-mye-user-average-bar" style="width: 74.25%; background-color: #84cc16;"></div>
+                <div class="mye-stat-box mye-stat-blue" style="padding: 10px; border-radius: 10px;">
+                  <div class="mye-stat-title" style="font-size: 10px;">Moyenne générale</div>
+                  <div class="mye-stat-value js-mye-user-average" style="font-size: 30px; margin-top: 2px;">14,85</div>
+                  <div class="mye-stat-progress" style="height: 8px; margin-top: 4px; border-radius: 4px;">
+                    <div class="mye-stat-progress-bar js-mye-user-average-bar" style="width: 74%; background-color: #84cc16; border-radius: 4px;"></div>
                   </div>
                 </div>
-                <!-- Middle Col (Absences & Retards) -->
-                <div class="mye-stat-middle-col">
-                  <div class="mye-stat-middle-box mye-stat-red">
-                    <span class="mye-middle-value js-mye-user-absences">0</span>
-                    <span class="mye-middle-title">Absences</span>
+                
+                <!-- Absences & Retards -->
+                <div class="mye-stat-middle-col" style="gap: 8px;">
+                  <div class="mye-stat-middle-box mye-stat-red" style="padding: 0 10px; height: auto; border-radius: 10px; justify-content: space-between;">
+                    <span class="mye-middle-title" style="font-size: 11px;">Absences</span>
+                    <span class="mye-middle-value js-mye-user-absences" style="font-size: 22px; color: #10b981; margin-right: 0;">0</span>
                   </div>
-                  <div class="mye-stat-middle-box mye-stat-green">
-                    <span class="mye-middle-value js-mye-user-retards">2</span>
-                    <span class="mye-middle-title">Retards</span>
+                  <div class="mye-stat-middle-box mye-stat-green" style="padding: 0 10px; height: auto; border-radius: 10px; justify-content: space-between;">
+                    <span class="mye-middle-title" style="font-size: 11px;">Retards</span>
+                    <span class="mye-middle-value js-mye-user-retards" style="font-size: 22px; color: #f59e0b; margin-right: 0;">2</span>
                   </div>
                 </div>
+                
                 <!-- Learning XP -->
-                <div class="mye-stat-box mye-stat-blue">
-                  <div class="mye-stat-title">Learning XP</div>
-                  <div class="mye-stat-value">16</div>
-                  <div class="mye-stat-progress">
-                    <div class="mye-stat-progress-bar" style="width: 80%; background-color: #6d28d9;"></div>
+                <div class="mye-stat-box mye-stat-blue" style="padding: 10px; border-radius: 10px;">
+                  <div class="mye-stat-title" style="font-size: 10px;">Learning XP</div>
+                  <div class="mye-stat-value" style="font-size: 30px; margin-top: 2px;">16</div>
+                  <div class="mye-stat-progress" style="height: 8px; margin-top: 4px; border-radius: 4px;">
+                    <div class="mye-stat-progress-bar" style="width: 80%; background-color: #6d28d9; border-radius: 4px;"></div>
                   </div>
                 </div>
               </div>
@@ -989,7 +991,7 @@
     </section>
 
     <!-- INSTALLATION / PRISE EN MAIN (ONGLETS INTERACTIFS) -->
-    <section id="prise-en-main-ultra" class="section-block" style="background-color: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05);">
+    <section id="prise-en-main-ultra" class="section-block" style="background-color: #ffffff; border-top: 1px solid #cbd5e1; border-bottom: 1px solid #cbd5e1;">
       <span class="section-label">Installation</span>
       <h3 class="section-headline" style="color: #00205C;">Comment installer l'extension ?</h3>
       
@@ -1166,7 +1168,20 @@
         'oled': 'OLED'
       };
 
+      const checkExtensionInstalled = () => document.documentElement.dataset.myefreiUltraInstalled === "true";
+
       const loadUserParams = () => {
+        if (!checkExtensionInstalled()) {
+          localStorage.removeItem('mye_user_name');
+          localStorage.removeItem('mye_user_class');
+          localStorage.removeItem('mye_user_email');
+          localStorage.removeItem('mye_user_id');
+          localStorage.removeItem('mye_user_average');
+          localStorage.removeItem('mye_user_absences');
+          localStorage.removeItem('mye_user_retards');
+          localStorage.setItem('mye_user_enabled', 'false');
+        }
+
         const nameVal = localStorage.getItem('mye_user_name');
         const classVal = localStorage.getItem('mye_user_class');
         const avgVal = localStorage.getItem('mye_user_average');

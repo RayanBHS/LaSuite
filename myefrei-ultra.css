@@ -564,11 +564,12 @@
 
 /* Adjust main-content margins for section-blocks */
 .myefrei-ultra-page .section-block {
-  margin-bottom: 3rem;
-  border-radius: 28px;
-  padding: 4rem 3rem;
-  margin-left: 0;
-  margin-right: 0;
+  border-radius: 0;
+  padding: 5rem 3rem 5rem 348px;
+  margin-left: -348px;
+  margin-right: -3rem;
+  margin-bottom: 0;
+  scroll-margin-top: 110px;
 }
 
 /* ==========================================================================
@@ -1667,19 +1668,144 @@
     grid-template-columns: 1fr !important;
   }
   
-  /* Interactive Windows */
-  .interactive-window {
-    height: auto !important;
-    min-height: 400px;
+  /* Strip preview-section card wrapper and integrate text/simulators natively */
+  .preview-section, .theme-preview-section {
+    background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 2.5rem !important;
+    border: none !important;
   }
   
-  /* Window 1: Dashboard Mock */
+  .preview-text h3, .theme-preview-headline h3 {
+    color: #00205C !important;
+    font-size: 1.6rem !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .preview-text p, .theme-preview-headline p {
+    color: #475569 !important;
+    font-size: 0.95rem !important;
+  }
+  
+  .preview-text p a {
+    color: #007aff !important;
+  }
+
+  /* Strip browser window frame and integrate directly into the page flow */
+  .interactive-window {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+  }
+
+  .window-header {
+    background: transparent !important;
+    border-bottom: none !important;
+    padding: 8px 0 !important;
+    gap: 8px !important;
+  }
+
+  .window-dots {
+    display: none !important;
+  }
+
+  .window-title {
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    color: #475569 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 180px !important;
+  }
+
+  .window-action-lbl {
+    display: none !important;
+  }
+
+  .window-body {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+  }
+  
+  /* Window 1: Dashboard Mock & Theme Preview Panel */
+  .theme-preview-layout {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .theme-preview-layout > * {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+  #theme-preview-panel, .mye-custom-dashboard-mock {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
   .mye-dash-top-row {
     flex-direction: column !important;
+    width: 100% !important;
+    max-width: 100% !important;
   }
   .mye-dash-left-card, .mye-dash-right-card {
     width: 100% !important;
     min-width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .mye-dash-stats-grid, .mye-stat-box, .mye-stat-middle-col, .mye-stat-middle-box {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Dashboard Header Mobile Fix */
+  .mye-dash-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 8px !important;
+    margin-bottom: 12px !important;
+  }
+  .mye-dash-title {
+    font-size: 20px !important;
+  }
+  .mye-dash-period-badge {
+    font-size: 10px !important;
+    padding: 3px 8px !important;
+  }
+
+  /* Dashboard Stats Grid Mobile Fix (Specificity Override) */
+  .mye-custom-dashboard-mock .mye-dash-stats-grid {
+    flex-direction: column !important;
+    height: auto !important;
+  }
+  .mye-custom-dashboard-mock .mye-stat-middle-col {
+    flex-direction: row !important;
+    width: 100% !important;
+    gap: 8px !important;
+  }
+  .mye-custom-dashboard-mock .mye-stat-middle-box {
+    height: 48px !important;
+    flex: 1 !important;
+    padding: 0 8px !important;
+    gap: 4px !important;
+    justify-content: center !important;
+  }
+  .mye-custom-dashboard-mock .mye-middle-value {
+    font-size: 28px !important;
+    margin-right: 0 !important;
+  }
+  .mye-custom-dashboard-mock .mye-middle-title {
+    font-size: 11px !important;
   }
   
   /* Window 2: Grade Simulator Widget */
@@ -1747,6 +1873,75 @@
   }
   .myefrei-ultra-page .main-title {
     font-size: 2.2rem !important;
+  }
+
+  /* Grade Simulator Mobile Improvements */
+  .mye-grades-left {
+    padding: 10px !important;
+  }
+  .mye-grade-circle-container {
+    padding: 10px !important;
+  }
+  .mye-ue-header {
+    padding: 6px 12px !important;
+    gap: 8px !important;
+  }
+  .mye-ue-title {
+    font-size: 11px !important;
+  }
+  .mye-ue-grade {
+    font-size: 11px !important;
+    padding: 2px 8px !important;
+    margin-left: auto !important;
+  }
+  .mye-subject-top {
+    padding: 10px 12px !important;
+    gap: 8px !important;
+  }
+  .mye-subject-name {
+    font-size: 12px !important;
+  }
+  .mye-subject-coef {
+    font-size: 9px !important;
+  }
+  .mye-subject-grade {
+    font-size: 12px !important;
+  }
+  .mye-detail-row {
+    padding: 6px 12px !important;
+  }
+  
+  /* Campus Map Tabs Mobile Stacking */
+  .mye-campus-tabs {
+    display: flex !important;
+    flex-direction: column !important;
+    border-radius: 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 4px !important;
+  }
+  .mye-campus-tab {
+    text-align: center !important;
+    width: 100% !important;
+    padding: 8px 12px !important;
+    border-radius: 10px !important;
+    font-size: 10px !important;
+    white-space: normal !important;
+  }
+  
+  /* Calendar Toolbar Stacking on Mobile */
+  .mac-cal-toolbar {
+    flex-direction: column !important;
+    height: auto !important;
+    padding: 8px !important;
+    gap: 6px !important;
+    align-items: stretch !important;
+  }
+  .mac-cal-title {
+    text-align: center !important;
+  }
+  .mac-cal-view-toggles {
+    justify-content: center !important;
   }
 }
 

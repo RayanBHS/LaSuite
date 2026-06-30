@@ -860,3 +860,173 @@
   }
 }
 
+/* Styles par défaut pour le bouton retour (masqués sur desktop) */
+.oneui-chat-back-btn {
+  display: none !important;
+}
+
+@media (max-width: 992px) {
+  .mymessage-ultra-page .main-title {
+    font-size: 2.8rem !important;
+  }
+  .ultra-tagline {
+    font-size: 1rem !important;
+  }
+  .ultra-hero-content h2 {
+    font-size: 1.8rem !important;
+  }
+  .ultra-hero-content p {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+  .ultra-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 12px;
+  }
+  .btn-ultra-primary, .btn-ultra-secondary {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .feature-showcase-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Strip preview-section card wrapper and integrate text/simulators natively */
+  .preview-section {
+    background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 2.5rem !important;
+  }
+  
+  .preview-text h3 {
+    color: #00205C !important;
+    font-size: 1.6rem !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .preview-text p {
+    color: #475569 !important;
+    font-size: 0.95rem !important;
+  }
+  
+  .preview-text p a {
+    color: #007aff !important;
+  }
+
+  /* Strip browser window frame and integrate directly into the page flow */
+  .interactive-window {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    min-height: 520px;
+  }
+
+  .window-header {
+    background: transparent !important;
+    border-bottom: none !important;
+    padding: 8px 0 !important;
+    gap: 8px !important;
+  }
+
+  .window-dots {
+    display: none !important;
+  }
+
+  .window-title {
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    color: #475569 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 180px !important;
+  }
+
+  .window-action-lbl {
+    display: none !important;
+  }
+
+  .window-body {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+  }
+
+  .oneui-messaging-app {
+    height: 520px !important;
+    position: relative !important;
+  }
+
+  /* Contact list layout on mobile */
+  .oneui-left-panel {
+    width: 100% !important;
+    min-width: 100% !important;
+    display: flex !important;
+  }
+
+  /* Chat view layout on mobile */
+  .oneui-right-panel {
+    display: none !important;
+    width: 100% !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    height: 100% !important;
+    z-index: 10 !important;
+  }
+
+  /* When conversation is selected on mobile */
+  .oneui-messaging-app.oneui-chat-selected .oneui-left-panel {
+    display: none !important;
+  }
+
+  .oneui-messaging-app.oneui-chat-selected .oneui-right-panel {
+    display: flex !important;
+  }
+
+  /* Mobile back button design */
+  .oneui-chat-back-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    color: #007aff;
+    cursor: pointer;
+    padding: 4px;
+    margin-right: 6px;
+  }
+
+  .oneui-conv-details {
+    flex: 1;
+  }
+
+  .oneui-conv-details span {
+    max-width: 160px !important;
+  }
+
+  .chat-ultra-badge {
+    font-size: 8px !important;
+    padding: 2px 6px !important;
+  }
+}
+
+

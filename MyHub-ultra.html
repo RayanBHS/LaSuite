@@ -243,6 +243,8 @@
             
             <div class="window-body">
               <div id="mye-ai-container">
+                <!-- Mobile Toggle Sidebar Button -->
+                <button id="mye-ai-toggle-sidebar-btn" class="mye-ai-toggle-sidebar-btn">⚙️ Filtres</button>
                 <div class="mye-ai-main-layout">
                   
                   <!-- Left Sidebar -->
@@ -250,6 +252,8 @@
                     <div class="mye-ai-brand-card">
                       <img src="img/logoMyHub.png" class="mye-ai-brand-logo" alt="MyHub logo">
                       <span class="mye-ai-brand-name">MyHub ULTRA</span>
+                      <!-- Mobile Close Sidebar Button -->
+                      <button id="mye-ai-close-sidebar-btn" class="mye-ai-close-sidebar-btn">✕</button>
                     </div>
                     
                     <!-- Mode Toggle: Simple / ULTRA -->
@@ -513,6 +517,25 @@
   <!-- Simulator Interactive Logic -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Mobile sidebar toggle
+      const toggleSidebarBtn = document.getElementById('mye-ai-toggle-sidebar-btn');
+      const closeSidebarBtn = document.getElementById('mye-ai-close-sidebar-btn');
+      const aiContainer = document.getElementById('mye-ai-container');
+      
+      if (toggleSidebarBtn && aiContainer) {
+        toggleSidebarBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          aiContainer.classList.add('mye-sidebar-active');
+        });
+      }
+      
+      if (closeSidebarBtn && aiContainer) {
+        closeSidebarBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          aiContainer.classList.remove('mye-sidebar-active');
+        });
+      }
+
       // Elements
       const modeSimpleBtn = document.getElementById('mye-mode-simple');
       const modeUltraBtn = document.getElementById('mye-mode-ultra');

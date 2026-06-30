@@ -261,7 +261,7 @@
             </div>
             
             <div class="window-body">
-              <div class="oneui-messaging-app">
+              <div class="oneui-messaging-app" id="oneui-messaging-app">
                 <!-- Sidebar contacts list -->
                 <aside class="oneui-left-panel">
                   <div class="oneui-top-navigation-pills">
@@ -328,6 +328,8 @@
                 <div class="oneui-right-panel oneui-chat-active">
                   <div class="oneui-chat-view" style="display: flex; flex-direction: column; height: 100%; width: 100%;">
                     <div class="oneui-chat-header">
+                      <!-- Back button on mobile -->
+                      <button id="oneui-chat-back-btn" class="oneui-chat-back-btn">←</button>
                       <div class="oneui-chat-header-avatar" id="chat-header-avatar" style="background:#10b981; width: 24px; height: 24px; font-size: 10px; font-weight: bold; color: white; display: flex; align-items: center; justify-content: center; border-radius: 50%;">A</div>
                       <div class="oneui-chat-header-info">
                         <div class="oneui-chat-header-name" id="chat-header-name">Prof. Alexandre</div>
@@ -646,6 +648,16 @@
         chatBody.scrollTop = chatBody.scrollHeight;
       };
       
+      const oneuiApp = document.getElementById('oneui-messaging-app');
+      const chatBackBtn = document.getElementById('oneui-chat-back-btn');
+      
+      if (chatBackBtn && oneuiApp) {
+        chatBackBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          oneuiApp.classList.remove('oneui-chat-selected');
+        });
+      }
+
       sidebarItems.forEach(item => {
         item.addEventListener('click', () => {
           sidebarItems.forEach(i => i.classList.remove('active'));
@@ -653,6 +665,9 @@
           currentActiveUser = item.getAttribute('data-user');
           renderActiveChat();
           cancelReply();
+          if (oneuiApp) {
+            oneuiApp.classList.add('oneui-chat-selected');
+          }
         });
       });
       

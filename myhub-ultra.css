@@ -1038,3 +1038,226 @@ input:checked + .mye-ai-slider:before {
   display: none !important;
 }
 
+/* ==========================================================================
+   RESPONSIVE LAYOUT ADJUSTMENTS FOR TABLET & MOBILE (MyHub ULTRA Page)
+   ========================================================================== */
+
+/* Styles par défaut pour les boutons mobiles (masqués sur desktop) */
+.mye-ai-toggle-sidebar-btn {
+  display: none !important;
+}
+.mye-ai-close-sidebar-btn {
+  display: none !important;
+}
+
+@media (max-width: 992px) {
+  .myhub-ultra-page .main-title {
+    font-size: 2.8rem !important;
+  }
+  .ultra-tagline {
+    font-size: 1rem !important;
+  }
+  .ultra-hero-content h2 {
+    font-size: 1.8rem !important;
+  }
+  .ultra-hero-content p {
+    font-size: 0.95rem !important;
+    line-height: 1.5 !important;
+  }
+  .ultra-hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 12px;
+  }
+  .btn-ultra-primary, .btn-ultra-secondary {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  .feature-showcase-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Strip preview-section card wrapper and integrate text/simulators natively */
+  .preview-section {
+    background-color: transparent !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin-bottom: 2.5rem !important;
+  }
+  
+  .preview-text h3 {
+    color: #00205C !important;
+    font-size: 1.6rem !important;
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .preview-text p {
+    color: #475569 !important;
+    font-size: 0.95rem !important;
+  }
+  
+  .preview-text p a {
+    color: #007aff !important;
+  }
+
+  /* Strip browser window frame and integrate directly into the page flow */
+  .interactive-window {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    min-height: 520px;
+  }
+
+  .window-header {
+    background: transparent !important;
+    border-bottom: none !important;
+    padding: 8px 0 !important;
+    gap: 8px !important;
+  }
+
+  .window-dots {
+    display: none !important;
+  }
+
+  .window-title {
+    font-size: 0.85rem !important;
+    font-weight: 700 !important;
+    color: #475569 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    max-width: 180px !important;
+  }
+
+  .window-action-lbl {
+    display: none !important;
+  }
+
+  .window-body {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+  }
+
+  /* Chat Container Layout Adjustments */
+  #mye-ai-container {
+    height: 520px !important;
+  }
+
+  .mye-ai-main-layout {
+    position: relative !important;
+    padding: 12px !important;
+    gap: 0 !important;
+  }
+
+  /* Show toggle sidebar button on mobile */
+  .mye-ai-toggle-sidebar-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 22px;
+    right: 20px;
+    z-index: 90;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    color: #1e293b;
+    font-family: inherit;
+    transition: background 0.2s;
+  }
+  
+  .mye-ai-toggle-sidebar-btn:hover {
+    background: #f1f5f9;
+  }
+
+  /* Show close sidebar button on mobile */
+  .mye-ai-close-sidebar-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px;
+    margin-left: auto;
+    font-weight: bold;
+  }
+
+  /* Left Sidebar Overlay style on mobile */
+  .mye-ai-left-sidebar {
+    position: absolute !important;
+    top: 12px !important;
+    bottom: 12px !important;
+    left: 12px !important;
+    z-index: 100 !important;
+    width: 210px !important;
+    min-width: 210px !important;
+    transform: translateX(-240px);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    background: #f1f5f9 !important;
+    border-radius: 20px !important;
+    padding: 10px !important;
+    box-shadow: none !important;
+  }
+
+  #mye-ai-container.mye-sidebar-active .mye-ai-left-sidebar {
+    transform: translateX(0) !important;
+    box-shadow: 5px 0 25px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .mye-ai-right-content {
+    border-radius: 20px !important;
+  }
+
+  .mye-ai-landing-title {
+    font-size: 2.2rem !important;
+    letter-spacing: -1px !important;
+  }
+
+  .mye-ai-landing-subtitle {
+    font-size: 1rem !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  .mye-ai-search-box {
+    max-width: 100% !important;
+  }
+
+  .mye-ai-search-box input {
+    font-size: 11px !important;
+    padding: 10px 14px !important;
+  }
+
+  .mye-ai-quick-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px !important;
+  }
+
+  .mye-ai-link-btn {
+    font-size: 9px !important;
+    padding: 6px 12px !important;
+  }
+}
+
+
