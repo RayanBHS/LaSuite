@@ -159,9 +159,7 @@
           <!-- Extension 2: myMoodle ULTRA -->
           <div class="extension-pill-item">
             <div class="extension-pill-left">
-              <div class="mym-moodle-icon-wrapper">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="dome-svg"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path><path d="M12 10v6" stroke-width="2"></path></svg>
-              </div>
+              <img src="img/logoMyMoodleUltra.png" alt="myMoodle ULTRA Logo" class="extension-logo-img">
               <span class="extension-name">myMoodle ULTRA</span>
             </div>
             <label class="switch">
@@ -235,9 +233,7 @@
               <!-- Extension 2: myMoodle ULTRA -->
               <div class="extension-pill-item">
                 <div class="extension-pill-left">
-                  <div class="mym-moodle-icon-wrapper">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="dome-svg"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path><path d="M12 10v6" stroke-width="2"></path></svg>
-                  </div>
+                  <img src="img/logoMyMoodleUltra.png" alt="myMoodle ULTRA Logo" class="extension-logo-img">
                   <span class="extension-name">myMoodle ULTRA</span>
                 </div>
                 <label class="switch">
@@ -511,6 +507,16 @@
 
           <!-- TAB 2: MYMOODLE ULTRA -->
           <div id="settings-tab-content-mymoodle" class="settings-tab-content">
+            <!-- UNCONNECTED STATE VIEW FOR MYMOODLE (Only shown if NOT installed) -->
+            <div class="mym-unconnected-only" style="margin-bottom: 2rem; display: none;">
+              <div class="card-unconnected-msg" style="text-align: center; border: 1px solid #e5e5e7; padding: 4rem 2rem; border-radius: 20px; box-shadow: none;">
+                <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; color: #00205C; font-weight: 500; letter-spacing: -0.5px;">myMoodle ULTRA n'est pas installé</h2>
+                <a href="mymoodle-ultra.html#prise-en-main-ultra" class="btn-mye-install" style="display: inline-block; padding: 0.85rem 2.5rem; background-color: var(--btn-orange, #f37936); color: #ffffff; text-decoration: none; border-radius: 100px; font-weight: 600; font-size: 1.1rem; box-shadow: 0 4px 12px rgba(243, 121, 54, 0.15); transition: all 0.2s ease;">Installer l'extension</a>
+              </div>
+            </div>
+
+            <!-- CONNECTED STATE VIEW FOR MYMOODLE (Only shown if installed) -->
+            <div class="mym-connected-only">
             <!-- Catégorie 1: Apparence & Personnalisation -->
             <div class="pref-category">
               <h4 class="pref-cat-title">Apparence de l'extension</h4>
@@ -665,6 +671,7 @@
                 </div>
               </div>
             </div>
+            </div>
           </div> <!-- Close TAB 2: MYMOODLE ULTRA -->
 
           <!-- TAB 3: MYHUB ULTRA -->
@@ -788,6 +795,19 @@
           notInstalledOnlyEls.forEach(el => {
             el.style.display = 'block';
           });
+        }
+
+        // myMoodle ULTRA installation toggle
+        const mymInstalled = checkMymExtensionInstalled();
+        const mymConnectedOnly = document.querySelector('.mym-connected-only');
+        const mymUnconnectedOnly = document.querySelector('.mym-unconnected-only');
+        
+        if (mymInstalled) {
+          if (mymConnectedOnly) mymConnectedOnly.style.display = 'block';
+          if (mymUnconnectedOnly) mymUnconnectedOnly.style.display = 'none';
+        } else {
+          if (mymConnectedOnly) mymConnectedOnly.style.display = 'none';
+          if (mymUnconnectedOnly) mymUnconnectedOnly.style.display = 'block';
         }
       };
 
