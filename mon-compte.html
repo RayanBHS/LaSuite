@@ -527,31 +527,33 @@
                 </div>
                 <div class="apple-settings-row">
                   <div class="apple-row-label-desc" style="text-align: left;">
-                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Masquer le pied de page</span>
-                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Masquer le pied de page (Footer) sur Moodle.</span>
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Affichage des cours</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Choisir la mise en page par défaut sur le tableau de bord.</span>
+                  </div>
+                  <div class="apple-row-interactive">
+                    <select id="mym-input-layout" class="apple-select-dropdown">
+                      <option value="grid">Grille (Cartes)</option>
+                      <option value="list">Liste</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="apple-settings-row">
+                  <div class="apple-row-label-desc" style="text-align: left;">
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">En-tête de cours personnalisé</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Activer la bannière et l'en-tête modernisés sur les pages des cours.</span>
                   </div>
                   <label class="apple-switch">
-                    <input type="checkbox" id="mym-input-hidefooter">
+                    <input type="checkbox" id="mym-input-courseheader">
                     <span class="apple-slider"></span>
                   </label>
                 </div>
                 <div class="apple-settings-row">
                   <div class="apple-row-label-desc" style="text-align: left;">
-                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Affichage condensé</span>
-                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Activer l'affichage condensé des matières sur le tableau de bord.</span>
+                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Filtres du tableau de bord</span>
+                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Activer le filtrage par semestre et la barre de recherche rapide.</span>
                   </div>
                   <label class="apple-switch">
-                    <input type="checkbox" id="mym-input-condensedcards">
-                    <span class="apple-slider"></span>
-                  </label>
-                </div>
-                <div class="apple-settings-row">
-                  <div class="apple-row-label-desc" style="text-align: left;">
-                    <span class="apple-row-label" style="display: block; margin-bottom: 2px;">Masquer le tiroir latéral</span>
-                    <span style="font-size: 12px; color: #86868b; display: block; line-height: 1.4;">Masquer le tiroir latéral gauche par défaut au chargement.</span>
-                  </div>
-                  <label class="apple-switch">
-                    <input type="checkbox" id="mym-input-hidesidebar">
+                    <input type="checkbox" id="mym-input-quickfilters">
                     <span class="apple-slider"></span>
                   </label>
                 </div>
@@ -909,9 +911,9 @@
         
         // Moodle Settings
         mym_theme: 'mymoodle_user_theme',
-        mym_hidefooter: 'mymoodle_user_hidefooter',
-        mym_condensedcards: 'mymoodle_user_condensedcards',
-        mym_hidesidebar: 'mymoodle_user_hidesidebar',
+        mym_layout: 'mymoodle_layout_pref',
+        mym_courseheader: 'mymoodle_course_header',
+        mym_quickfilters: 'mymoodle_quick_filters',
         mym_viewer: 'mymoodle_user_viewer',
         mym_oneui: 'mymoodle_user_oneui',
         mym_handshake: 'mymoodle_user_handshake',
@@ -975,9 +977,9 @@
         
         // Moodle Inputs
         mym_theme: document.getElementById('mym-input-theme'),
-        mym_hidefooter: document.getElementById('mym-input-hidefooter'),
-        mym_condensedcards: document.getElementById('mym-input-condensedcards'),
-        mym_hidesidebar: document.getElementById('mym-input-hidesidebar'),
+        mym_layout: document.getElementById('mym-input-layout'),
+        mym_courseheader: document.getElementById('mym-input-courseheader'),
+        mym_quickfilters: document.getElementById('mym-input-quickfilters'),
         mym_viewer: document.getElementById('mym-input-viewer'),
         mym_oneui: document.getElementById('mym-input-oneui'),
         mym_handshake: document.getElementById('mym-input-handshake'),
@@ -1068,9 +1070,9 @@
 
         // Load Moodle Settings
         inputs.mym_theme.value = localStorage.getItem(keys.mym_theme) || 'light';
-        inputs.mym_hidefooter.checked = localStorage.getItem(keys.mym_hidefooter) !== 'false';
-        inputs.mym_condensedcards.checked = localStorage.getItem(keys.mym_condensedcards) !== 'false';
-        inputs.mym_hidesidebar.checked = localStorage.getItem(keys.mym_hidesidebar) !== 'false';
+        inputs.mym_layout.value = localStorage.getItem(keys.mym_layout) || 'grid';
+        inputs.mym_courseheader.checked = localStorage.getItem(keys.mym_courseheader) !== 'false';
+        inputs.mym_quickfilters.checked = localStorage.getItem(keys.mym_quickfilters) !== 'false';
         inputs.mym_viewer.checked = localStorage.getItem(keys.mym_viewer) !== 'false';
         inputs.mym_oneui.checked = localStorage.getItem(keys.mym_oneui) !== 'false';
         inputs.mym_handshake.checked = localStorage.getItem(keys.mym_handshake) !== 'false';
@@ -1268,17 +1270,17 @@
         saveParam(keys.mym_theme, e.target.value);
         showToast(`myMoodle ULTRA Thème : ${e.target.value.toUpperCase()}`);
       });
-      inputs.mym_hidefooter.addEventListener('change', (e) => {
-        saveParam(keys.mym_hidefooter, e.target.checked);
-        showToast(`Footer Moodle : ${e.target.checked ? 'Masqué' : 'Affiché'}`);
+      inputs.mym_layout.addEventListener('change', (e) => {
+        saveParam(keys.mym_layout, e.target.value);
+        showToast(`Affichage Moodle : ${e.target.value === 'grid' ? 'Grille' : 'Liste'}`);
       });
-      inputs.mym_condensedcards.addEventListener('change', (e) => {
-        saveParam(keys.mym_condensedcards, e.target.checked);
-        showToast(`Matières condensées : ${e.target.checked ? 'Activé' : 'Désactivé'}`);
+      inputs.mym_courseheader.addEventListener('change', (e) => {
+        saveParam(keys.mym_courseheader, e.target.checked);
+        showToast(`En-tête de cours : ${e.target.checked ? 'Activé' : 'Désactivé'}`);
       });
-      inputs.mym_hidesidebar.addEventListener('change', (e) => {
-        saveParam(keys.mym_hidesidebar, e.target.checked);
-        showToast(`Tiroir latéral : ${e.target.checked ? 'Masqué par défaut' : 'Affiché par défaut'}`);
+      inputs.mym_quickfilters.addEventListener('change', (e) => {
+        saveParam(keys.mym_quickfilters, e.target.checked);
+        showToast(`Filtres du tableau de bord : ${e.target.checked ? 'Activés' : 'Désactivés'}`);
       });
       inputs.mym_viewer.addEventListener('change', (e) => {
         saveParam(keys.mym_viewer, e.target.checked);
@@ -1507,9 +1509,9 @@
 
         // Clear Moodle settings
         localStorage.removeItem(keys.mym_theme);
-        localStorage.removeItem(keys.mym_hidefooter);
-        localStorage.removeItem(keys.mym_condensedcards);
-        localStorage.removeItem(keys.mym_hidesidebar);
+        localStorage.removeItem(keys.mym_layout);
+        localStorage.removeItem(keys.mym_courseheader);
+        localStorage.removeItem(keys.mym_quickfilters);
         localStorage.removeItem(keys.mym_viewer);
         localStorage.removeItem(keys.mym_oneui);
         localStorage.removeItem(keys.mym_handshake);
