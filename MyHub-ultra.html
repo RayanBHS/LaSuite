@@ -567,17 +567,102 @@
 
       const PROVIDER_METADATA = {
         gemini: { name: 'Gemini', logo: 'img/AIlogo/gemini.png', fullName: 'Gemini 1.5 Pro' },
-        openai: { name: 'ChatGPT', logo: 'img/AIlogo/chatgpt.png', fullName: 'GPT-4o (OpenAI)' },
+        openai: { name: 'ChatGPT', logo: 'img/AIlogo/chatgpt.png', fullName: 'GPT-4o' },
         claude: { name: 'Claude', logo: 'img/AIlogo/Claude.png', fullName: 'Claude 3.5 Sonnet' },
-        deepseek: { name: 'DeepSeek', logo: 'img/AIlogo/Deepseek.png', fullName: 'DeepSeek R1' }
+        deepseek: { name: 'DeepSeek', logo: 'img/AIlogo/Deepseek.png', fullName: 'DeepSeek R1' },
+        grok: { name: 'Grok', logo: 'img/AIlogo/Grok.png', fullName: 'Grok 2' },
+        groq: { name: 'Groq', logo: 'img/AIlogo/Groq.png', fullName: 'Groq' },
+        mistral: { name: 'Mistral', logo: 'img/AIlogo/Mistral.png', fullName: 'Mistral Large' },
+        openrouter: { name: 'OpenRouter', logo: 'img/AIlogo/Openrouter.png', fullName: 'OpenRouter' },
+        qwen: { name: 'Qwen', logo: 'img/AIlogo/Qwen.png', fullName: 'Qwen 2.5' }
       };
+
+      // Load parameters from localStorage
+      const loadHubLocalStorage = () => {
+        const savedMode = localStorage.getItem('myhub_user_mode');
+        if (savedMode === 'ultra') {
+          aiMode = 'ultra';
+          modeUltraBtn.classList.add('mye-mode-active-ultra');
+          modeSimpleBtn.classList.remove('mye-mode-active-simple');
+          ultraConfig.style.display = 'block';
+        } else if (savedMode === 'simple') {
+          aiMode = 'simple';
+          modeSimpleBtn.classList.add('mye-mode-active-simple');
+          modeUltraBtn.classList.remove('mye-mode-active-ultra');
+          ultraConfig.style.display = 'none';
+        }
+
+        const savedProvider = localStorage.getItem('myhub_user_provider');
+        if (savedProvider && PROVIDER_METADATA[savedProvider]) {
+          aiProvider = savedProvider;
+          const meta = PROVIDER_METADATA[aiProvider];
+          selectedLogoImg.src = meta.logo;
+          selectedName.textContent = meta.name;
+        }
+
+        const savedKey = localStorage.getItem('myhub_user_apikey');
+        if (savedKey !== null) {
+          apiKeyInput.value = savedKey;
+        }
+
+        const syncMyefrei = localStorage.getItem('myhub_user_sync_myefrei');
+        const toggleMyefrei = document.getElementById('mye-toggle-myefrei');
+        if (toggleMyefrei) {
+          toggleMyefrei.checked = syncMyefrei !== 'false';
+        }
+
+        const syncMoodle = localStorage.getItem('myhub_user_sync_moodle');
+        const toggleMoodle = document.getElementById('mye-toggle-moodle');
+        if (toggleMoodle) {
+          toggleMoodle.checked = syncMoodle !== 'false';
+        }
+
+        const syncMessage = localStorage.getItem('myhub_user_sync_message');
+        const toggleMessage = document.getElementById('mye-toggle-message');
+        if (toggleMessage) {
+          toggleMessage.checked = syncMessage !== 'false';
+        }
+      };
+
+      // Helper to save parameter and dispatch event for Chrome extension sync
+      const saveParam = (key, value) => {
+        localStorage.setItem(key, value);
+        window.dispatchEvent(new CustomEvent('mye-portal-save', { detail: { key, value } }));
+      };
+
+      // Checkbox listeners to save state to localStorage
+      const toggleMyefrei = document.getElementById('mye-toggle-myefrei');
+      if (toggleMyefrei) {
+        toggleMyefrei.addEventListener('change', (e) => {
+          saveParam('myhub_user_sync_myefrei', e.target.checked ? 'true' : 'false');
+        });
+      }
+      const toggleMoodle = document.getElementById('mye-toggle-moodle');
+      if (toggleMoodle) {
+        toggleMoodle.addEventListener('change', (e) => {
+          saveParam('myhub_user_sync_moodle', e.target.checked ? 'true' : 'false');
+        });
+      }
+      const toggleMessage = document.getElementById('mye-toggle-message');
+      if (toggleMessage) {
+        toggleMessage.addEventListener('change', (e) => {
+          saveParam('myhub_user_sync_message', e.target.checked ? 'true' : 'false');
+        });
+      }
+
+      loadHubLocalStorage();
 
       // Populate Dropdown Choices
       const providersList = [
         { id: 'gemini', name: 'Gemini' },
         { id: 'openai', name: 'ChatGPT' },
         { id: 'claude', name: 'Claude' },
-        { id: 'deepseek', name: 'DeepSeek' }
+        { id: 'deepseek', name: 'DeepSeek' },
+        { id: 'grok', name: 'Grok' },
+        { id: 'groq', name: 'Groq' },
+        { id: 'mistral', name: 'Mistral' },
+        { id: 'openrouter', name: 'OpenRouter' },
+        { id: 'qwen', name: 'Qwen' }
       ];
 
       providerOptions.innerHTML = providersList.map(p => {
@@ -614,6 +699,7 @@
         opt.addEventListener('click', (e) => {
           e.stopPropagation();
           aiProvider = opt.dataset.value;
+          saveParam('myhub_user_provider', aiProvider);
           
           // Update trigger UI
           const meta = PROVIDER_METADATA[aiProvider];
@@ -664,6 +750,7 @@
         modeSimpleBtn.classList.add('mye-mode-active-simple');
         modeUltraBtn.classList.remove('mye-mode-active-ultra');
         ultraConfig.style.display = 'none';
+        saveParam('myhub_user_mode', 'simple');
       });
 
       modeUltraBtn.addEventListener('click', () => {
@@ -671,6 +758,7 @@
         modeUltraBtn.classList.add('mye-mode-active-ultra');
         modeSimpleBtn.classList.remove('mye-mode-active-simple');
         ultraConfig.style.display = 'block';
+        saveParam('myhub_user_mode', 'ultra');
       });
 
       // Transition Back to Landing
@@ -883,7 +971,10 @@
       };
 
       // Listen for data synchronization
-      window.addEventListener('mye-sync-data', updateDrawerProfile);
+      window.addEventListener('mye-sync-data', () => {
+        updateDrawerProfile();
+        loadHubLocalStorage();
+      });
       updateDrawerProfile(); // Initial sync
 
       // --- EXIT BUTTON REDIRECT ---
@@ -899,6 +990,7 @@
       apiKeyInput.addEventListener('input', () => {
         keyStatus.textContent = '⏳ Enregistrement...';
         keyStatus.style.color = '#d97706';
+        saveParam('myhub_user_apikey', apiKeyInput.value);
         
         clearTimeout(apiKeyInput.saveTimeout);
         apiKeyInput.saveTimeout = setTimeout(() => {
@@ -906,7 +998,12 @@
           keyStatus.style.color = '#059669';
         }, 800);
       });
-
+      // Listen to storage changes for real-time synchronization with dashboard settings
+      window.addEventListener('storage', (e) => {
+        if (e.key && e.key.startsWith('myhub_')) {
+          loadHubLocalStorage();
+        }
+      });
       // Helper escape html
       function escapeHtml(text) {
         return text

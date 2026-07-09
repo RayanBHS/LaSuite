@@ -693,17 +693,22 @@
             </div>
 
             <!-- Catégorie 2: Configuration API (ULTRA) -->
-            <div class="pref-category" id="myh-section-api" style="display: none;">
+            <div class="pref-category">
               <h4 class="pref-cat-title">Configuration Fournisseur d'IA (ULTRA)</h4>
               <div class="apple-settings-card">
                 <div class="apple-settings-row">
                   <span class="apple-row-label">Fournisseur d'IA</span>
                   <div class="apple-row-interactive">
                     <select id="myh-input-provider" class="apple-select-dropdown">
-                      <option value="gemini">Gemini (Google)</option>
-                      <option value="openai">ChatGPT (OpenAI)</option>
-                      <option value="claude">Claude (Anthropic)</option>
-                      <option value="deepseek">DeepSeek (R1)</option>
+                      <option value="gemini">Gemini</option>
+                      <option value="openai">ChatGPT</option>
+                      <option value="claude">Claude</option>
+                      <option value="deepseek">DeepSeek</option>
+                      <option value="grok">Grok</option>
+                      <option value="groq">Groq</option>
+                      <option value="mistral">Mistral</option>
+                      <option value="openrouter">OpenRouter</option>
+                      <option value="qwen">Qwen</option>
                     </select>
                   </div>
                 </div>
@@ -712,6 +717,27 @@
                   <div style="display: flex; align-items: center;">
                     <input type="password" id="myh-input-apikey" class="apple-input-text" placeholder="Entrez votre clé API...">
                     <button type="button" id="myh-btn-toggle-key" class="apple-btn-toggle-key">👁</button>
+                  </div>
+                </div>
+                <div class="apple-settings-row">
+                  <span class="apple-row-label">Température de génération</span>
+                  <div class="apple-row-interactive">
+                    <select id="myh-input-temp" class="apple-select-dropdown">
+                      <option value="0.2">Précis (0.2)</option>
+                      <option value="0.5">Équilibré (0.5)</option>
+                      <option value="0.8">Créatif (0.8)</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="apple-settings-row">
+                  <span class="apple-row-label">Rôle / Prompt Système</span>
+                  <div class="apple-row-interactive">
+                    <select id="myh-input-role" class="apple-select-dropdown">
+                      <option value="academic">Tuteur Académique</option>
+                      <option value="admin">Guide Administratif</option>
+                      <option value="coder">Assistant Code & Projets</option>
+                      <option value="neutral">Neutre / Standard</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -753,6 +779,8 @@
                 </div>
               </div>
             </div>
+
+
           </div> <!-- Close TAB 3: MYHUB ULTRA -->
 
           <!-- Actions -->
@@ -775,6 +803,7 @@
       // Check if extension is installed and update UI accordingly
       const checkExtensionInstalled = () => document.documentElement.dataset.myefreiUltraInstalled === "true";
       const checkMymExtensionInstalled = () => document.documentElement.dataset.mymoodleUltraInstalled === "true";
+      const checkMyhExtensionInstalled = () => document.documentElement.dataset.myhubUltraInstalled === "true";
 
       const updateInstallationStateUI = () => {
         const myeInstalled = checkExtensionInstalled();
@@ -946,7 +975,20 @@
         myh_apikey: 'myhub_user_apikey',
         myh_sync_myefrei: 'myhub_user_sync_myefrei',
         myh_sync_moodle: 'myhub_user_sync_moodle',
-        myh_sync_message: 'myhub_user_sync_message'
+        myh_sync_message: 'myhub_user_sync_message',
+        myh_temp: 'myhub_user_temperature',
+        myh_role: 'myhub_user_role',
+        myh_sync_news: 'myhub_user_sync_news',
+        myh_position: 'myhub_user_position',
+        myh_width: 'myhub_user_width',
+        myh_bubble: 'myhub_user_bubble',
+        myh_shortcut: 'myhub_user_shortcut',
+        myh_autoindex: 'myhub_user_autoindex',
+        myh_savehistory: 'myhub_user_savehistory',
+        myh_suggestions: 'myhub_user_suggestions',
+        myh_color_bot: 'myhub_color_bot',
+        myh_color_user: 'myhub_color_user',
+        myh_enabled: 'myhub_user_enabled'
       };
 
       // Generate hour options dynamically for all start/end dropdowns to support 0h00-24h00 with 30-min steps
@@ -1010,7 +1052,9 @@
         myh_apikey: document.getElementById('myh-input-apikey'),
         myh_sync_myefrei: document.getElementById('myh-input-sync-myefrei'),
         myh_sync_moodle: document.getElementById('myh-input-sync-moodle'),
-        myh_sync_message: document.getElementById('myh-input-sync-message')
+        myh_sync_message: document.getElementById('myh-input-sync-message'),
+        myh_temp: document.getElementById('myh-input-temp'),
+        myh_role: document.getElementById('myh-input-role')
       };
 
       // Profile Card DOM references
@@ -1104,15 +1148,8 @@
         inputs.myh_sync_myefrei.checked = localStorage.getItem(keys.myh_sync_myefrei) !== 'false';
         inputs.myh_sync_moodle.checked = localStorage.getItem(keys.myh_sync_moodle) !== 'false';
         inputs.myh_sync_message.checked = localStorage.getItem(keys.myh_sync_message) !== 'false';
-
-        const updateHubApiVisibility = () => {
-          const apiSec = document.getElementById('myh-section-api');
-          if (apiSec) {
-            apiSec.style.display = inputs.myh_mode.value === 'ultra' ? 'block' : 'none';
-          }
-        };
-        updateHubApiVisibility();
-
+        inputs.myh_temp.value = localStorage.getItem(keys.myh_temp) || '0.5';
+        inputs.myh_role.value = localStorage.getItem(keys.myh_role) || 'academic';
         // Load Planning Settings
         let planningData = {
           colors: {
@@ -1318,8 +1355,6 @@
       // Hub Listeners
       inputs.myh_mode.addEventListener('change', (e) => {
         saveParam(keys.myh_mode, e.target.value);
-        const apiSec = document.getElementById('myh-section-api');
-        if (apiSec) apiSec.style.display = e.target.value === 'ultra' ? 'block' : 'none';
         showToast(`myHub Mode : ${e.target.value.toUpperCase()}`);
       });
       inputs.myh_provider.addEventListener('change', (e) => {
@@ -1340,6 +1375,15 @@
       inputs.myh_sync_message.addEventListener('change', (e) => {
         saveParam(keys.myh_sync_message, e.target.checked);
         showToast(`Sync Messagerie : ${e.target.checked ? 'Activée' : 'Désactivée'}`);
+      });
+      inputs.myh_temp.addEventListener('change', (e) => {
+        saveParam(keys.myh_temp, e.target.value);
+        showToast(`Température IA : ${e.target.value}`);
+      });
+      inputs.myh_role.addEventListener('change', (e) => {
+        saveParam(keys.myh_role, e.target.value);
+        const roles = { academic: 'Tuteur Académique', admin: 'Guide Administratif', coder: 'Assistant Code & Projets', neutral: 'Neutre / Standard' };
+        showToast(`Rôle IA : ${roles[e.target.value] || e.target.value}`);
       });
 
       // Toggle Hub API Key visibility
@@ -1544,6 +1588,9 @@
         localStorage.removeItem(keys.myh_sync_myefrei);
         localStorage.removeItem(keys.myh_sync_moodle);
         localStorage.removeItem(keys.myh_sync_message);
+        localStorage.removeItem(keys.myh_temp);
+        localStorage.removeItem(keys.myh_role);
+        localStorage.removeItem(keys.myh_enabled);
 
         // Keep default theme
         localStorage.setItem(keys.theme, 'navy');
@@ -1571,12 +1618,13 @@
         
         const myeEnabled = localStorage.getItem('mye_user_enabled') !== 'false';
         const mymEnabled = localStorage.getItem(keys.mym_enabled) !== 'false';
+        const myhEnabled = localStorage.getItem(keys.myh_enabled) !== 'false';
         
         const nameVal = localStorage.getItem(keys.name);
         const myeConnected = !!nameVal && myeEnabled;
         
-        // Show settings if either extension is active (installed/enabled or connected)
-        const showSettings = myeConnected || (mymInstalled && mymEnabled) || (myeInstalled && myeEnabled);
+        // Show settings if any extension is active or myHub is enabled from the dashboard
+        const showSettings = myeConnected || (mymInstalled && mymEnabled) || (myeInstalled && myeEnabled) || myhEnabled;
         
         if (showSettings) {
           body.classList.remove('is-unconnected');
@@ -1683,29 +1731,89 @@
         });
       }
 
+      // Hub Toggles Sync
+      const hubToggleUnconnected = document.getElementById('hub-toggle-unconnected');
+      const hubToggleConnected = document.getElementById('hub-toggle-connected');
+
+      const setMyhConnectionState = (isEnabled) => {
+        localStorage.setItem(keys.myh_enabled, isEnabled ? 'true' : 'false');
+        window.dispatchEvent(new CustomEvent('mye-portal-save', { 
+          detail: { key: keys.myh_enabled, value: isEnabled ? 'true' : 'false' } 
+        }));
+
+        if (hubToggleUnconnected) hubToggleUnconnected.checked = isEnabled;
+        if (hubToggleConnected) hubToggleConnected.checked = isEnabled;
+        
+        updateLayoutState();
+      };
+
+      if (hubToggleUnconnected) {
+        hubToggleUnconnected.addEventListener('change', () => {
+          setMyhConnectionState(hubToggleUnconnected.checked);
+          showToast(`MyHub ULTRA : ${hubToggleUnconnected.checked ? 'Activé' : 'Désactivé'}`);
+        });
+      }
+
+      if (hubToggleConnected) {
+        hubToggleConnected.addEventListener('change', () => {
+          setMyhConnectionState(hubToggleConnected.checked);
+          showToast(`MyHub ULTRA : ${hubToggleConnected.checked ? 'Activé' : 'Désactivé'}`);
+        });
+      }
+
       // Initial load
       loadParams();
       updateProfileCard();
       
-      const isInstalled = checkExtensionInstalled();
-      const initialEnabled = isInstalled && (localStorage.getItem('mye_user_enabled') !== 'false');
+      const initialEnabled = localStorage.getItem('mye_user_enabled') === 'true';
       setConnectionState(initialEnabled);
 
-      const mymInstalled = checkMymExtensionInstalled();
-      const mymInitialEnabled = mymInstalled && (localStorage.getItem(keys.mym_enabled) !== 'false');
+      const mymInitialEnabled = localStorage.getItem(keys.mym_enabled) === 'true';
       setMymConnectionState(mymInitialEnabled);
+
+      const myhInitialEnabled = localStorage.getItem(keys.myh_enabled) !== 'false';
+      setMyhConnectionState(myhInitialEnabled);
 
       // Listen for data synchronization from the extension content script
       window.addEventListener('mye-sync-data', () => {
         loadParams();
         updateProfileCard();
-        const currentEnabled = checkExtensionInstalled() && (localStorage.getItem('mye_user_enabled') !== 'false');
+        const currentEnabled = localStorage.getItem('mye_user_enabled') === 'true';
         setConnectionState(currentEnabled);
         
-        const mymCurrentEnabled = checkMymExtensionInstalled() && (localStorage.getItem(keys.mym_enabled) !== 'false');
+        const mymCurrentEnabled = localStorage.getItem(keys.mym_enabled) === 'true';
         setMymConnectionState(mymCurrentEnabled);
+
+        const myhCurrentEnabled = localStorage.getItem(keys.myh_enabled) !== 'false';
+        setMyhConnectionState(myhCurrentEnabled);
         
         updateInstallationStateUI();
+      });
+
+      // Listen to storage changes for real-time synchronization with myHub simulator
+      window.addEventListener('storage', (e) => {
+        if (e.key && (e.key.startsWith('myhub_') || e.key === 'mye_user_enabled' || e.key === keys.mym_enabled)) {
+          loadParams();
+          updateProfileCard();
+          updateLayoutState();
+          
+          // Also sync active states of switches
+          if (e.key === 'mye_user_enabled') {
+            const val = e.newValue === 'true';
+            if (toggleUnconnected) toggleUnconnected.checked = val;
+            if (toggleConnected) toggleConnected.checked = val;
+          }
+          if (e.key === keys.mym_enabled) {
+            const val = e.newValue === 'true';
+            if (moodleToggleUnconnected) moodleToggleUnconnected.checked = val;
+            if (moodleToggleConnected) moodleToggleConnected.checked = val;
+          }
+          if (e.key === keys.myh_enabled) {
+            const val = e.newValue === 'true';
+            if (hubToggleUnconnected) hubToggleUnconnected.checked = val;
+            if (hubToggleConnected) hubToggleConnected.checked = val;
+          }
+        }
       });
     });
   </script>
